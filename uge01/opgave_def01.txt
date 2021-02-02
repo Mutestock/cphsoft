@@ -1,0 +1,4 @@
+lav kredsløb der kan lægge to tal sammen. half adder full adder. to tal ind med a0 a1 a2 a3 og b0 b1 b2 b3 som input, r0 r1 r2 r3 resultat. 
+
+https://github.com/SOFT2020-Test/Exam-Questions
+https://github.com/SOFT2020-Test/Exam-Questions
