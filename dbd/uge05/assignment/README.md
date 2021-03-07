@@ -36,13 +36,13 @@ FILL ME DADDY OwO
 
 <br><br>
 
-Primary crates:
+Primary crates(comparable to packages):
 
 This project uses the asynchronous run time called Tokio. 
 
 Instead of an ORM framework (Usually Diesel in Rust), this particular project uses SQLx. 
 
-SQLx is a crate (similar to package) which provides asynchronous compile-time checked queries. 
+SQLx is a crate which provides asynchronous compile-time checked queries. 
 
 Lastly, the project uses Warp, which is an asynchronous web server framework (equivalent of flask in python).
 
