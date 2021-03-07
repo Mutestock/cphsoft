@@ -3,11 +3,11 @@
 
 <h6>
 run with: 
-<br>
+<br><br>
 docker-compose up
-<br>
+<br><br>
 That should be all. Make sure none of your other processes uses port 13337 Otherwise change it in docker-compose.yml
-
+<br><br>
 pg info:
 
     POSTGRES\_USER: softdbd 
