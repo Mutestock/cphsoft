@@ -1,4 +1,4 @@
---- The reviewer ---:
+<h6>--- The reviewer ---<h6>
 
 run with: docker-compose up
 
@@ -6,20 +6,26 @@ That should be all. Make sure none of your other processes uses port 13337 Other
 
 pg info:
 
-POSTGRES\_USER: softdbd POSTGRES\_PASSWORD: softdbd POSTGRES\_DB: garbage
+    POSTGRES\_USER: softdbd 
 
+    POSTGRES\_PASSWORD: softdbd 
+
+    POSTGRES\_DB: garbage
+
+
+<br><br>
 This is a Rest Api.
 
 Currently open routes:
 !!
 
-
+<br><br><br>
 
 
 FILL ME DADDY OwO
 
 
-
+<br><br><br>
 
 !!
 
@@ -30,6 +36,9 @@ Primary crates:
 
 This project uses the asynchronous run time called Tokio. Instead of an ORM framework (Usually Diesel in Rust), this particular project uses SQLx. SQLx is a crate (similar to package) which provides asynchronous compile-time checked queries. Lastly, the project uses Warp, which is an asynchronous web server framework (equivalent of flask in python).
 
+<br><br>
+
+
 https://tokio.rs/ 
 
 https://diesel.rs/ 
@@ -38,10 +47,14 @@ https://github.com/launchbadge/sqlx
 
 https://github.com/seanmonstar/warp
 
+<br>
+<br>
+<br>
+<br>
 
 
 
---- Mindset(for me) ---
+<h6> --- Mindset(for me) --- <h6>
 
 There will be multiple implementations of each entity.
 
@@ -54,6 +67,8 @@ Postgres views must be implemented. Access must be restricted. This would be com
 Ideas: project will use docker-compose to initialize both rust and Postgres.
 
 Postgres first (wait for it) -\> Rust migrations gets started.
+
+<br><br>
 
 Two migration tactics: 
 
