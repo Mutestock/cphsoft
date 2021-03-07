@@ -17,6 +17,7 @@ This is a Rest Api.
 
 Currently open routes:
 
+!!
 
 
 
@@ -24,10 +25,20 @@ FILL ME DADDY OwO
 
 
 
+!!
+
+Primary crates:
+
+This project uses the asynchronous run time called Tokio.
+Instead of an ORM framework (Usually Diesel in Rust), this particular project uses SQLx.
+SQLx is a crate (similar to package) which provides asynchronous compile-time checked queries.
+Lastly, the project uses Warp, which is an asynchronous web server framework (equivalent of flask in python).
 
 
-
-
+https://tokio.rs/ 
+https://diesel.rs/
+https://github.com/launchbadge/sqlx
+https://github.com/seanmonstar/warp
 
 
 
@@ -43,7 +54,7 @@ Rust can't create inheritance for us. This is fine.
 Postgres views must be implemented.
 Access must be restricted.
 This would be complicated for an ORM framework to handle. 
-sqlx will be used for custom sql scripts. 
+SQLx will be used for custom sql scripts. 
 
 Ideas:
 project will use docker-compose to initialize both rust and Postgres.
@@ -52,12 +63,12 @@ Postgres first (wait for it) -> Rust migrations gets started.
 
 Two migration tactics: 
     1. function call in main function
-    2. sqlx cli commands in docker file.
+    2. SQLx cli commands in docker file.
 
 Complication: 
-    sqlx macros somehow checks for database coherence. This would be cool,
+    SQLx macros somehow checks for database coherence. This would be cool,
     if it wasn't because it stops the program from compiling if the table doesn't exist.
-    However, we're reliant on the sqlx function to be called in the main method.
+    However, we're reliant on the SQLx function to be called in the main method.
 
     In other words: We can't execute the code, because we don't have the tables in the database,
     because we can't execute the code, because we don't have the tables in the database,
