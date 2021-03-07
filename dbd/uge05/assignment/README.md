@@ -1,5 +1,7 @@
-<h6>--- The reviewer ---<h6>
 
+<h3>--- The reviewer ---</h3>
+
+<h6>
 run with: docker-compose up
 
 That should be all. Make sure none of your other processes uses port 13337 Otherwise change it in docker-compose.yml
@@ -34,7 +36,13 @@ FILL ME DADDY OwO
 
 Primary crates:
 
-This project uses the asynchronous run time called Tokio. Instead of an ORM framework (Usually Diesel in Rust), this particular project uses SQLx. SQLx is a crate (similar to package) which provides asynchronous compile-time checked queries. Lastly, the project uses Warp, which is an asynchronous web server framework (equivalent of flask in python).
+This project uses the asynchronous run time called Tokio. 
+
+Instead of an ORM framework (Usually Diesel in Rust), this particular project uses SQLx. 
+
+SQLx is a crate (similar to package) which provides asynchronous compile-time checked queries. 
+
+Lastly, the project uses Warp, which is an asynchronous web server framework (equivalent of flask in python).
 
 <br><br>
 
@@ -54,7 +62,12 @@ https://github.com/seanmonstar/warp
 
 
 
-<h6> --- Mindset(for me) --- <h6>
+</h6>
+
+<h3> --- Mindset(for me) --- </h3>
+
+
+<h6>
 
 There will be multiple implementations of each entity.
 
@@ -95,3 +108,5 @@ Constraint:
     The entire setup must be able to be created automatically by everyone with ONLY docker-compose.
 
     I can't expect that the client(or reviewer) will install all the dependencies related to the project.
+
+</h6>
