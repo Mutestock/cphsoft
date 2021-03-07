@@ -34,7 +34,7 @@ FILL ME DADDY OwO
 !!
 
 
-
+<br><br>
 
 Primary crates:
 
@@ -93,7 +93,9 @@ Two migration tactics:
 
 Complication: 
 
-    SQLx macros somehow checks for database coherence. This would be cool, if it wasn't because it stops the program from compiling if the table doesn't exist. However, we're reliant on the SQLx function to be called in the main method.
+    SQLx macros somehow checks for database coherence. 
+    This would be cool, if it wasn't because it stops the program from compiling if the table doesn't exist. 
+    However, we're reliant on the SQLx function to be called in the main method.
 
     In other words: We can't execute the code, because we don't have the tables in the database,
     because we can't execute the code, because we don't have the tables in the database,
@@ -109,6 +111,6 @@ Constraint:
 
     The entire setup must be able to be created automatically by everyone with ONLY docker-compose.
 
-    I can't expect that the client(or reviewer) will install all the dependencies related to the project.
+    Portability. I can't expect that the client(or reviewer) will install all the dependencies related to the project. Especially because of Rust.
 
 </h6>
