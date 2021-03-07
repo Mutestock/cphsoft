@@ -2,8 +2,10 @@
 <h3>--- The reviewer ---</h3>
 
 <h6>
-run with: docker-compose up
-
+run with: 
+<br>
+docker-compose up
+<br>
 That should be all. Make sure none of your other processes uses port 13337 Otherwise change it in docker-compose.yml
 
 pg info:
