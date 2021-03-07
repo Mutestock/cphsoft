@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}Assignment Description}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Hand-in}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Review}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Question to be Investigated}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Log}{4}{section.2}%
+\contentsline {section}{\numberline {3}Pages Visited}{5}{section.3}%
+\contentsline {section}{\numberline {4}Stumbling Blocks}{5}{section.4}%
+\contentsline {section}{\numberline {5}Search Queries}{5}{section.5}%

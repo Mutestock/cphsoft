@@ -1,0 +1,14 @@
+/home/apathy/Documents/soft/ufo/uge01/rust_img/target/rls/debug/deps/tiff-ff50fdd9b013d9bc.rmeta: /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/lib.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/bytecast.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/mod.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/ifd.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/stream.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/mod.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/colortype.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/writer.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/error.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/tags.rs
+
+/home/apathy/Documents/soft/ufo/uge01/rust_img/target/rls/debug/deps/tiff-ff50fdd9b013d9bc.d: /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/lib.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/bytecast.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/mod.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/ifd.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/stream.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/mod.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/colortype.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/writer.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/error.rs /home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/tags.rs
+
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/lib.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/bytecast.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/mod.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/ifd.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/decoder/stream.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/mod.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/colortype.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/encoder/writer.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/error.rs:
+/home/apathy/.cargo/registry/src/github.com-1ecc6299db9ec823/tiff-0.6.1/src/tags.rs:

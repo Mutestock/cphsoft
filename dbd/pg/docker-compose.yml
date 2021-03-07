@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postgres2:
+    image: postgres:11-alpine
+    restart: always
+    environment: 
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=postgres_pass
+      - POSTGRES_DB=postgres_db
+      - PGDATA=/var/lib/postgres/data
+    ports: 
+        - 26969:5432
+    volumes:
+        - ./data/postgres:/var/lib/postgresql/data
+    networks: 
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"

@@ -1,0 +1,1 @@
+/home/apathy/Documents/soft/dsc/uge03/minmax/target/debug/minmax: /home/apathy/Documents/soft/dsc/uge03/minmax/src/ai.rs /home/apathy/Documents/soft/dsc/uge03/minmax/src/game.rs /home/apathy/Documents/soft/dsc/uge03/minmax/src/main.rs

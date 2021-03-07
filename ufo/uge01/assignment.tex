@@ -1,0 +1,134 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,
+	urlcolor=cyan,
+}
+
+\begin{document}
+\title{\Large{\textbf{Stenography Assignment}}}
+\author{Henning Wiberg - hw98}
+\date{12/02/2021}
+\maketitle
+\tableofcontents
+\setcounter{page}{2}
+
+\section{Assignment Description}
+
+In order to look at self reflection and to judge your assessment of information, you should solve the programming exercise below.
+
+However - the important thing in this exercise is how you solved it, not the end result.
+
+At the end of the programming exercise you should have:
+
+\begin{itemize}
+	\item A list of all search queries you made to solve it, and timestamps (just copy it from the browser history)
+	\item A list all pages you visited to solve it (just copy it from the browser history)
+	\item A list of the 3 biggest stumbling blocks you came across and your reflection on why they were problematic (did 		you misunderstand something, was some of the info you found wrong, did you miss a detail, …)
+	\item A brief "every 30 min" diary as explained in the slides (this is more frequent than one would normally do, and 		is just meant as part of the exercise)
+\end{itemize}
+
+
+\subsection{Hand-in}
+
+You should hand in the material listed above, and a brief summary of which aspect of the exercise was taking you the longest time to solve, which part of the exercise was side tracking you the most (which dead-ends did you persue), and what was the most helpful information you came across (it could be someone else helping you). How can you avoid those problems in the future, and how can the helpful ressources help you in the future?
+
+Hand-in should be done on Peergrade in self picked groups of size 1-3.
+
+\subsection{Review}
+
+\begin{itemize}
+\item Look at the google queries used by the group you review, and try to compare with your own. In particular, try to find cases where you and your review group was trying to find an answer to the same issue, but where you asked diffrently. Which queries leads to the best result?
+\item Examine the pages visited by the review group. Find two sites you find trustworthy, and two which you do not find trustworty. Explain why.
+\item Try to come up with a strategy for the review group which would have overcome their largest stumbling block.
+\end{itemize}
+
+\subsection{Question to be Investigated}
+
+Steganography is the idea of hiding a message in something. For example, to hide a message in an image, you can do the following:
+
+\begin{itemize}
+\item The message M, is converted to a sequence of bits (often from String, to bytes, to bits).
+\item The image is manipulated in such a manner that the least significant bit of the blue values is substituted with a bit from the message.
+\end{itemize}
+For example, this small image contains a message:
+
+\begin{figure}[h]
+\centering
+\includegraphics{steganography_image.png}
+\caption{Hidden Message}\label{fig:prettypic}
+\end{figure}
+
+It is an ascii message, and the bits of the message are stored starting in pixel (0,0), next in (1,0) etc. It is stored as little-endian, i.e. the least significant bits come first. The message is terminated with a null byte.\\
+
+What is the message?
+
+\section{Log}
+\begin{itemize}
+	\item I have never heard of the term before. I need to get familiar with it. I usually work best with youtube videos 		and/or simple articles. I'll start there, then look at the wiki page.
+	\item A video from Computerphile on youtube explained the concept well. It gave an overview over the situation. I have 	now learned, however, that images using Steganography utilizes various algorithms. Will it have to be trial and error 		from here on out?\\
+	
+	I chose Python as the language I'd like to use. This is because of it's speed when it comes to getting fast results, 		as well as it's large amount of libraries. 
+	\item I am making a CLI tool for future usage.
+	\item CLI tool is functional, but I'm not getting any results with the functions from the websites at this point. It's 	sort of frustrating to figure out which algorithms the teachers wanted us to use. There are so many ways of doing 			this. Will try a "jsteg" algorithm which got introduced in the Computerphile video next.
+	\item Website lukeslytalker contains various decoding methods. No hits....
+	\item Reading the assignment again. Seems like they might have utilized some custom method. The image can use CMYK or 		RGB. Each has 4*1 byte of information (RGB and hue). As per the video from Computerphile, you should be able to strip 		the 6 first bits of those to get bits of the message. These bits concatenated would give its own byte of information, 		which could then become a letter. No idea whether that's understood correctly.
+	\item I have created a function which extracts RGB and hue from each pixel into a tuple. Turns out the hue is always 255. Not every value in the tuple has been pilfered with.
+	\item It's hard to determine which pixels have been edited. I have found the original picture. I will try to compare the two.
+	\item Strangely enough only 12/9240 pixels remained the same across the two images. I'm not exactly where to go from here, so I might call it.
+	
+	
+	
+\end{itemize}
+
+\section{Pages Visited}
+\begin{itemize}
+	\item \href{https://www.youtube.com/watch?v=TWEXCYQKyDc}{https://www.youtube.com/watch?v=TWEXCYQKyDc}
+	\item \href{https://www.tutorialspoint.com/image-based-steganography-using-python}{https://www.tutorialspoint.com/image-based-steganography-using-python}
+	\item \href{https://www.geeksforgeeks.org/image-based-steganography-using-python/}{https://www.geeksforgeeks.org/image-based-steganography-using-python/}
+	\item \href{https://domnit.org/stepic/doc/pydoc/stepic.html}{https://domnit.org/stepic/doc/pydoc/stepic.html}
+	\item \href{https://github.com/seanreconnery/steg0saurus}{https://github.com/seanreconnery/steg0saurus}
+	\item \href{https://lukeslytalker.pythonanywhere.com/stegdetect}{https://lukeslytalker.pythonanywhere.com/stegdetect}
+	\item \href{http://ijcee.org/papers/533-P0025.pdf}{http://ijcee.org/papers/533-P0025.pdf}
+	\item \href{http://www.eiron.net/thesis/}{http://www.eiron.net/thesis/}
+	\item \href{http://www.ifs.schaathun.net/pysteg/}{http://www.ifs.schaathun.net/pysteg/}
+	\item \href{https://www.geeksforgeeks.org/python-pil-getpixel-method/}{https://www.geeksforgeeks.org/python-pil-			getpixel-method/}
+	\item \href{https://predictivehacks.com/iterate-over-image-pixels/}{https://predictivehacks.com/iterate-over-image-pixels/}
+	\item \href{https://www.cphbusiness.dk/media/77379/lyngby.jpg}{https://www.cphbusiness.dk/media/77379/lyngby.jpg}
+	\item \href{https://pythonexamples.org/python-pillow-get-image-size/}{https://pythonexamples.org/python-pillow-get-image-size/}
+	\item \href{https://click.palletsprojects.com/en/7.x/options/}{https://click.palletsprojects.com/en/7.x/options/}
+	
+\end{itemize}
+
+\section{Stumbling Blocks}
+This section describes various issues which appeared during the assignment\\
+
+\begin{itemize}
+	\item 1 - I didn't know the concept. Had to learn what it was.
+	\item 2 - Didn't know which algorithm to use.
+	\item 3 - Had to make the program itself.
+\end{itemize}
+
+\section{Search Queries}
+\begin{itemize}
+	\item youtube - "steganography" - 10:02
+	\item duckduckgo - "python steganography" - 10:29
+	\item duckduckgo - "stepic documentation" - 11:10
+	\item duckduckgo - "python jsteg" - 11:20
+	\item duckduckgo - "null byte" - 11:45
+	\item duckduckgo - "pillow get pixel" - 11:55
+	\item duckduckgo(images) - "cphbusiness" - 12:12
+	\item duckduckgo - "pillow scale image" - 12:13
+	\item duckduckgo - "pillow get image dimensions" - 12:15
+	\item duckduckgo - "click args" - 12:20
+\end{itemize}
+
+
+\end{document}

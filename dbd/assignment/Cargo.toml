@@ -1,0 +1,21 @@
+[package]
+name = "postgres_sqlx"
+version = "0.1.0"
+authors = ["apathy"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+warp = "0.3"
+sqlx = {version = "0.5.1", features = ["postgres", "runtime-tokio-rustls", "migrate", "offline", "macros"]}
+anyhow = "1.0"
+async-trait = "0.1.42"
+
+
+# Serde (Serialize, Deserialize)
+serde = { version = "1.0.123", features = ["derive"]}
+serde_json = { version = "1.0.62"}
+serde_derive = { version = "1.0.123"}
+dotenv = { version = "0.15.0"}
