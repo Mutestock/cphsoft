@@ -3,7 +3,14 @@
 <p> The project is created as a cli tool </p>
 <p> The project is created with a poetry venv  </p>
 
+<p> Cli command example (in this directory):</p>
+<p> python ./src/main.py exercise --kek ./resources/sample01.txt ./resources/sample02.txt ./resources/sample03.txt </p>
 
+<p> You should be able to use any three files since it's a cli tool. You could use it on your own samples if one was so inclined </p>
+<p> If you don't want to use poetry (you should get comfortable with a virtual environment eventually), then make sure you have click installed </p>
+<p> pip install click </p>
+<p> If you're using anaconda, then click is likely already installed</p>
+<p> Try it out </p>
 
 
 <h4> --- Assignment definition --- </h4>
@@ -28,4 +35,3 @@
 
 <h4> --- Links --- </h4>
 https://python-poetry.org/ 
-https://www.machinelearningplus.com/nlp/cosine-similarity/#4howtocomputecosinesimilarityinpython 

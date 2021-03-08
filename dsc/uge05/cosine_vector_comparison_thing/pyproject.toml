@@ -7,8 +7,7 @@ authors = ["apathy"]
 [tool.poetry.dependencies]
 python = "^3.7.1"
 nose2 = "^0.10.0"
-numpy = "^1.20.1"
-pandas = "^1.2.3"
+click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
