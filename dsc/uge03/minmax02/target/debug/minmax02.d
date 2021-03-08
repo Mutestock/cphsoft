@@ -1,1 +1,0 @@
-/home/apathy/Documents/soft/dsc/uge03/minmax02/target/debug/minmax02: /home/apathy/Documents/soft/dsc/uge03/minmax02/src/ai.rs /home/apathy/Documents/soft/dsc/uge03/minmax02/src/cli.rs /home/apathy/Documents/soft/dsc/uge03/minmax02/src/main.rs /home/apathy/Documents/soft/dsc/uge03/minmax02/src/tic_tac_toe.rs
