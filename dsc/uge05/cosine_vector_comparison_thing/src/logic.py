@@ -41,7 +41,7 @@ def read_files(files):
     
     shite = dict(sorted(shite.items(), key=lambda item: item[1]))
     match = list(shite.items())[-1]
-    print(f"Best match was {match[0]} at {match[1]}")
+    print(f"Entries most likely of sharing author: {match[0]} at {match[1]}")
 
     
     
