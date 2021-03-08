@@ -11,11 +11,18 @@ pub struct User {
     password: String
 }
 
+#[derive(Serialize, Deserialize)]
+pub struct NewUser {
+    username: String,
+    password: String
+}
+
+
 
 
 #[async_trait]
-impl CRUD<User> for User {
-    async fn create(pool: &PgPool, user: User) -> anyhow::Result<()>{
+impl CRUD<User, NewUser> for User {
+    async fn create(pool: &PgPool, user: NewUser) -> anyhow::Result<()>{
         sqlx::query!(
             r#"
             INSERT INTO users(username, password) 

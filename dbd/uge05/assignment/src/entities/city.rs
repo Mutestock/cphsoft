@@ -4,15 +4,22 @@ use sqlx::postgres::PgPool;
 use serde_derive::{Deserialize, Serialize};
 
 
-struct City {
+pub struct City {
     id: i32,
     zip_code: String,
     name: String,
 }
 
+pub struct NewCity {
+    zip_code: String,
+    name: String
+}
+
+
+
 #[async_trait]
-impl CRUD<City> for City {
-    async fn create(pool: &sqlx::PgPool, entity: City) -> anyhow::Result<()> {
+impl CRUD<City, NewCity> for City {
+    async fn create(pool: &sqlx::PgPool, entity: NewCity) -> anyhow::Result<()> {
         todo!()
     }
 

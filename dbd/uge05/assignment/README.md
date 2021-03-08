@@ -6,7 +6,7 @@ run with:
 <br><br>
 docker-compose up
 <br><br>
-That should be all. Make sure none of your other processes uses port 13337 Otherwise change it in docker-compose.yml
+That should be all. Make sure none of your other processes uses port 13337 Otherwise change it in docker-compose.yml and .env
 <br><br>
 pg info:
 
@@ -46,7 +46,52 @@ SQLx is a crate which provides asynchronous compile-time checked queries.
 
 Lastly, the project uses Warp, which is an asynchronous web server framework (equivalent of flask in python).
 
+
 <br><br>
+About how the assignment has been solved:
+<br><br>
+
+<h4> Conceptual level implementation </h4>
+
+
+Create an SQL-script for a PostgreSQL™database that creates the tables accordingly. Bevare that the script should be reentrant:
+
+The database creation sql script is split into many separate migratino scripts.
+See ./migrations
+
+<br><br>
+
+Create an SQL-script with sample data for your tables. You should haveatleasttwo vetenarians, twenty pets of various kinds including some that areneither cats nor dogs, and ten caretakers some with common pets. Also this script should be reentrant:
+
+The database itself is created during the docker container's setup
+See ./docker-compose.yml
+
+The script for populating the database with sample data can be found in ./src/misc/pop.sql
+(Granted I'd much rather just call the functions I've created ...)
+
+<br><br>
+
+<h4> External level implementation </h4>
+
+Create views and/or stored procedures to deal with the chosen inheritance strategy
+
+I've taken the liberty to do neither and instead use the INHERITS keyword... Because that's what it's there for..
+https://www.postgresql.org/docs/9.1/tutorial-inheritance.html
+See cat / dog migration scripts.
+
+It should be possible to:
+•See cats and dogs as separate views
+•See all pets as in the single table strategy
+•Update cats and dogs with a single SQL call, stored procedure or update on a view with a trigger.
+See rest routes
+
+
+
+
+
+
+
+
 
 
 https://tokio.rs/ 
@@ -78,6 +123,17 @@ The scripts in cat / dog will create the descriminators
 Rust can't create inheritance for us. This is fine.
 
 Postgres views must be implemented. Access must be restricted. This would be complicated for an ORM framework to handle. SQLx will be used for custom sql scripts.
+
+Need pop script with these characterica:
+
+2 cities
+2 vets
+10 general pets
+5 dogs
+5 cats
+10 caretakers
+
+
 
 Ideas: project will use docker-compose to initialize both rust and Postgres.
 
@@ -112,5 +168,14 @@ Constraint:
     The entire setup must be able to be created automatically by everyone with ONLY docker-compose.
 
     Portability. I can't expect that the client(or reviewer) will install all the dependencies related to the project. Especially because of Rust.
+
+
+Other Links:
+
+    https://www.postgresql.org/docs/9.1/tutorial-inheritance.html
+
+
+
+
 
 </h6>

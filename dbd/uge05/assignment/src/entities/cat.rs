@@ -11,10 +11,21 @@ pub struct Cat {
     fur_color: String,
 }
 
+pub struct NewCat{
+    name: String,
+    age: u8,
+    fur_color: String,
+}
+
+
+
+
+
+
 
 #[async_trait]
-impl CRUD<Cat> for Cat {
-    async fn create(pool: &PgPool, entity: Cat) -> anyhow::Result<()> {
+impl CRUD<Cat, NewCat> for Cat {
+    async fn create(pool: &PgPool, entity: NewCat) -> anyhow::Result<()> {
         todo!()
     }
 

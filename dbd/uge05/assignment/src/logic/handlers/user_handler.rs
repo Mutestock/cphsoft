@@ -1,10 +1,10 @@
-use crate::entities::account::user::User;
+use crate::entities::account::user::{User, NewUser};
 use crate::connection::conn::get_pool;
 use crate::entities::entity_utils::CRUD;
 use warp;
 
 
-pub async fn create(new_user: User) -> Result<impl warp::Reply, warp::Rejection>{
+pub async fn create(new_user: NewUser) -> Result<impl warp::Reply, warp::Rejection>{
     let conn = get_pool()
         .await
         .expect("cake");

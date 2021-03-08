@@ -4,16 +4,23 @@ use crate::entities::entity_utils::CRUD;
 use sqlx::postgres::PgPool;
 use serde_derive::{Deserialize, Serialize};
 
-struct Dog {
+pub struct Dog {
     id: i32,
     name: String,
     age: u8,
     bark_pitch: f32,
 }
 
+pub struct NewDog {
+    name: String,
+    age: u8,
+    bark_pitch: f32,
+}
+
+
 #[async_trait]
-impl CRUD<Dog> for Dog {
-    async fn create(pool: &sqlx::PgPool, entity: Dog) -> anyhow::Result<()> {
+impl CRUD<Dog,NewDog> for Dog {
+    async fn create(pool: &sqlx::PgPool, entity: NewDog) -> anyhow::Result<()> {
         todo!()
     }
 

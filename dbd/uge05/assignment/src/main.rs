@@ -1,5 +1,6 @@
 use warp::{self, Filter};
 use dotenv;
+#[macro_use]
 use sqlx;
 
 mod entities;

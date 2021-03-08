@@ -4,16 +4,24 @@ use sqlx::postgres::PgPool;
 use serde_derive::{Deserialize, Serialize};
 
 
-struct Caretaker {
+pub struct Caretaker {
     id: i32,
     name: String,
     phone: String,
     street: String,
 }
 
+pub struct NewCaretaker {
+    name: String,
+    phone: String,
+    street: String,
+}
+
+
+
 #[async_trait]
-impl CRUD<Caretaker> for Caretaker {
-    async fn create(pool: &PgPool, entity: Caretaker) -> anyhow::Result<()> {
+impl CRUD<Caretaker, NewCaretaker> for Caretaker {
+    async fn create(pool: &PgPool, entity: NewCaretaker) -> anyhow::Result<()> {
         todo!()
     }
 
