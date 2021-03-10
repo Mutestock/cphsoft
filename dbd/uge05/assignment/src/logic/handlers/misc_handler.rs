@@ -1,16 +1,13 @@
-use crate::misc::sql_interactions::user_swap;
-use crate::connection::conn::get_pool;
+use crate::misc::redis_interactions::swap_restricted_user;
 use warp;
 
 
 // This program utilizes two separate users. One with restricted access and one with full access.
 // This handler is responsible for swapping the user to demonstrate access changes.
-pub async fn postgres_user_switch() -> Result<impl warp::Reply, warp::Rejection>{
-    let conn = get_pool()
-        .await
-        .expect("Pool could not be created in postgres_user_switch create");
+pub async fn user_switch() -> Result<impl warp::Reply, warp::Rejection>{
 
-    let response = user_swap(&conn).await;
+    let response = swap_restricted_user();
+
 
     let reply = match response {
         Ok(_) => {

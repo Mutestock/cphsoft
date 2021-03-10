@@ -12,6 +12,7 @@ warp = "0.3"
 sqlx = {version = "0.5.1", features = ["postgres", "runtime-tokio-rustls", "migrate", "offline", "macros"]}
 anyhow = "1.0"
 async-trait = "0.1.42"
+redis = "0.20.0"
 
 
 # Serde (Serialize, Deserialize)

@@ -18,6 +18,17 @@ services:
     networks: 
       - app-network
 
+  redis:
+    image: redis:latest
+    ports:
+      - 8008:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ./data/redis:/data
+      - ./data/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: "bridge"

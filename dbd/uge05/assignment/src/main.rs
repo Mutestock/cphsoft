@@ -11,8 +11,10 @@ mod service;
 
 use self::{
     logic::handlers::{caretaker_handler, city_handler, misc_handler, pet_handler, vet_handler},
-    misc::sql_interactions::execute_database_population_script,
-    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes},
+    misc::sql_interactions::{
+        execute_database_population_script, execute_restricted_user_creation,
+    },
+    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes}
 };
 
 #[tokio::main]
@@ -77,6 +79,10 @@ async fn main() -> anyhow::Result<()> {
     execute_database_population_script()
         .await
         .expect("Could not execute the database population script");
+    
+    execute_restricted_user_creation() 
+            .await
+            .expect("Could not execute restricted user creation script");
 
     println!("Starting server ...");
 

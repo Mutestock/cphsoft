@@ -1,9 +1,11 @@
-use crate::connection::conn::get_pool;
-use sqlx::postgres::PgPool;
+use crate::connection::conn::{get_pool};
+use crate::misc::redis_interactions::create_restricted_user_key_pair;
 
 // This script swaps the user to a user with restricted privileges
-pub async fn user_swap(pool: &PgPool) -> anyhow::Result<()> {
-    sqlx::query_file!("src/misc/usr.sql").execute(pool).await?;
+pub async fn execute_restricted_user_creation() -> anyhow::Result<()> {
+    let pool = get_pool().await?;
+    create_restricted_user_key_pair()?;
+    sqlx::query_file!("src/misc/usr.sql").execute(&pool).await?;
 
     Ok(())
 }
