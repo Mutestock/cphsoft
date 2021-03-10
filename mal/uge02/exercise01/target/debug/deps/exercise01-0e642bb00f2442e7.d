@@ -1,5 +1,0 @@
-/home/apathy/Documents/soft/mal/uge02/exercise01/target/debug/deps/exercise01-0e642bb00f2442e7.rmeta: src/main.rs
-
-/home/apathy/Documents/soft/mal/uge02/exercise01/target/debug/deps/exercise01-0e642bb00f2442e7.d: src/main.rs
-
-src/main.rs:
