@@ -21,18 +21,40 @@ pg info:
 This is a Rest Api.
 
 Currently open routes:
-!!
+<br><br>
 
-<br><br><br>
+City:
 
+    (POST) localhost:16969/api/city
+    (GET) localhost:16969/api/city/{id}
+    (PUT) localhost:16969/api/city/{id}
+    (DELETE) localhost:16969/api/city/{id}
+    (GET) localhost:16969/api/city
 
-FILL ME DADDY OwO
+Pet:
 
+    (POST) localhost:16969/api/pet
+    (GET) localhost:16969/api/pet/{id}
+    (PUT) localhost:16969/api/pet/{id}
+    (DELETE) localhost:16969/api/pet/{id}
+    (GET) localhost:16969/api/pet
 
-<br><br><br>
+Vet:
 
-!!
+    (POST) localhost:16969/api/vet
+    (GET) localhost:16969/api/vet/{id}
+    (PUT) localhost:16969/api/vet/{id}
+    (DELETE) localhost:16969/api/vet/{id}
+    (GET) localhost:16969/api/vet
 
+Caretaker:
+
+    (POST) localhost:16969/api/caretaker
+    (GET) localhost:16969/api/caretaker/{id}
+    (PUT) localhost:16969/api/caretaker/{id}
+    (DELETE) localhost:16969/api/caretaker/{id}
+    (GET) localhost:16969/api/caretaker
+ 
 
 <br><br>
 
@@ -83,7 +105,10 @@ It should be possible to:
 •See cats and dogs as separate views
 •See all pets as in the single table strategy
 •Update cats and dogs with a single SQL call, stored procedure or update on a view with a trigger.
+
 See rest routes
+
+
 
 
 

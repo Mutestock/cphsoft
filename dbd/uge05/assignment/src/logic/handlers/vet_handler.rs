@@ -1,6 +1,6 @@
 use crate::connection::conn::get_pool;
-use crate::entities::vet::{Vet, NewVet};
 use crate::entities::entity_utils::CRUD;
+use crate::entities::vet::{NewVet, Vet};
 use warp;
 
 pub async fn create(new_vet: NewVet) -> Result<impl warp::Reply, warp::Rejection> {
@@ -43,10 +43,7 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     Ok(warp::reply::json(&reply))
 }
 
-pub async fn update(
-    new_vet: NewVet,
-    id: i32,
-) -> Result<impl warp::Reply, warp::Rejection> {
+pub async fn update(id: i32, new_vet: NewVet) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
         .expect("Pool could not be created in vet_handler read");

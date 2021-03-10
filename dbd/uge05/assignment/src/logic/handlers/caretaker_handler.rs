@@ -44,8 +44,8 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
 }
 
 pub async fn update(
-    new_caretaker: NewCaretaker,
     id: i32,
+    new_caretaker: NewCaretaker,
 ) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await

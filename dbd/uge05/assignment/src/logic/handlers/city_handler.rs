@@ -43,10 +43,7 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     Ok(warp::reply::json(&reply))
 }
 
-pub async fn update(
-    new_city: NewCity,
-    id: i32,
-) -> Result<impl warp::Reply, warp::Rejection> {
+pub async fn update( id: i32, new_city: NewCity) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
         .expect("Pool could not be created in city_handler read");

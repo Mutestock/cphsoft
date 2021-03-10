@@ -55,9 +55,40 @@ async fn main() -> anyhow::Result<()>{
 
     println!("Starting server ...");
 
-    warp::serve(hello)
+    let city_routes = create_city!()
+        .or(read_city!())
+        .or(update_city!())
+        .or(delete_city!())
+        .or(read_list_city!());
+
+    let caretaker_routes = create_caretaker!()
+        .or(read_caretaker!())
+        .or(update_caretaker!())
+        .or(delete_caretaker!())
+        .or(read_list_caretaker!());
+
+    let pet_routes = create_pet!()
+        .or(read_pet!())
+        .or(update_pet!())
+        .or(delete_pet!())
+        .or(read_list_pet!());
+    
+    let vet_routes = create_vet!()
+        .or(read_vet!())
+        .or(update_vet!())
+        .or(delete_vet!())
+        .or(read_list_vet!());
+    
+    let router = city_routes
+        .or(caretaker_routes)
+        .or(pet_routes)
+        .or(vet_routes)
+        .with(cors);
+
+    warp::serve(router)
         .run(([0, 0, 0, 0],16969))
         .await;
+
 
     Ok(())
 }
