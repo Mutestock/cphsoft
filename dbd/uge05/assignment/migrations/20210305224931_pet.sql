@@ -5,4 +5,3 @@ CREATE TABLE IF NOT EXISTS pet (
     age INTEGER NOT NULL,
     vet_id INTEGER NOT NULL REFERENCES pet(id)
 );
-

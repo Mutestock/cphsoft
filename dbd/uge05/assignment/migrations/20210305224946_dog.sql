@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS dog (
 ) INHERITS (pet);
 
 
+DROP VIEW IF EXISTS dog_vista;
 DO $$
 BEGIN
     CREATE VIEW dog_vista AS

@@ -16,6 +16,15 @@ pg info:
 
     POSTGRES\_DB: pg_garbage
 
+The restricted user's info is:
+
+    POSTGRES_USER: restricted_user
+    POSTGRES_PASSWORD: restricted_user_password
+
+This user will be created on a specific route which swaps the user to the restricted user.
+
+
+
 
 <br><br>
 I've decided to create a Rest Api. This is because I don't think it's sufficient to learn sql. I need to put it into a relevant context. I don't think just creating an SQL script will bring you very far in the industry...
