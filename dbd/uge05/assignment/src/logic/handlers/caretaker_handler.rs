@@ -35,6 +35,7 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     let reply = match response {
         Ok(caretaker) => caretaker,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }
@@ -54,8 +55,9 @@ pub async fn update(
     let response = Caretaker::update(&conn, new_caretaker, id).await;
 
     let reply = match response {
-        Ok(caretaker) => 204,
+        Ok(_) => 204,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }
@@ -72,8 +74,9 @@ pub async fn delete(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     let response = Caretaker::delete(&conn, id).await;
 
     let reply = match response {
-        Ok(caretaker) => 204,
+        Ok(_) => 204,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }
@@ -92,6 +95,7 @@ pub async fn list() -> Result<impl warp::Reply, warp::Rejection> {
     let reply = match response {
         Ok(caretakers) => caretakers,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }

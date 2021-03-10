@@ -1,9 +1,5 @@
 use crate::entities::city::NewCity;
 use warp::{filters::BoxedFilter, path, Filter};
-#[macro_use]
-use crate::service::api::city;
-use crate::create_city;
-use crate::logic::handlers::city_handler;
 
 fn path_prefix() -> BoxedFilter<()> {
     path!("api" / "city" / ..).boxed()

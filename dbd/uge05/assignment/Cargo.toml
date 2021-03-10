@@ -1,5 +1,5 @@
 [package]
-name = "postgres_sqlx"
+name = "relational_database_assignment"
 version = "0.1.0"
 authors = ["apathy"]
 edition = "2018"

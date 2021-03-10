@@ -35,6 +35,7 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     let reply = match response {
         Ok(city) => city,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }
@@ -43,7 +44,7 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     Ok(warp::reply::json(&reply))
 }
 
-pub async fn update( id: i32, new_city: NewCity) -> Result<impl warp::Reply, warp::Rejection> {
+pub async fn update(id: i32, new_city: NewCity) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
         .expect("Pool could not be created in city_handler read");
@@ -51,8 +52,9 @@ pub async fn update( id: i32, new_city: NewCity) -> Result<impl warp::Reply, war
     let response = City::update(&conn, new_city, id).await;
 
     let reply = match response {
-        Ok(city) => 204,
+        Ok(_) => 204,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }
@@ -69,8 +71,9 @@ pub async fn delete(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     let response = City::delete(&conn, id).await;
 
     let reply = match response {
-        Ok(city) => 204,
+        Ok(_) => 204,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }
@@ -89,6 +92,7 @@ pub async fn list() -> Result<impl warp::Reply, warp::Rejection> {
     let reply = match response {
         Ok(citys) => citys,
         Err(e) => {
+            println!("{:#?}", e);
             // Custom error recommended
             return Err(warp::reject::not_found());
         }

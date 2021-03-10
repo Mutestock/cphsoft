@@ -28,6 +28,7 @@ pub async fn get_pool() -> anyhow::Result<PgPool>{
 
 // Queries from file: https://docs.rs/sqlx/0.5.1/sqlx/macro.query_file.html
 
+#[allow(dead_code)]
 fn conn_str_from_server_environment_variables() -> anyhow::Result<String> {
     let conn_str = format!("postgres://{}:{}@{}:{}/{}",
         env::var("POSTGRES_USER")?,
