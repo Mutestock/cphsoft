@@ -1,18 +1,18 @@
 use crate::connection::conn::get_pool;
-use crate::entities::vet::{Vet, NewVet};
+use crate::entities::city::{City, NewCity};
 use crate::entities::entity_utils::CRUD;
 use warp;
 
-pub async fn create(new_vet: NewVet) -> Result<impl warp::Reply, warp::Rejection> {
+pub async fn create(new_city: NewCity) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
-        .expect("Pool could not be created in vet_handler create");
+        .expect("Pool could not be created in city_handler create");
 
-    let response = Vet::create(&conn, new_vet).await;
+    let response = City::create(&conn, new_city).await;
 
     let reply = match response {
-        Ok(vet) => {
-            println!("{:#?}", &vet);
+        Ok(city) => {
+            println!("{:#?}", &city);
             201
         }
         Err(e) => {
@@ -28,12 +28,12 @@ pub async fn create(new_vet: NewVet) -> Result<impl warp::Reply, warp::Rejection
 pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
-        .expect("Pool could not be created in vet_handler read");
+        .expect("Pool could not be created in city_handler read");
 
-    let response = Vet::read(&conn, id).await;
+    let response = City::read(&conn, id).await;
 
     let reply = match response {
-        Ok(vet) => vet,
+        Ok(city) => city,
         Err(e) => {
             // Custom error recommended
             return Err(warp::reject::not_found());
@@ -44,17 +44,17 @@ pub async fn read(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
 }
 
 pub async fn update(
-    new_vet: NewVet,
+    new_city: NewCity,
     id: i32,
 ) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
-        .expect("Pool could not be created in vet_handler read");
+        .expect("Pool could not be created in city_handler read");
 
-    let response = Vet::update(&conn, new_vet, id).await;
+    let response = City::update(&conn, new_city, id).await;
 
     let reply = match response {
-        Ok(vet) => 204,
+        Ok(city) => 204,
         Err(e) => {
             // Custom error recommended
             return Err(warp::reject::not_found());
@@ -67,12 +67,12 @@ pub async fn update(
 pub async fn delete(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
-        .expect("Pool could not be created in vet_handler read");
+        .expect("Pool could not be created in city_handler read");
 
-    let response = Vet::delete(&conn, id).await;
+    let response = City::delete(&conn, id).await;
 
     let reply = match response {
-        Ok(vet) => 204,
+        Ok(city) => 204,
         Err(e) => {
             // Custom error recommended
             return Err(warp::reject::not_found());
@@ -85,12 +85,12 @@ pub async fn delete(id: i32) -> Result<impl warp::Reply, warp::Rejection> {
 pub async fn list() -> Result<impl warp::Reply, warp::Rejection> {
     let conn = get_pool()
         .await
-        .expect("Pool could not be created in vet_handler read");
+        .expect("Pool could not be created in city_handler read");
 
-    let response = Vet::list(&conn).await;
+    let response = City::list(&conn).await;
 
     let reply = match response {
-        Ok(vets) => vets,
+        Ok(citys) => citys,
         Err(e) => {
             // Custom error recommended
             return Err(warp::reject::not_found());

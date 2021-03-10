@@ -4,13 +4,14 @@ use sqlx::postgres::PgPool;
 use serde_derive::{Deserialize, Serialize};
 
 
+#[derive(Deserialize, Serialize)]
 pub struct Cat {
     id: i32,
     name: String,
     age: u8,
     fur_color: String,
 }
-
+#[derive(Deserialize)]
 pub struct NewCat{
     name: String,
     age: u8,
@@ -29,19 +30,19 @@ impl CRUD<Cat, NewCat> for Cat {
         todo!()
     }
 
-    async fn read(&self) -> anyhow::Result<Cat> {
+    async fn read(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
         todo!()
     }
 
-    async fn update(&self) -> anyhow::Result<()> {
+    async fn update(pool: &PgPool, entity: U, id: i32) -> anyhow::Result<()> {
         todo!()
     }
 
-    async fn delete(&self) -> anyhow::Result<()> {
+    async fn delete(pool: &PgPool, id: i32) -> anyhow::Result<()> {
         todo!()
     }
 
-    async fn list(&self) -> anyhow::Result<Vec<Cat>> {
+    async fn list(pool: &PgPool) -> anyhow::Result<Vec<Cat>> {
         todo!()
     }
 }

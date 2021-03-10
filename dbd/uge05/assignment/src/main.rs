@@ -11,12 +11,18 @@ mod service;
 use self::{
     service::{
         routes::{
-            user_routes,
+            caretaker_routes,
+            city_routes,
+            pet_routes,
+            vet_routes,
         }
     },
     logic::{
         handlers::{
-            user_handler,
+            caretaker_handler,
+            pet_handler,
+            vet_handler,
+            city_handler,
         }
     }
 };
@@ -41,15 +47,15 @@ async fn main() -> anyhow::Result<()>{
         .allow_methods(vec!["POST", "GET", "PUT", "DELETE"])
         .build();
 
-    //let hello = warp::path!("hello" / String)
-    //    .map(|name| format!("Hello, {}!", name));
+    let hello = warp::path!("hello" / String)
+        .map(|name| format!("Hello, {}!", name));
 
-    let router = create_user!()
-        .with(cors);
+    //let router = create_user!()
+    //    .with(cors);
 
     println!("Starting server ...");
 
-    warp::serve(router)
+    warp::serve(hello)
         .run(([0, 0, 0, 0],16969))
         .await;
 
