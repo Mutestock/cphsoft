@@ -59,16 +59,3 @@ pub fn get_redis_conn() -> redis::RedisResult<redis::Connection> {
 
     Ok(conn)
 }
-
-pub fn create_restricted_user_key_pair() -> redis::RedisResult<()>{
-    let user_is_restricted: Result<bool, RedisError> = get_redis_conn()?
-        .get("restricted");
-
-    match user_is_restricted {
-        Ok(_) => (),
-        Err(_) => {
-            get_redis_conn()?.set("restricted",false)?;
-        }
-    }
-    Ok(())
-}

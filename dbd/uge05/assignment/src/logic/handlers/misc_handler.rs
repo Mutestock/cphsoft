@@ -8,7 +8,6 @@ pub async fn user_switch() -> Result<impl warp::Reply, warp::Rejection>{
 
     let response = swap_restricted_user();
 
-
     let reply = match response {
         Ok(_) => {
             "User has been swapped. Check restricted route access"
