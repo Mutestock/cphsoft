@@ -7,18 +7,14 @@ const DATABASE_URL: &str = "DATABASE_URL";
 
 pub async fn get_pool() -> anyhow::Result<PgPool>{
     dotenv().ok();
-    let err_string = format!("Environment variable: {} not found. Pool creation failed", DATABASE_URL);
+    let err_str = format!("Environment variable: {} not found. Pool creation failed", DATABASE_URL);
     
     let conn_str:String =  dotenv::var(DATABASE_URL)
-        .expect(&err_string);
+        .expect(&err_str);
 
     // Use this instead if you're storing your environment variables on your server.
-
     // let conn_str = conn_str_from_server_environment_variables()
-    //     .expect("Server environment variables not found. Pool creation failed");
-
-    
-
+    //     .expect(&err_str);
 
     let pool = PgPool::connect(&conn_str)
         .await?;

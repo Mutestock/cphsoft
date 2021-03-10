@@ -4,3 +4,4 @@ pub mod city;
 pub mod dog;
 pub mod pet;
 pub mod vet;
+pub mod misc;

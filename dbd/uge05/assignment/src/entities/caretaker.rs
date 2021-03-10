@@ -9,6 +9,7 @@ pub struct Caretaker {
     name: String,
     phone: String,
     street: String,
+    city_id: i32,
 }
 
 #[derive(Deserialize)]
@@ -16,6 +17,7 @@ pub struct NewCaretaker {
     name: String,
     phone: String,
     street: String,
+    city_id: i32,
 }
 
 #[async_trait]
@@ -23,13 +25,14 @@ impl CRUD<Caretaker, NewCaretaker> for Caretaker {
     async fn create(pool: &PgPool, entity: NewCaretaker) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            INSERT INTO caretaker(name, phone, street) 
-            VALUES ( $1, $2, $3)
+            INSERT INTO caretaker(name, phone, street, city_id) 
+            VALUES ( $1, $2, $3, $4 )
             "#,
         )
         .bind(entity.name)
         .bind(entity.phone)
         .bind(entity.street)
+        .bind(entity.city_id)
         .execute(pool)
         .await?;
 
@@ -51,13 +54,14 @@ impl CRUD<Caretaker, NewCaretaker> for Caretaker {
     async fn update(pool: &PgPool, entity: NewCaretaker, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            UPDATE caretaker SET (name, phone, street) = ( $1, $2, $3)
-            WHERE id = $4
+            UPDATE caretaker SET (name, phone, street, city_id) = ( $1, $2, $3, $4 )
+            WHERE id = $5
             "#,
         )
         .bind(entity.name)
         .bind(entity.phone)
         .bind(entity.street)
+        .bind(entity.city_id)
         .bind(id)
         .execute(pool)
         .await?;

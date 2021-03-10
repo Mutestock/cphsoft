@@ -6,11 +6,13 @@ use sqlx;
 mod connection;
 mod entities;
 mod logic;
+mod misc;
 mod service;
 
 use self::{
-    logic::handlers::{caretaker_handler, city_handler, pet_handler, vet_handler},
-    service::routes::{caretaker_routes, city_routes, pet_routes, vet_routes},
+    logic::handlers::{caretaker_handler, city_handler, misc_handler, pet_handler, vet_handler},
+    misc::sql_interactions::execute_database_population_script,
+    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes},
 };
 
 #[tokio::main]
@@ -61,11 +63,20 @@ async fn main() -> anyhow::Result<()> {
         .or(delete_vet!())
         .or(read_list_vet!());
 
+    let misc_routes = user_swap!();
+
     let router = city_routes
         .or(caretaker_routes)
         .or(pet_routes)
         .or(vet_routes)
+        .or(misc_routes)
         .with(cors);
+
+    println!("Populating database with entries if non-existant ...");
+
+    execute_database_population_script()
+        .await
+        .expect("Could not execute the database population script");
 
     println!("Starting server ...");
 

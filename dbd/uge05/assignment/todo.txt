@@ -1,0 +1,23 @@
+1. user creation or at least switch user, will be done via a route. 
+    this is to demonstrate how some functionalities will be disabled after using a restricted user.
+    This route will use the "usr.sql" script in the misc folder.
+
+2. Cat and dog must have the view functionalities configured.
+
+3. Pop script. As part of the assignment description, the following entities must be created upon execution:
+
+    2 cities
+    2 vets
+    10 general pets
+    5 dogs
+    5 cats
+    10 caretakers
+
+    Question is whether I'm going to create an .sql file or whether I'm just going to use the functions I've created.
+    Indirectly I AM using sql ;)
+
+4. Separate docker functionality for rust container. Project must be executable by people who doesn't want to go through the rust installation process.
+    3.1 Database connection will be relying on the docker network instead of localhost.
+        .env must have a separate option in some way. Going to be complicated.
+
+5. Need ER diagram

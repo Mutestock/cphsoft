@@ -6,7 +6,7 @@ run with:
 <br><br>
 docker-compose up
 <br><br>
-That should be all. Make sure none of your other processes uses port 13337 Otherwise change it in docker-compose.yml and .env
+That should be all. Make sure none of your other processes uses port 13337 or 16969. Otherwise change them in docker-compose.yml, .env and/or main.rs respectively.
 <br><br>
 pg info:
 
@@ -14,11 +14,11 @@ pg info:
 
     POSTGRES\_PASSWORD: softdbd 
 
-    POSTGRES\_DB: garbage
+    POSTGRES\_DB: pg_garbage
 
 
 <br><br>
-This is a Rest Api.
+I've decided to create a Rest Api. This is because I don't think it's sufficient to learn sql. I need to put it into a relevant context. I don't think just creating an SQL script will bring you very far in the industry...
 
 Currently open routes:
 <br><br>
@@ -181,10 +181,9 @@ Complication:
     In other words: We can't execute the code, because we don't have the tables in the database,
     because we can't execute the code, because we don't have the tables in the database,
     because ... etc...
-    So that's fucking annoying.
+    So that's fucking annoying. - Fixed. Compile checking occurs only on macro queries.
 
     Migration tactic 1 therefore requires an alternative to the query! macros. 
-    Possibly execution of an .sql file?
 
 Constraint: 
 

@@ -4,4 +4,4 @@ pub mod city_routes;
 pub mod dog_routes;
 pub mod pet_routes;
 pub mod vet_routes;
-
+pub mod misc_routes;

@@ -1,17 +1,15 @@
-
-use async_trait::async_trait;
 use crate::entities::entity_utils::CRUD;
-use sqlx::postgres::PgPool;
+use async_trait::async_trait;
 use serde_derive::{Deserialize, Serialize};
+use sqlx::postgres::PgPool;
 
-
-
-#[derive(Deserialize,Serialize,sqlx::FromRow)]
+#[derive(Deserialize, Serialize, sqlx::FromRow)]
 pub struct Vet {
     id: i32,
     name: String,
     phone: String,
     street: String,
+    city_id: i32,
 }
 
 #[derive(Deserialize)]
@@ -19,21 +17,22 @@ pub struct NewVet {
     name: String,
     phone: String,
     street: String,
+    city_id: i32,
 }
-
 
 #[async_trait]
 impl CRUD<Vet, NewVet> for Vet {
     async fn create(pool: &PgPool, entity: NewVet) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            INSERT INTO vet(name, phone, street) 
-            VALUES ( $1, $2 , $3)
+            INSERT INTO vet(name, phone, street, city_id) 
+            VALUES ( $1, $2 , $3, $4)
             "#,
         )
         .bind(entity.name)
         .bind(entity.phone)
         .bind(entity.street)
+        .bind(entity.city_id)
         .execute(pool)
         .await?;
 
@@ -55,13 +54,14 @@ impl CRUD<Vet, NewVet> for Vet {
     async fn update(pool: &PgPool, entity: NewVet, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            UPDATE vet SET (name, phone, street) = ( $1, $2, $3 )
-            WHERE id = $4
+            UPDATE vet SET (name, phone, street, city_id) = ( $1, $2, $3, $4 )
+            WHERE id = $5
             "#,
         )
         .bind(entity.name)
         .bind(entity.phone)
         .bind(entity.street)
+        .bind(entity.city_id)
         .bind(id)
         .execute(pool)
         .await?;

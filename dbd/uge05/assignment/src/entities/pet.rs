@@ -1,37 +1,35 @@
-
 use crate::entities::entity_utils::CRUD;
 use async_trait::async_trait;
-use sqlx::postgres::PgPool;
 use serde_derive::{Deserialize, Serialize};
-
+use sqlx::postgres::PgPool;
 
 #[derive(Deserialize, Serialize, sqlx::FromRow)]
-pub struct Pet{
+pub struct Pet {
     id: i32,
     name: String,
     age: i32,
+    vet_id: i32,
 }
-
 
 #[derive(Deserialize)]
 pub struct NewPet {
     name: String,
     age: i32,
+    vet_id: i32,
 }
-
-
 
 #[async_trait]
 impl CRUD<Pet, NewPet> for Pet {
     async fn create(pool: &PgPool, entity: NewPet) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            INSERT INTO pet(name, age) 
-            VALUES ( $1, $2 )
+            INSERT INTO pet(name, age, vet_id) 
+            VALUES ( $1, $2, $3 )
             "#,
         )
         .bind(entity.name)
         .bind(entity.age)
+        .bind(entity.vet_id)
         .execute(pool)
         .await?;
 
@@ -53,12 +51,13 @@ impl CRUD<Pet, NewPet> for Pet {
     async fn update(pool: &PgPool, entity: NewPet, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            UPDATE pet SET (name, age) = ( $1, $2 )
-            WHERE id = $3
+            UPDATE pet SET (name, age, vet_id) = ( $1, $2, $3 )
+            WHERE id = $4
             "#,
         )
         .bind(entity.name)
         .bind(entity.age)
+        .bind(entity.vet_id)
         .bind(id)
         .execute(pool)
         .await?;

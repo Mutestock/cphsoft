@@ -18,12 +18,6 @@ pub struct NewCat{
     fur_color: String,
 }
 
-
-
-
-
-
-
 #[async_trait]
 impl CRUD<Cat, NewCat> for Cat {
     async fn create(pool: &PgPool, entity: NewCat) -> anyhow::Result<()> {
