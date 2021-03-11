@@ -64,9 +64,9 @@ pub async fn alt_pop() -> anyhow::Result<()> {
     for i  in 0..10 {
         let cat = NewCat::new(
             String::from(format!("cat_{}_name",i)),
-            i as u32,
+            i,
             ((i%2) +1) as i32,
-            fur_colors[i%3].to_owned()
+            fur_colors[i as usize%3].to_owned()
             
         );
         Cat::create(&pool, cat).await?;
@@ -77,9 +77,9 @@ pub async fn alt_pop() -> anyhow::Result<()> {
     for i in 0..5 {
         let dog = NewDog::new(
             String::from(format!("dog_{}_name",i)),
-            i as u32,
+            i,
             ((i%2)+1) as i32,
-            bark_pitches[i%3].to_owned()
+            bark_pitches[i as usize%3].to_owned()
         );
         Dog::create(&pool, dog).await?;
     }

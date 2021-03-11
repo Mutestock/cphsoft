@@ -7,17 +7,17 @@ use sqlx::postgres::PgPool;
 pub struct Dog {
     id: i32,
     name: String,
-    age: u32,
+    age: i32,
     vet_id: i32,
-    bark_pitch: f32,
+    bark_pitch: f64,
 }
 
 #[derive(Deserialize)]
 pub struct NewDog {
     name: String,
-    age: u32,
+    age: i32,
     vet_id: i32,
-    bark_pitch: f32,
+    bark_pitch: f64,
 }
 
 #[async_trait]
@@ -97,7 +97,7 @@ impl CRUD<Dog, NewDog> for Dog {
 }
 
 impl NewDog {
-    pub fn new(name: String, age: u32, vet_id: i32, bark_pitch: f32) -> Self {
+    pub fn new(name: String, age: i32, vet_id: i32, bark_pitch: f64) -> Self {
         Self {
             name: name,
             age: age,
