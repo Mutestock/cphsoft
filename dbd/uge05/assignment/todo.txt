@@ -4,7 +4,7 @@
 
 2. (Created. Needs testing. Depends on 6) Cat and dog must have the view functionalities configured.
 
-3. Pop script. As part of the assignment description, the following entities must be created upon execution:
+3. (Done) Pop script. As part of the assignment description, the following entities must be created upon execution:
 
     2 cities
     2 vets
@@ -16,13 +16,13 @@
     Question is whether I'm going to create an .sql file or whether I'm just going to use the functions I've created.
     Indirectly I AM using sql ;)
 
-4. (Some chicken and egg paradox going on... Program still dependant on Rust)Separate docker functionality for rust container. Project must be executable by people who doesn't want to go through the rust installation process.
+4. (Some chicken and egg paradox going on. Skipping due to time constraints... Program still dependant on Rust) Separate docker functionality for rust container. Project must be executable by people who doesn't want to go through the rust installation process.
     3.1 Database connection will be relying on the docker network instead of localhost.
         .env must have a separate option in some way. Going to be complicated.
 
-5. ER diagram
-6. CRUD for cat/dog ...
-
+5. (Done) ER diagram
+6. Expanded CRUD for cat/dog ...
+7. Need better argument for inheritance strategy...
 
 
 

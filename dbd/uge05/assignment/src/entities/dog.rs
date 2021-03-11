@@ -109,3 +109,48 @@ impl NewDog {
         }
     }
 }
+
+
+impl Dog {
+    async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Dog> {
+        let res = sqlx::query_as::<_, Dog>(
+            r#"
+            SELECT * FROM dog_vista WHERE id = ?
+            "#,
+        )
+        .bind(id)
+        .fetch_one(pool)
+        .await?;
+
+        Ok(res)
+    }
+
+    async fn update_indirectly(pool: &PgPool, entity: NewDog, id: i32) -> anyhow::Result<()> {
+        sqlx::query(
+            r#"
+            CALL update_dog($1, $2, $3, $4, $5)
+            "#
+        )
+        .bind(entity.name)
+        .bind(entity.age)
+        .bind(entity.vet_id)
+        .bind(entity.bark_pitch)
+        .bind(id)
+        .execute(pool)
+        .await?;
+
+        Ok(())
+    }
+
+
+    async fn list_view(pool: &PgPool) -> anyhow::Result<Vec<Dog>>{
+        let res = sqlx::query_as::<_, Dog>(
+            r#"
+            SELECT * FROM dog_vista
+            "#,
+        )
+        .fetch_all(pool)
+        .await?;
+        Ok(res)
+    }
+}

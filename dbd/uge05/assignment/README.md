@@ -69,6 +69,7 @@ Caretaker:
     (DELETE) localhost:16969/api/caretaker/{id}
     (GET) localhost:16969/api/caretaker
 
+// This swaps the user to and from the restricted variant.
 Misc:
 
     (POST) localhost:16969/api/misc    
@@ -93,9 +94,9 @@ About how the assignment has been solved:
 <h4> Conceptual level implementation </h4>
 
 
-Create an SQL-script for a PostgreSQL™database that creates the tables accordingly. Bevare that the script should be reentrant:
+Create an SQL-script for a PostgreSQL™database that creates the tables accordingly. Beware that the script should be reentrant:
 
-The database creation sql script is split into many separate migratino scripts.
+The database creation sql script is split into many separate migration scripts.
 See ./migrations
 
 <br><br>

@@ -105,12 +105,46 @@ impl NewCat {
         }
     }
 }
-// impl Cat {
-//async fn read_indirectly(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
-//
-//}
-//
-//async fn update_indirectly(pool: &PgPool, entity: NewCat, id: i32) -> anyhow::Result<()> {}
-//
-//async fn create_indirectly(pool: &PgPool, entity: NewCat) -> anyhow::Result<()> {}
-//}
+impl Cat {
+    async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
+        let res = sqlx::query_as::<_, Cat>(
+            r#"
+            SELECT * FROM cat_vista WHERE id = ?
+            "#,
+        )
+        .bind(id)
+        .fetch_one(pool)
+        .await?;
+
+        Ok(res)
+    }
+
+    async fn update_indirectly(pool: &PgPool, entity: NewCat, id: i32) -> anyhow::Result<()> {
+        sqlx::query(
+            r#"
+            CALL update_cat($1, $2, $3, $4, $5)
+            "#
+        )
+        .bind(entity.name)
+        .bind(entity.age)
+        .bind(entity.vet_id)
+        .bind(entity.fur_color)
+        .bind(id)
+        .execute(pool)
+        .await?;
+
+        Ok(())
+    }
+
+
+    async fn list_view(pool: &PgPool) -> anyhow::Result<Vec<Cat>>{
+        let res = sqlx::query_as::<_, Cat>(
+            r#"
+            SELECT * FROM cat_vista
+            "#,
+        )
+        .fetch_all(pool)
+        .await?;
+        Ok(res)
+    }
+}

@@ -15,3 +15,21 @@ BEGIN
 END
 $$;
 
+
+CREATE OR replace PROCEDURE update_dog(
+   in_name VARCHAR(255),
+   in_age INT, 
+   in_vet_id INT,
+   in_bark_pitch FLOAT,
+   in_id INT
+)
+LANGUAGE plpgsql    
+AS $$
+BEGIN
+    -- subtracting the amount from the sender's account 
+        UPDATE dog SET (name, age, vet_id, bark_pitch) = (in_name, in_age, in_vet_id, in_FUR_COLOR)
+        WHERE id = in_id;
+    COMMIT;
+END;$$
+
+
