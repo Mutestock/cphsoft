@@ -44,7 +44,7 @@ impl CRUD<City, NewCity> for City {
     async fn read(pool: &PgPool, id: i32) -> anyhow::Result<City> {
         let res = sqlx::query_as::<_, City>(
             r#"
-            SELECT * FROM city WHERE id = ?
+            SELECT * FROM city WHERE ID = $1
             "#,
         )
         .bind(id)

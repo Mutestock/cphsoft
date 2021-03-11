@@ -54,7 +54,7 @@ impl CRUD<Caretaker, NewCaretaker> for Caretaker {
     async fn read(pool: &PgPool, id: i32) -> anyhow::Result<Caretaker> {
         let res = sqlx::query_as::<_, Caretaker>(
             r#"
-            SELECT * FROM caretaker WHERE id = ?
+            SELECT * FROM caretaker WHERE ID = $1
             "#,
         )
         .bind(id)

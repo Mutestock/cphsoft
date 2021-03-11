@@ -41,7 +41,7 @@ impl CRUD<Cat, NewCat> for Cat {
     async fn read(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
         let res = sqlx::query_as::<_, Cat>(
             r#"
-            SELECT * FROM cat WHERE ID = ?
+            SELECT * FROM cat WHERE ID = $1
             "#,
         )
         .bind(id)
@@ -110,7 +110,7 @@ impl Cat {
     pub async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
         let res = sqlx::query_as::<_, Cat>(
             r#"
-            SELECT * FROM cat_vista WHERE id = ?
+            SELECT * FROM cat_vista WHERE ID = $1
             "#,
         )
         .bind(id)

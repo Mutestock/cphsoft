@@ -54,7 +54,7 @@ impl CRUD<Vet, NewVet> for Vet {
     async fn read(pool: &PgPool, id: i32) -> anyhow::Result<Vet> {
         let res = sqlx::query_as::<_, Vet>(
             r#"
-            SELECT * FROM vet WHERE id = ?
+            SELECT * FROM vet WHERE ID = $1
             "#,
         )
         .bind(id)
