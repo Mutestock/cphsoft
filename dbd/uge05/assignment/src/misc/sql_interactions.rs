@@ -2,29 +2,19 @@ use crate::connection::conn::get_pool;
 use crate::entities::entity_utils::CRUD;
 use crate::entities::{
     caretaker::{Caretaker, NewCaretaker},
-    //cat::{Cat, NewCat},
+    cat::{Cat, NewCat},
     city::{City, NewCity},
-    //dog::{Dog, NewDog},
+    dog::{Dog, NewDog},
     pet::{NewPet, Pet},
     vet::{NewVet, Vet},
 };
 use crate::misc::redis_interactions::create_restricted_user_key_pair;
-
-use rand;
 
 // This script swaps the user to a user with restricted privileges
 pub async fn execute_restricted_user_creation() -> anyhow::Result<()> {
     let pool = get_pool().await?;
     create_restricted_user_key_pair().expect("Could not create restricted user key value pair");
     sqlx::query_file!("src/misc/usr.sql").execute(&pool).await?;
-
-    Ok(())
-}
-
-// This function utilizes an sql script to populate the database
-pub async fn execute_database_population_script() -> anyhow::Result<()> {
-    let pool = get_pool().await?;
-    sqlx::query_file!("src/misc/pop.sql").execute(&pool).await?;
 
     Ok(())
 }
@@ -69,5 +59,29 @@ pub async fn alt_pop() -> anyhow::Result<()> {
         Pet::create(&pool, pet).await?;
     }
 
+    let fur_colors = vec!["brown", "black", "white"];
+
+    for i  in 0..10 {
+        let cat = NewCat::new(
+            String::from(format!("cat_{}_name",i)),
+            i as u32,
+            ((i%2) +1) as i32,
+            fur_colors[i%3].to_owned()
+            
+        );
+        Cat::create(&pool, cat).await?;
+    }
+
+    let bark_pitches = vec![12.2, 3.9, 132.2];
+
+    for i in 0..5 {
+        let dog = NewDog::new(
+            String::from(format!("dog_{}_name",i)),
+            i as u32,
+            ((i%2)+1) as i32,
+            bark_pitches[i%3].to_owned()
+        );
+        Dog::create(&pool, dog).await?;
+    }
     Ok(())
 }

@@ -1077,7 +1077,6 @@ dependencies = [
  "async-trait",
  "dotenv",
  "lazy_static",
- "rand 0.8.3",
  "redis",
  "serde",
  "serde_derive",

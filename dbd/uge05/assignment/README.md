@@ -105,8 +105,7 @@ Create an SQL-script with sample data for your tables. You should haveatleasttwo
 The database itself is created during the docker container's setup
 See ./docker-compose.yml
 
-The script for populating the database with sample data can be found in ./src/misc/pop.sql
-(Granted I'd much rather just call the functions I've created ...)
+The script for populating the database has been substituted with a function which calls the entities' create functions.
 
 <br><br>
 

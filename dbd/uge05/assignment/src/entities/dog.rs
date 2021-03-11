@@ -28,7 +28,7 @@ impl CRUD<Dog,NewDog> for Dog {
     async fn create(pool: &sqlx::PgPool, entity: NewDog) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            INSERT INTO cat(name, age, vet_id, bark_pitch)
+            INSERT INTO dog(name, age, vet_id, bark_pitch)
             VALUES ( $1, $2, $3, $4)
             "#,
         )
@@ -96,5 +96,16 @@ impl CRUD<Dog,NewDog> for Dog {
         .await?;
 
         Ok(res)
+    }
+}
+
+impl NewDog {
+    pub fn new(name:String, age:u32, vet_id:i32, bark_pitch: f32) -> Self {
+        Self {
+            name: name,
+            age: age,
+            vet_id:vet_id,
+            bark_pitch:bark_pitch,
+        }
     }
 }

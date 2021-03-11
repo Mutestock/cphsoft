@@ -1,24 +1,22 @@
 [package]
-name = "relational_database_assignment"
-version = "0.1.0"
 authors = ["apathy"]
 edition = "2018"
+name = "relational_database_assignment"
+version = "0.1.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { version = "1", features = ["full"] }
-warp = "0.3"
-sqlx = {version = "0.5.1", features = ["postgres", "runtime-tokio-rustls", "migrate", "offline", "macros"]}
 anyhow = "1.0"
 async-trait = "0.1.42"
-redis = "0.20.0"
+dotenv = {version = "0.15.0"}
 lazy_static = "1.4.0"
-rand = "0.8.3"
-
+redis = "0.20.0"
+sqlx = {version = "0.5.1", features = ["postgres", "runtime-tokio-rustls", "migrate", "offline", "macros"]}
+tokio = {version = "1", features = ["full"]}
+warp = "0.3"
 
 # Serde (Serialize, Deserialize)
-serde = { version = "1.0.123", features = ["derive"]}
-serde_json = { version = "1.0.62"}
-serde_derive = { version = "1.0.123"}
-dotenv = { version = "0.15.0"}
+serde = {version = "1.0.123", features = ["derive"]}
+serde_derive = {version = "1.0.123"}
+serde_json = {version = "1.0.62"}

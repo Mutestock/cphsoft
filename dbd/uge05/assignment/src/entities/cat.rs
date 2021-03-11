@@ -95,10 +95,22 @@ impl CRUD<Cat, NewCat> for Cat {
     }
 }
 
-impl Cat {
-    async fn read_indirectly(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {}
-
-    async fn update_indirectly(pool: &PgPool, entity: NewCat, id: i32) -> anyhow::Result<()> {}
-
-    async fn create_indirectly(pool: &PgPool, entity: NewCat) -> anyhow::Result<()> {}
+impl NewCat {
+    pub fn new(name: String, age: u32, vet_id: i32, fur_color: String) -> Self {
+        Self {
+            name: name,
+            age: age,
+            vet_id: vet_id,
+            fur_color: fur_color,
+        }
+    }
 }
+// impl Cat {
+//async fn read_indirectly(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
+//
+//}
+//
+//async fn update_indirectly(pool: &PgPool, entity: NewCat, id: i32) -> anyhow::Result<()> {}
+//
+//async fn create_indirectly(pool: &PgPool, entity: NewCat) -> anyhow::Result<()> {}
+//}
