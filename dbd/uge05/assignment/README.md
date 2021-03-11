@@ -28,7 +28,11 @@ The restricted user's info is:
 
 This user will be created on a specific route which swaps the user to the restricted user.
 
+This project utilizes the table-per-class strategy. It's simple, semi-fast and it's closest to what I'm used to. It's much more convenient with the INHERIT keywords than the alternatives imo.
 
+Single table is ugly as all hell and not worth the hassle. 
+
+Joint-table seems like a nightmare to program correctly. The dynamic of the joint-table strategy really doesn't seem necessary in this project.
 
 
 <br><br>
@@ -126,12 +130,12 @@ See ./migrations
 
 <br><br>
 
-Create an SQL-script with sample data for your tables. You should haveatleasttwo vetenarians, twenty pets of various kinds including some that areneither cats nor dogs, and ten caretakers some with common pets. Also this script should be reentrant:
+Create an SQL-script with sample data for your tables. You should have at least two vetenarians, twenty pets of various kinds including some that areneither cats nor dogs, and ten caretakers some with common pets. Also this script should be reentrant:
 
 The database itself is created during the docker container's setup
 See ./docker-compose.yml
 
-The script for populating the database has been substituted with a function which calls the entities' create functions.
+The script for populating the database has been substituted with a function which calls the entities' create functions. This function is called when the program is started.
 
 <br><br>
 
