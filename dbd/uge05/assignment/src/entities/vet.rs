@@ -6,7 +6,7 @@ use sqlx::postgres::PgPool;
 #[derive(Deserialize, Serialize, sqlx::FromRow)]
 pub struct Vet {
     id: i32,
-    name: String,
+    cvr: String,
     phone: String,
     street: String,
     city_id: i32,
@@ -14,22 +14,34 @@ pub struct Vet {
 
 #[derive(Deserialize)]
 pub struct NewVet {
-    name: String,
+    cvr: String,
     phone: String,
     street: String,
     city_id: i32,
 }
+
+impl NewVet {
+    pub fn new(cvr: String, phone: String, street: String,city_id: i32) -> Self {
+        Self {
+            cvr: cvr,
+            phone: phone,
+            street: street,
+            city_id: city_id,
+        }
+    }
+}
+
 
 #[async_trait]
 impl CRUD<Vet, NewVet> for Vet {
     async fn create(pool: &PgPool, entity: NewVet) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            INSERT INTO vet(name, phone, street, city_id) 
-            VALUES ( $1, $2 , $3, $4)
+            INSERT INTO vet(cvr, phone, street, city_id) 
+            VALUES ( $1, $2 , $3, $4 ) ON CONFLICT DO NOTHING
             "#,
         )
-        .bind(entity.name)
+        .bind(entity.cvr)
         .bind(entity.phone)
         .bind(entity.street)
         .bind(entity.city_id)
@@ -54,11 +66,11 @@ impl CRUD<Vet, NewVet> for Vet {
     async fn update(pool: &PgPool, entity: NewVet, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            UPDATE vet SET (name, phone, street, city_id) = ( $1, $2, $3, $4 )
+            UPDATE vet SET (cvr, phone, street, city_id) = ( $1, $2, $3, $4 )
             WHERE id = $5
             "#,
         )
-        .bind(entity.name)
+        .bind(entity.cvr)
         .bind(entity.phone)
         .bind(entity.street)
         .bind(entity.city_id)

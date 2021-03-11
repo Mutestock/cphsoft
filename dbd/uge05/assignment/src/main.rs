@@ -1,6 +1,5 @@
 use dotenv;
 use warp::{self, Filter};
-#[macro_use]
 use sqlx;
 #[macro_use]
 extern crate lazy_static;
@@ -14,7 +13,7 @@ mod service;
 use self::{
     logic::handlers::{caretaker_handler, city_handler, misc_handler, pet_handler, vet_handler},
     misc::sql_interactions::{
-        execute_database_population_script, execute_restricted_user_creation,
+        alt_pop, execute_restricted_user_creation,
     },
     service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes},
 };
@@ -78,7 +77,7 @@ async fn main() -> anyhow::Result<()> {
 
     println!("Populating database with entries if non-existant ...");
 
-    execute_database_population_script()
+    alt_pop()
         .await
         .expect("Could not execute the database population script");
 

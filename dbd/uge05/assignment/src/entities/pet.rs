@@ -18,13 +18,24 @@ pub struct NewPet {
     vet_id: i32,
 }
 
+impl NewPet {
+    pub fn new(name: String, age: i32, vet_id: i32) -> Self {
+        Self {
+            name:name,
+            age:age,
+            vet_id:vet_id,
+        }
+    }
+}
+
+
 #[async_trait]
 impl CRUD<Pet, NewPet> for Pet {
     async fn create(pool: &PgPool, entity: NewPet) -> anyhow::Result<()> {
         sqlx::query(
             r#"
             INSERT INTO pet(name, age, vet_id) 
-            VALUES ( $1, $2, $3 )
+            VALUES ( $1, $2, $3 ) ON CONFLICT DO NOTHING
             "#,
         )
         .bind(entity.name)

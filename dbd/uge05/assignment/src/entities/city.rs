@@ -1,34 +1,40 @@
-use async_trait::async_trait;
 use crate::entities::entity_utils::CRUD;
-use sqlx::postgres::PgPool;
+use async_trait::async_trait;
 use serde_derive::{Deserialize, Serialize};
-
+use sqlx::postgres::PgPool;
 
 #[derive(Deserialize, Serialize, sqlx::FromRow)]
 pub struct City {
     id: i32,
     zip_code: String,
-    name: String,
+    city_name: String,
 }
 #[derive(Deserialize)]
 pub struct NewCity {
     zip_code: String,
-    name: String
+    city_name: String,
 }
 
-
+impl NewCity {
+    pub fn new(zip_code: String, city_name: String) -> Self {
+        Self {
+            zip_code: zip_code,
+            city_name: city_name,
+        }
+    }
+}
 
 #[async_trait]
 impl CRUD<City, NewCity> for City {
     async fn create(pool: &PgPool, entity: NewCity) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            INSERT INTO city(zip_code, name) 
-            VALUES ( $1, $2 )
+            INSERT INTO city(zip_code, city_name) 
+            VALUES ( $1, $2 ) ON CONFLICT DO NOTHING
             "#,
         )
         .bind(entity.zip_code)
-        .bind(entity.name)
+        .bind(entity.city_name)
         .execute(pool)
         .await?;
 
@@ -50,12 +56,12 @@ impl CRUD<City, NewCity> for City {
     async fn update(pool: &PgPool, entity: NewCity, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
-            UPDATE city SET (zip_code, name) = ( $1, $2 )
+            UPDATE city SET (zip_code, city_name) = ( $1, $2 )
             WHERE id = $3
             "#,
         )
         .bind(entity.zip_code)
-        .bind(entity.name)
+        .bind(entity.city_name)
         .bind(id)
         .execute(pool)
         .await?;
