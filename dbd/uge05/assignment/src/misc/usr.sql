@@ -12,6 +12,8 @@ BEGIN
     REVOKE ALL PRIVILEGES ON cat FROM restricted_user;
     GRANT ALL PRIVILEGES ON cat_vista TO restricted_user;
     GRANT ALL PRIVILEGES ON dog_vista TO restricted_user;
+    GRANT ALL PRIVILEGES ON PROCEDURE update_cat to restricted_user;
+    GRANT ALL PRIVILEGES ON PROCEDURE update_dog to restricted_user;
     EXCEPTION WHEN DUPLICATE_OBJECT THEN
     RAISE NOTICE 'restricted_user already exists - skipping...';
 END
