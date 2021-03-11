@@ -16,7 +16,7 @@ use self::{
     misc::sql_interactions::{
         execute_database_population_script, execute_restricted_user_creation,
     },
-    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes}
+    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes},
 };
 
 #[tokio::main]
@@ -81,10 +81,10 @@ async fn main() -> anyhow::Result<()> {
     execute_database_population_script()
         .await
         .expect("Could not execute the database population script");
-    
-    execute_restricted_user_creation() 
-            .await
-            .expect("Could not execute restricted user creation script");
+
+    execute_restricted_user_creation()
+        .await
+        .expect("Could not execute restricted user creation script");
 
     println!("Starting server ...");
 

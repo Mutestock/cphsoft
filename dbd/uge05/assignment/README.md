@@ -4,9 +4,14 @@
 <h6>
 run with: 
 <br><br>
-docker-compose -f docker-compose.prod.yml up 
-<br><br>
-That should be all. Make sure none of your other processes uses port 13337, 8008 and 16969. Otherwise change them in docker-compose.prod.yml, .env and/or main.rs respectively.
+docker-compose up
+
+Sadly, due to some time constraints, you will still need Rust to execute this program.
+
+
+
+<br><br> 
+Make sure none of your other processes uses port 13337, 8008 and 16969. Otherwise change them in docker-compose.prod.yml, .env and/or main.rs respectively.
 <br><br>
 pg info:
 
@@ -204,6 +209,11 @@ Constraint:
     The entire setup must be able to be created automatically by everyone with ONLY docker-compose.
 
     Portability. I can't expect that the client(or reviewer) will install all the dependencies related to the project. Especially because of Rust.
+
+
+
+
+
 
 
 Other Links:

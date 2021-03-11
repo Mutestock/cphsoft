@@ -1,4 +1,4 @@
-1. user creation or at least switch user, will be done via a route. 
+1. (Done) user creation or at least switch user, will be done via a route. 
     this is to demonstrate how some functionalities will be disabled after using a restricted user.
     This route will use the "usr.sql" script in the misc folder.
 
@@ -16,7 +16,7 @@
     Question is whether I'm going to create an .sql file or whether I'm just going to use the functions I've created.
     Indirectly I AM using sql ;)
 
-4. Separate docker functionality for rust container. Project must be executable by people who doesn't want to go through the rust installation process.
+4. (Some chicken and egg paradox going on... Program still dependant on Rust)Separate docker functionality for rust container. Project must be executable by people who doesn't want to go through the rust installation process.
     3.1 Database connection will be relying on the docker network instead of localhost.
         .env must have a separate option in some way. Going to be complicated.
 

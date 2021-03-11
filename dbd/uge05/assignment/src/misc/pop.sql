@@ -1,0 +1,1 @@
+INSERT INTO city VALUES ('123','kek'), ('321','lul') ON CONFLICT DO NOTHING;

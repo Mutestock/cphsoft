@@ -9,12 +9,14 @@ pub struct Cat {
     id: i32,
     name: String,
     age: u8,
+    vet_id: i32,
     fur_color: String,
 }
 #[derive(Deserialize)]
 pub struct NewCat{
     name: String,
     age: u8,
+    vet_id: i32,
     fur_color: String,
 }
 

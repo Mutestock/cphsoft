@@ -10,6 +10,7 @@ pub struct Dog {
     id: i32,
     name: String,
     age: u8,
+    vet_id: i32,
     bark_pitch: f32,
 }
 
@@ -17,6 +18,7 @@ pub struct Dog {
 pub struct NewDog {
     name: String,
     age: u8,
+    vet_id: i32,
     bark_pitch: f32,
 }
 
