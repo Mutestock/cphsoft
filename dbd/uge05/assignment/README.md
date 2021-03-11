@@ -69,10 +69,35 @@ Caretaker:
     (DELETE) localhost:16969/api/caretaker/{id}
     (GET) localhost:16969/api/caretaker
 
+Cat:
+
+    (POST) localhost:16969/api/cat
+    (GET) localhost:16969/api/cat/{id}
+    (PUT) localhost:16969/api/cat/{id}
+    (DELETE) localhost:16969/api/cat/{id}
+    (GET) localhost:16969/api/cat
+    (GET) localhost:16969/api/cat/extended/{id}
+    (PUT) localhost:16969/api/cat/extended/{id}
+    (GET) localhost:16969/api/cat/extended
+
+Dog:
+
+    (POST) localhost:16969/api/dog
+    (GET) localhost:16969/api/dog/{id}
+    (PUT) localhost:16969/api/dog/{id}
+    (DELETE) localhost:16969/api/dog/{id}
+    (GET) localhost:16969/api/dog
+    (GET) localhost:16969/api/dog/extended/{id}
+    (PUT) localhost:16969/api/dog/extended/{id}
+    (GET) localhost:16969/api/dog/extended
+
 // This swaps the user to and from the restricted variant.
 Misc:
 
-    (POST) localhost:16969/api/misc    
+    (POST) localhost:16969/api/misc  
+
+The 'extended' path signifies calls the functions including the "non-standard" sql queries.
+This includes execution of stored procedures and views.
 
 <br><br>
 
