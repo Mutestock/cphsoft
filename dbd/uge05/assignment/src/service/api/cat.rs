@@ -32,3 +32,26 @@ macro_rules! read_list_cat {
         cat_routes::list().and_then(cat_handler::list)
     };
 }
+
+#[macro_export]
+macro_rules! read_view_cat {
+    () => {
+        cat_routes::read_view().and_then(cat_handler::read_view)
+    };
+}
+
+#[macro_export]
+macro_rules! update_procedure_cat {
+    () => {
+        cat_routes::update_procedure().and_then(cat_handler::update_procedure)
+    };
+}
+
+#[macro_export]
+macro_rules! read_list_view_cat {
+    () => {
+        cat_routes::list_view().and_then(cat_handler::list_view)
+    };
+}
+
+

@@ -105,8 +105,9 @@ impl NewCat {
         }
     }
 }
+
 impl Cat {
-    async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
+    pub async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Cat> {
         let res = sqlx::query_as::<_, Cat>(
             r#"
             SELECT * FROM cat_vista WHERE id = ?
@@ -119,11 +120,11 @@ impl Cat {
         Ok(res)
     }
 
-    async fn update_indirectly(pool: &PgPool, entity: NewCat, id: i32) -> anyhow::Result<()> {
+    pub async fn update_procedure(pool: &PgPool, entity: NewCat, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
             CALL update_cat($1, $2, $3, $4, $5)
-            "#
+            "#,
         )
         .bind(entity.name)
         .bind(entity.age)
@@ -136,8 +137,7 @@ impl Cat {
         Ok(())
     }
 
-
-    async fn list_view(pool: &PgPool) -> anyhow::Result<Vec<Cat>>{
+    pub async fn list_view(pool: &PgPool) -> anyhow::Result<Vec<Cat>> {
         let res = sqlx::query_as::<_, Cat>(
             r#"
             SELECT * FROM cat_vista

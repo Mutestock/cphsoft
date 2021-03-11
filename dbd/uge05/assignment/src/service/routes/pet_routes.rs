@@ -15,15 +15,13 @@ pub fn create() -> BoxedFilter<(NewPet,)> {
         .boxed()
 }
 
-pub fn read() -> BoxedFilter<(i32,)> {
-    let json_body = warp::body::content_length_limit(1024 * 16).and(warp::body::json());
-
+pub fn read() ->BoxedFilter<(i32,)> {
     warp::get()
         .and(path_prefix())
-        .and(warp::path::end())
-        .and(json_body)
+        .and(warp::path::param::<i32>())
         .boxed()
 }
+
 
 pub fn update() -> BoxedFilter<(i32, NewPet)> {
     let json_body = warp::body::content_length_limit(1024 * 16).and(warp::body::json());

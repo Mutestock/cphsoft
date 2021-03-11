@@ -5,7 +5,7 @@ use std::env;
 
 lazy_static! {
     static ref PRODUCTION_MODE: bool = {
-        let res = match env::var_os("PRODUCTION"){
+        let res = match env::var_os("PRODUCTION") {
             Some(_) => true,
             None => false,
         };
@@ -13,18 +13,14 @@ lazy_static! {
     };
 }
 
-
-
 const DATABASE_URL: &str = "DATABASE_URL";
 const REDIS_DATABASE_URL: &str = "REDIS_DATABASE_URL";
 const RESTRICTED_DATABASE_URL: &str = "RESTRICTED_DATABASE_URL";
 
 pub async fn get_pool() -> anyhow::Result<PgPool> {
-
     if *PRODUCTION_MODE {
         dotenv::from_filename(".env.prod").ok();
-    }
-    else {
+    } else {
         dotenv().ok();
     }
 
@@ -35,9 +31,8 @@ pub async fn get_pool() -> anyhow::Result<PgPool> {
 
     let mut conn_str: String = dotenv::var(DATABASE_URL).expect(&err_str);
 
-    let restricted_user: bool = get_redis_conn()?
-        .get("restricted")?;
-    
+    let restricted_user: bool = get_redis_conn()?.get("restricted")?;
+
     if restricted_user {
         conn_str = dotenv::var(RESTRICTED_DATABASE_URL).expect(&err_str);
     }

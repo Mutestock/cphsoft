@@ -32,3 +32,25 @@ macro_rules! read_list_dog {
         dog_routes::list().and_then(dog_handler::list)
     };
 }
+
+#[macro_export]
+macro_rules! read_view_dog {
+    () => {
+        dog_routes::read_view().and_then(dog_handler::read_view)
+    };
+}
+
+#[macro_export]
+macro_rules! update_procedure_dog {
+    () => {
+        dog_routes::update_procedure().and_then(dog_handler::update_procedure)
+    };
+}
+
+#[macro_export]
+macro_rules! read_list_view_dog {
+    () => {
+        dog_routes::list_view().and_then(dog_handler::list_view)
+    };
+}
+

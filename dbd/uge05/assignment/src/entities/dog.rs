@@ -1,9 +1,7 @@
-
-use async_trait::async_trait;
 use crate::entities::entity_utils::CRUD;
-use sqlx::postgres::PgPool;
+use async_trait::async_trait;
 use serde_derive::{Deserialize, Serialize};
-
+use sqlx::postgres::PgPool;
 
 #[derive(Deserialize, Serialize, sqlx::FromRow)]
 pub struct Dog {
@@ -22,9 +20,8 @@ pub struct NewDog {
     bark_pitch: f32,
 }
 
-
 #[async_trait]
-impl CRUD<Dog,NewDog> for Dog {
+impl CRUD<Dog, NewDog> for Dog {
     async fn create(pool: &sqlx::PgPool, entity: NewDog) -> anyhow::Result<()> {
         sqlx::query(
             r#"
@@ -100,19 +97,18 @@ impl CRUD<Dog,NewDog> for Dog {
 }
 
 impl NewDog {
-    pub fn new(name:String, age:u32, vet_id:i32, bark_pitch: f32) -> Self {
+    pub fn new(name: String, age: u32, vet_id: i32, bark_pitch: f32) -> Self {
         Self {
             name: name,
             age: age,
-            vet_id:vet_id,
-            bark_pitch:bark_pitch,
+            vet_id: vet_id,
+            bark_pitch: bark_pitch,
         }
     }
 }
 
-
 impl Dog {
-    async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Dog> {
+    pub async fn read_view(pool: &PgPool, id: i32) -> anyhow::Result<Dog> {
         let res = sqlx::query_as::<_, Dog>(
             r#"
             SELECT * FROM dog_vista WHERE id = ?
@@ -125,11 +121,11 @@ impl Dog {
         Ok(res)
     }
 
-    async fn update_indirectly(pool: &PgPool, entity: NewDog, id: i32) -> anyhow::Result<()> {
+    pub async fn update_procedure(pool: &PgPool, entity: NewDog, id: i32) -> anyhow::Result<()> {
         sqlx::query(
             r#"
             CALL update_dog($1, $2, $3, $4, $5)
-            "#
+            "#,
         )
         .bind(entity.name)
         .bind(entity.age)
@@ -142,8 +138,7 @@ impl Dog {
         Ok(())
     }
 
-
-    async fn list_view(pool: &PgPool) -> anyhow::Result<Vec<Dog>>{
+    pub async fn list_view(pool: &PgPool) -> anyhow::Result<Vec<Dog>> {
         let res = sqlx::query_as::<_, Dog>(
             r#"
             SELECT * FROM dog_vista

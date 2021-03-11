@@ -1,6 +1,6 @@
 use dotenv;
-use warp::{self, Filter};
 use sqlx;
+use warp::{self, Filter};
 #[macro_use]
 extern crate lazy_static;
 
@@ -11,11 +11,12 @@ mod misc;
 mod service;
 
 use self::{
-    logic::handlers::{caretaker_handler, city_handler, misc_handler, pet_handler, vet_handler},
-    misc::sql_interactions::{
-        alt_pop, execute_restricted_user_creation,
+    logic::handlers::{
+        caretaker_handler, cat_handler, city_handler, dog_handler, misc_handler, pet_handler,
+        vet_handler,
     },
-    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes},
+    misc::sql_interactions::{alt_pop, execute_restricted_user_creation},
+    service::routes::{caretaker_routes, city_routes, misc_routes, pet_routes, vet_routes, cat_routes, dog_routes},
 };
 
 #[tokio::main]
@@ -68,10 +69,30 @@ async fn main() -> anyhow::Result<()> {
 
     let misc_routes = user_swap!();
 
+    let cat_routes = create_cat!()
+        .or(read_cat!())
+        .or(update_cat!())
+        .or(delete_cat!())
+        .or(read_list_cat!())
+        .or(read_view_cat!())
+        .or(update_procedure_cat!())
+        .or(read_list_view_cat!());
+    
+    let dog_routes = create_dog!()
+        .or(read_dog!())
+        .or(update_dog!())
+        .or(delete_dog!())
+        .or(read_list_dog!())
+        .or(read_view_dog!())
+        .or(update_procedure_dog!())
+        .or(read_list_view_dog!());
+
     let router = city_routes
         .or(caretaker_routes)
         .or(pet_routes)
         .or(vet_routes)
+        .or(cat_routes)
+        .or(dog_routes)
         .or(misc_routes)
         .with(cors);
 
