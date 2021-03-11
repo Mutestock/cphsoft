@@ -6,7 +6,7 @@ pub async fn execute_restricted_user_creation() -> anyhow::Result<()> {
     let pool = get_pool().await?;
     create_restricted_user_key_pair()
         .expect("Could not create restricted user key value pair");
-    sqlx::query_file!("src/misc/usr.sql").execute(&pool).await?;
+    sqlx::query_file("src/misc/usr.sql").execute(&pool).await?;
 
     Ok(())
 }

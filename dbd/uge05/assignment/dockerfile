@@ -4,5 +4,6 @@ WORKDIR /usr/src/assignment
 COPY . .
 
 RUN cargo install --path .
+EXPOSE 16969
 
-CMD ["assignment"]
+CMD ["./wait-for-it.sh", "kek:13337","--", "./sleep_run.sh"]

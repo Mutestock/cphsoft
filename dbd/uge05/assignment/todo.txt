@@ -22,3 +22,15 @@
 
 5. ER diagram
 6. CRUD for cat/dog ...
+
+
+
+
+
+Good testing tactic:
+let mut conn = new::<Postgres>().await?;
+
+let _ = sqlx::query!(r#"select pg_notify('chan', 'message')"#)
+    .execute(&mut conn)
+    .await?;
+Ok(())

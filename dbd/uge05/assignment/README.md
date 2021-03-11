@@ -4,7 +4,7 @@
 <h6>
 run with: 
 <br><br>
-docker-compose -f docker-compose.prod.yml up --remove-orphans --build 
+docker-compose -f docker-compose.prod.yml up 
 <br><br>
 That should be all. Make sure none of your other processes uses port 13337, 8008 and 16969. Otherwise change them in docker-compose.prod.yml, .env and/or main.rs respectively.
 <br><br>
