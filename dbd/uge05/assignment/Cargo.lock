@@ -1076,6 +1076,7 @@ dependencies = [
  "anyhow",
  "async-trait",
  "dotenv",
+ "lazy_static",
  "redis",
  "serde",
  "serde_derive",

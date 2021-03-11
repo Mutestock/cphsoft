@@ -13,6 +13,7 @@ sqlx = {version = "0.5.1", features = ["postgres", "runtime-tokio-rustls", "migr
 anyhow = "1.0"
 async-trait = "0.1.42"
 redis = "0.20.0"
+lazy_static = "1.4.0"
 
 
 # Serde (Serialize, Deserialize)

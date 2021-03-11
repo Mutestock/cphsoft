@@ -3,24 +3,43 @@ use redis::{self, Commands, RedisError};
 use sqlx::postgres::PgPool;
 use std::env;
 
+lazy_static! {
+    static ref PRODUCTION_MODE: bool = {
+        let res = match env::var_os("PRODUCTION"){
+            Some(_) => true,
+            None => false,
+        };
+        res
+    };
+}
+
+
+
 const DATABASE_URL: &str = "DATABASE_URL";
 const REDIS_DATABASE_URL: &str = "REDIS_DATABASE_URL";
 const RESTRICTED_DATABASE_URL: &str = "RESTRICTED_DATABASE_URL";
 
 pub async fn get_pool() -> anyhow::Result<PgPool> {
-    dotenv().ok();
+
+    if *PRODUCTION_MODE {
+        dotenv::from_filename(".env.prod").ok();
+    }
+    else {
+        dotenv().ok();
+    }
+
     let err_str = format!(
         "Environment variable: {} not found. Pool creation failed",
         DATABASE_URL
     );
 
-    let conn_str: String = dotenv::var(DATABASE_URL).expect(&err_str);
+    let mut conn_str: String = dotenv::var(DATABASE_URL).expect(&err_str);
 
     let restricted_user: bool = get_redis_conn()?
         .get("restricted")?;
     
     if restricted_user {
-        let conn_str: String = dotenv::var(RESTRICTED_DATABASE_URL).expect(&err_str);
+        conn_str = dotenv::var(RESTRICTED_DATABASE_URL).expect(&err_str);
     }
 
     // Use this instead if you're storing your environment variables on your server.

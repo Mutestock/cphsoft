@@ -4,9 +4,9 @@
 <h6>
 run with: 
 <br><br>
-docker-compose up
+docker-compose -f docker-compose.prod.yml up --remove-orphans --build 
 <br><br>
-That should be all. Make sure none of your other processes uses port 13337 or 16969. Otherwise change them in docker-compose.yml, .env and/or main.rs respectively.
+That should be all. Make sure none of your other processes uses port 13337, 8008 and 16969. Otherwise change them in docker-compose.prod.yml, .env and/or main.rs respectively.
 <br><br>
 pg info:
 
@@ -63,7 +63,10 @@ Caretaker:
     (PUT) localhost:16969/api/caretaker/{id}
     (DELETE) localhost:16969/api/caretaker/{id}
     (GET) localhost:16969/api/caretaker
- 
+
+Misc:
+
+    (POST) localhost:16969/api/misc    
 
 <br><br>
 

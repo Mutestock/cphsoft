@@ -2,6 +2,8 @@ use dotenv;
 use warp::{self, Filter};
 #[macro_use]
 use sqlx;
+#[macro_use]
+extern crate lazy_static;
 
 mod connection;
 mod entities;
