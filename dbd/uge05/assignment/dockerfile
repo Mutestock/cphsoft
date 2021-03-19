@@ -1,8 +1,18 @@
 FROM rust:1.50
 
+
+
 WORKDIR /usr/src/assignment
 COPY . .
+#run chmod 755 ./wait-for-it.sh
+#RUN ./wait-for-it.sh postgres2:13337 --timeout=60 -- echo "postgres up"
+
+RUN apt-get update \
+    && apt-get install -y libpq5 \
+    && apt-get install -y ca-certificates tzdata \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN cargo install --path .
+EXPOSE 16969
 
 CMD ["assignment"]

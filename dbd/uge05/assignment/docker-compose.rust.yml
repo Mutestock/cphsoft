@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  rust:
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      - PRODUCTION=true
+      - DATABASE_URL=postgres://softdbd:softdbd@assignment_postgres2_1:13337/pg_garbage
+      - DATABASE_URL_RESTRICTED=postgres://restricted_user:restricted_user_password@assignment_postgres2_1:13337/pg_garbage
+      - REDIS_DATABASE_URL=redis://assignment_redis_1:8008
+    volumes: 
+      - /target:/usr/target
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"
+
