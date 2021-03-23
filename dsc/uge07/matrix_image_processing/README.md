@@ -22,6 +22,7 @@ https://docs.python.org/3/library/venv.html
 <p>
 pip install -r requirements.txt
 Note: I can't promise that installing the requirements won't make package conflicts if you don't use a virtual environment
+<br>
 ___
 </p>
 
