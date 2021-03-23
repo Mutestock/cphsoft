@@ -1,0 +1,14 @@
+attrs @ file:///home/apathy/.cache/pypoetry/artifacts/f9/48/82/553e4bef24d3b294c0c18f27a7853f3ed151508efd144cb7ea37db1c48/attrs-20.3.0-py2.py3-none-any.whl
+click @ file:///home/apathy/.cache/pypoetry/artifacts/e2/79/34/a23e9d2f683ed66be11ec3bd760dec3a2fe228cfdedf2071bcf0531b06/click-7.1.2-py2.py3-none-any.whl
+coverage @ file:///home/apathy/.cache/pypoetry/artifacts/2b/40/c4/6d4f333f20c8fe59c1248df160e1a76224b652ed2e41a842b6a22579a1/coverage-5.5-cp39-cp39-manylinux2010_x86_64.whl
+more-itertools @ file:///home/apathy/.cache/pypoetry/artifacts/06/8c/08/25f009f5a9697bfe17bb5789059239edc9053bc9c06ed7db76f146ce57/more_itertools-8.7.0-py3-none-any.whl
+nose2 @ file:///home/apathy/.cache/pypoetry/artifacts/ed/e7/5d/2e65cd9febf11b2b45360844c18f50f10c73cd104f18570b24e5bce7dc/nose2-0.10.0-py2.py3-none-any.whl
+numpy @ file:///home/apathy/.cache/pypoetry/artifacts/43/46/5a/1c2baff5efec3c33813cc5751de96d64dfc46fd5b189f4e4a272227dc5/numpy-1.20.1-cp39-cp39-manylinux2010_x86_64.whl
+packaging @ file:///home/apathy/.cache/pypoetry/artifacts/c2/76/aa/699ed723689e741411dfbdbc9b8c392079d54fb1e1a1b814df7be7cf47/packaging-20.9-py2.py3-none-any.whl
+Pillow @ file:///home/apathy/.cache/pypoetry/artifacts/9d/54/2c/7a7d9eaffb94019fa6fb3d10973cadcb3a8d076da0cb8d175bc90ca197/Pillow-8.1.2-cp39-cp39-manylinux1_x86_64.whl
+pluggy @ file:///home/apathy/.cache/pypoetry/artifacts/29/58/fc/ed8b7451d3ef91a6465024f5656141da996e7aafd4d41a1659629a75e7/pluggy-0.13.1-py2.py3-none-any.whl
+py @ file:///home/apathy/.cache/pypoetry/artifacts/60/79/0b/c48bd9c2a989aa8b1eb7a67cd02b053c10734f2e4e5665f7995f09999c/py-1.10.0-py2.py3-none-any.whl
+pyparsing @ file:///home/apathy/.cache/pypoetry/artifacts/92/0f/cf/effdcd5d76a6186df0969f85b3b030284ff8058936d5016540b5258ea3/pyparsing-2.4.7-py2.py3-none-any.whl
+pytest @ file:///home/apathy/.cache/pypoetry/artifacts/e4/88/dd/3dbff42e3c4462dc3d027f5024025571166cb35edee215ce93852a968c/pytest-5.4.3-py3-none-any.whl
+six @ file:///home/apathy/.cache/pypoetry/artifacts/dd/1c/65/ad0dea11136f5a869f072890a0eea955aa8fc35b90c85c55249fd3abfe/six-1.15.0-py2.py3-none-any.whl
+wcwidth @ file:///home/apathy/.cache/pypoetry/artifacts/7d/f4/60/0737157bb9711fec72c70dff523aa54491eef317e0d586cf5388ff0908/wcwidth-0.2.5-py2.py3-none-any.whl
