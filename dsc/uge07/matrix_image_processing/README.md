@@ -1,16 +1,27 @@
 
 
 <p>This project has been created as a CLI tool.</p>
+<p>You might not have the required dependencies. Try the commands below. If they aren't working, read virtual environment stuff</p>
 
-<p> Run this: </p>
-<p> aoksdpoakpsodk </p>
-<p>
-If you use Anaconda then you might be able to skip using a virtual environment for this exercise, since the click, pillow and numpy packages are all included, afaik. Getting comfortable with a virtual environment at some point is recommended though.
-</p>
+<p> CD to this directory and run these: </p>
+<p> a: python matrix_image_processing/main.py extra -s ./resources/sample.png </p>
+<p> b: python matrix_image_processing/main.py extra -cv ./resources/sample.png</p>
+<p> c && d: python matrix_image_processing/main.py extra -m ./resources/sample.png <p>
+<br>
+<p> You have the option to preserve the image size if you want with --preserve or -p, e.g.</p>
+<p> python matrix_image_processing/main.py extra -m ./resources/sample.png -p</p>
+<br><br>
+<p> Note that you should be able to point at any image in your file system with this setup. Just replace the ./resource/sample.png with the path to your image</p>
+<br>
+<p> I've created some functionality with randomly generated images which resemble static </p>
+<p> python matrix_image_processing/main.py assignment -s -cd 128 256 </p>
+<p> -cd here is short for custom-dimensions. Removing -cd 128 256 from the statement above, will run the default 32x32 </p>
+<p> python matrix_image_processing/main.py assignment -cv -cd 519 125 </p>
+<p> python matrix_image_processing/main.py assignment -m -cd 128 256 </p>
 
 <p>____ Virtual Environment stuff ____</p>
 <p>
-It uses the virtual environment and package manager Poetry:
+This project uses the virtual environment and package manager Poetry:
 https://python-poetry.org/
 </p>
 
@@ -29,8 +40,6 @@ ___
 
 <p>I've created a lot of different options to play around with. Mostly for funsies.</p>
 <p>Check out cli.py if you're interested </p>
-
-
 
 
 
