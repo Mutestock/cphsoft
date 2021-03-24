@@ -37,10 +37,4 @@ Note: I can't promise that installing the requirements won't make package confli
 ___
 </p>
 
-
-<p>I've created a lot of different options to play around with. Mostly for funsies.</p>
-<p>Check out cli.py if you're interested </p>
-
-
-
 <p> Stock image https://www.pexels.com/photo/crystal-glasses-3197553/ </p>
