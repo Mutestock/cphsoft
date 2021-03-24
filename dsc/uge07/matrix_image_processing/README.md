@@ -15,7 +15,7 @@
 <br>
 <p> I've created some functionality with randomly generated images which resemble static </p>
 <p> python matrix_image_processing/main.py assignment -s -cd 128 256 </p>
-<p> -cd here is short for custom-dimensions. Removing -cd 128 256 from the statement above, will run the default 32x32 </p>
+<p> -cd here is short for custom_dimensions. Removing -cd 128 256 from the statement above, will run the default 32x32 </p>
 <p> python matrix_image_processing/main.py assignment -cv -cd 519 125 </p>
 <p> python matrix_image_processing/main.py assignment -m -cd 128 256 </p>
 
