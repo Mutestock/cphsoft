@@ -3,8 +3,13 @@ import os
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(ROOT_DIR)
 
+# The concept of public, private, protected, etc isn't supported in Python.
+# You¨ll find, that some people use double underscore to represent private and single underscore to represent protected.
+# I find, however, that most people just write a single underscore for private instead, and skip protected all together.
+# In this assignment, private is represented by a single underscore.
 _REGIONAL_BASE_PATH = ROOT_DIR + "/resources/Regionalt_DB/"
 _COMMUNAL_BASE_PATH = ROOT_DIR + "/resources/Kommunalt_DB/"
+CUSTOM_IMAGES_PATH = ROOT_DIR + "/resources/generated_images"
 
 REGIONAL_FILE_TREE = {
     "noegle_tal": _REGIONAL_BASE_PATH+"01_noegle_tal.csv",
