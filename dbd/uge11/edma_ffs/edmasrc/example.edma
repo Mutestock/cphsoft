@@ -1,1 +1,2 @@
 ValueDomain MyValueDomain : Integer[1..42]
+
