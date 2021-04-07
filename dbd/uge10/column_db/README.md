@@ -64,23 +64,36 @@
     </li>
     <li>
         <h5>5. If you are to store one million ASCII strings with an average size of 10 characters in a hash set, what would be the approximate space consumption?</h5>
-        <p></p>
+        <p>If you're somehow referring to the bloomfilter I just created, then you're having too many unknowns in the formula: total capacity, false positive rate and amount of hash function calls. 
+        If you're referring to a hash table, then hash tables have a complexity rate of O(n).
+        As per: http://java-performance.info/memory-consumption-of-java-data-types-2/
+        It will take 32 * SIZE + 4 * CAPACITY bytes. Where default CAPACITY is calculated by SIZE/0.75
+        Supposedly 1 character is 1 byte since it's ascii. 10 Characters would be 10 bytes. As far as I can remember, it's not exactly that simple, but I'm gonna go with it.
+        Outside the context of the hashmap, one million element * 10 characters(byte), so 10 million bytes or 10000 kilobytes or 10 megabytes. 
+        <br>
+        Each entry in a hashmap (Looking at Java documentation) (or hash set. Unique key) contains both a key and a value. So it's larger than that. Now, an entry in a hashmap per default takes 32 bytes. The documentation states, that a hashmap with default load factors and a size of 100 will occupy 3736 bytes(32 * 100 + 4 * 134 = 3200 + 536 = 3736). This excludes the actual size of both the keys and the values. Taking this into consideration, if we insert the 1 million ascii strings from before:
+        <br>
+        32*1000000 + 4 * (1000000/0.75) = 32.000.000 + 1.333.333 = 33.333.333 bytes
+        <br>
+        Now as stated before, this excludes the actual size of the keys and values. With the strings as keys from before, you'd add that up to 43.333.333. Then there's the values of these keys. According to this link, every key is hashed twice, but is stored as a 32-bit value. https://stackoverflow.com/questions/9364134/what-hashing-function-does-java-use-to-implement-hashtable-class
+        This means, that we can add an additional 32 * 1.000.000 to the calculation. Which means we're at 75.333.333 bytes or 75.33 megabytes. That's probably wrong but eh.
+        </p>
     </li>
     <li>
         <h5>6. The folling equation gives the required number of bits of space per inserted key, where E is the false positive rate. b = 1.44log2(1/E) </h5>
-        <p></p>
+        <p>Duly noted...</p>
     </li>
     <li>
         <h5>7. How many bits per element are required for a 1% false positve rate?</h5>
-        <p></p>
+        <p>9,5851. Result printed by running program with cargo r. </p>
     </li>
     <li>
         <h5>8. How many bits per element are required for a 5% false positive rate?</h5>
-        <p></p>
+        <p>6,2352. Result printed by changing desired_error_rate in main.rs to 0.05 and running with cargo r </p>
     </li>
     <li>
-        <h5>9. If you are to store one million ASCII strings with an average size of 10 characters in a bloom filter, what would be the approximate space consumption, given a false poitive rate of 5%?</h5>
-        <p></p>
+        <h5>9. If you are to store one million ASCII strings with an average size of 10 characters in a bloom filter, what would be the approximate space consumption, given a false positive rate of 5%?</h5>
+        <p>Supposedly 6,2352 bits * 1.000.000 extra bits or 6.235.200 bits or 779400 bytes or 77.94 kilobytes extra. Which is miniscule considering how the sizes of the strings themselves are 10mb. I.e. 10.078 kilobytes. But I do </p>
     </li>
 </ul>
 <h4>Task 3 - Huffman Coding</h4>
