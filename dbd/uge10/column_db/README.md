@@ -48,19 +48,19 @@
 <ul>
     <li>
         <h5>1. What is a bloom filter?</h5>
-        <p></p>
+        <p>It can search the set like object, and result in whether it exists or whether it PROBABLY exists. Bloom filters can very much result in false positives. Because of this, it falls under the probablistic data structure category. This will be accomplished by using hash functions. The accuracy and time consumption increases as more hash functions are used. Entries can't be deleted from a bloom filter</p>
     </li>
     <li>
         <h5>2. What is an advantage of bloom filters over hash tables?</h5>
-        <p></p>
+        <p>Large hashtables would require an increased amount of memory as it scales in comparison to bloom filters. So much more memory, that it makes more sense to store data created with hashtables on a disk. Bloom filters' efficiency makes them much more suitable for executing them in memory.</p>
     </li>
     <li>
         <h5>3. What is a disadvantage of bloom filters?</h5>
-        <p></p>
+        <p>Its use cases are limited by its probablistic nature. You need to know the approximate size of the input. If the largest possible entry would require 1 billion dedicated bits, then 1 billion bits must be pre allocated regardless of how the average input size actually is. </p>
     </li>
     <li>
-        <h5>4. Using a language of your choice, implement a bloom filter with add and check functions. The backing bit-array can simply be a 64 bit signed integer</h5>
-        <p></p>
+        <h5>4. Using a language of your choice, implement a bloom filter with add and check functions. The backing bit-array can simply be a long</h5>
+        <p>Ok. bloomfilter.rs. Using 64 bit unsigned integer instead.</p>
     </li>
     <li>
         <h5>5. If you are to store one million ASCII strings with an average size of 10 characters in a hash set, what would be the approximate space consumption?</h5>
@@ -167,3 +167,4 @@
 
 
 NoSQL database types 
+https://hur.st/bloomfilter/
