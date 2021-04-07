@@ -93,14 +93,14 @@
     </li>
     <li>
         <h5>9. If you are to store one million ASCII strings with an average size of 10 characters in a bloom filter, what would be the approximate space consumption, given a false positive rate of 5%?</h5>
-        <p>Supposedly 6,2352 bits * 1.000.000 extra bits or 6.235.200 bits or 779400 bytes or 77.94 kilobytes extra. Which is miniscule considering how the sizes of the strings themselves are 10mb. I.e. 10.078 kilobytes. But I do </p>
+        <p>Supposedly 6,2352 bits * 1.000.000 extra bits or 6.235.200 bits or 779400 bytes or 77.94 kilobytes extra. Which is miniscule considering how the sizes of the strings themselves are 10mb. I.e. 10.078 kilobytes.  </p>
     </li>
 </ul>
 <h4>Task 3 - Huffman Coding</h4>
 <ul>
     <li>
-        <h5>1. Generate Huffmann Coded (and draw the Huffman Tree) based on the following string: "beeps beeps!!!!! their eerie ears hear pears"</h5>
-        <p></p>
+        <h5>1. Generate Huffmann Code (and draw the Huffman Tree) based on the following string: "beeps beeps!!!!! their eerie ears hear pears"</h5>
+        <p>Image is in resources.</p>
     </li>
     <li>
         <h5>2. How many bits is the compressed string? How many bits is the raw ASCII string?</h5>
