@@ -132,18 +132,13 @@ function subtask06(numbers) {
     return numbers.reduce(reducer);
 }
 function subtask07(dict) {
-    const givenArray = [
-        { x: 1 },
-        { x: 2 },
-        { x: 3 },
-        { x: 4 },
-        { x: 5 },
-    ];
-    const sum = dict.reduce((acc, curr) => acc + curr.x, 0);
-    return sum;
+    return dict.reduce((acc, curr) => acc + curr.x, 0);
 }
 function subtask08() {
     // 8. Use reduce to flatten an array of arrays: [[1,2] [3,4], [5,6]]
+    let arr = [[1, 2], [3, 4], [5, 6]];
+    const reducer = (modifier, curr) => modifier.concat(curr);
+    return arr.reduce(reducer);
 }
 function subtask09() {
     // 9. Use reduce to return an array of the positive numbers: [-3, -1, 2, 4, 5]
@@ -155,3 +150,4 @@ console.log(subtask04(["I", "have", "loooooong", "words"]));
 console.log(subtask05());
 console.log(subtask06([1, 2, 3, 4, 5]));
 console.log(subtask07([{ x: 1 }, { x: 2 }, { x: 3 }]));
+console.log(subtask08());
