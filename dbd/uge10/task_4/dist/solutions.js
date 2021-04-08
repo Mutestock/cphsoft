@@ -142,12 +142,25 @@ function subtask08() {
 }
 function subtask09() {
     // 9. Use reduce to return an array of the positive numbers: [-3, -1, 2, 4, 5]
+    let arr = [-3, -1, 2, 4, 5];
+    const reducer = (modifier, curr) => modifier.concat(Math.abs(curr));
+    return arr.reduce(reducer, []);
 }
+console.log("1:");
 console.log(subtask01([1, 9, 16, 100]));
+console.log("2: ");
 console.log(subtask02(["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"]));
+console.log("3: ");
 console.log(subtask03(["I'm", "yelling", "today"]));
+console.log("4: ");
 console.log(subtask04(["I", "have", "loooooong", "words"]));
+console.log("5: ");
 console.log(subtask05());
+console.log("6: ");
 console.log(subtask06([1, 2, 3, 4, 5]));
+console.log("7: ");
 console.log(subtask07([{ x: 1 }, { x: 2 }, { x: 3 }]));
+console.log("8: ");
 console.log(subtask08());
+console.log("9: ");
+console.log(subtask09());
