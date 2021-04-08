@@ -117,6 +117,7 @@
     </li>
 </ul>
 <h4>Task 4 - Map and Reduce</h4>
+<p>I have to be honest - I have no idea how this is related to wide-column databases</p>
 <ul>
     <li>
         <h5>1. Map the list of numbers to a list of their square roots: [1, 9, 16, 100]</h5>
