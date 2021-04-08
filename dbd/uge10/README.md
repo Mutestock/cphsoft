@@ -100,26 +100,27 @@
 <ul>
     <li>
         <h5>1. Generate Huffmann Code (and draw the Huffman Tree) based on the following string: "beeps beeps!!!!! their eerie ears hear pears"</h5>
-        <p>Image is in resources. That said, my code actually spits out something different.</p>
+        <p>Image is in resources. My code produces something different. It's using the "greedy" algorithm https://www.codesdope.com/course/algorithms-huffman-codes/ . It all gets even less convincing when I tell you, that I almost got it to function, but I can't really figure out the last bit. It's the very last leaf node connecting to wrong value node.  The code is mine and not copied. It's also rust, so there's not much help to find. It's sort of strange looking as well. I've pretty printed the result and I've put it in the resources folder under task 3. It'll have consequences later on as the compression and decompression starts.</p>
     </li>
     <li>
         <h5>2. How many bits is the compressed string? How many bits is the raw ASCII string?</h5>
-        <p></p>
+        <p>I've tried for too long too implement this now. I'm not having too much success. Such is the consequences of working alone with a different langauge I suppose. </p>
+        <p>The raw ascii string has 3855 bits. Calculation in main.rs</p>
     </li>
     <li>
         <h5>3. Compress "pete is here" with the Huffmann tree from before.</h5>
-        <p></p>
+        <p>I can make a tree out of it. I can't compress it. Too stupid</p>
     </li>
     <li>
         <h5>4. Write your own 10 word sentence. Generate the Huffmann Code (a new Huffmann Tree), and write a new compressed message (i.e. in binary). Swap with one of your fellow students, and de compress each other's message.</h5>
-        <p></p>
+        <p>Sentence is "We weep for the blood of a bird, but not for the blood of a fish. Blessed are those who have voice.". Pretty print of tree can be found in resources, alongside a generated image of a non-greedy algorithm calculation. I'm in a group with me, myself and I. All of the group's members had the same sentence, which drained the 'fun' out of it. All the group's members were also too stupid to actually know how to implement functions for compression and decompression. It's recursion with the setup I've made. Just couldn't make them function.</p>
     </li>
 </ul>
 <h4>Task 4 - Map and Reduce</h4>
 <ul>
     <li>
         <h5>1. Map the list of numbers to a list of their square roots: [1, 9, 16, 100]</h5>
-        <p></p>
+        <p>Despite having ptsd for working with nodes for a two-digited amount of hours, I'm going to use Node.js with typescript.</p>
     </li>
     <li>
         <h5>2. Map the list of words so each is wrapped in a h1 tag: ["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"</h5>

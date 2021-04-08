@@ -33,9 +33,6 @@ impl Node {
         // Sorting highest to lowest frequency.
 
         count_vec.sort_by(|a, b| b.1.cmp(a.1));
-        //count_vec.reverse();
-
-        println!("{:?}", count_vec);
 
         // Check two values at a time starting at index 0 and index 1.
 
@@ -49,44 +46,28 @@ impl Node {
         if !entries.is_empty() {
             match top_node {
                 Some(node) => {
-                    //println!("{:#?}", node);
-                    
                     let mut node_buffer: Option<Node> = None;
 
-                    if entries[0].1 < &node.value.unwrap() && entries.len() > 2 {
+                    if entries[0].1 < &node.value? && entries.len() > 2 {
                         node_buffer = Self::build_tree(None, entries);
-                        let unwrapped_node_buffer = node_buffer.clone().unwrap();
-                        let frequency_sum = &unwrapped_node_buffer.value.unwrap() + node.value.unwrap();
-                        //println!("{:#?}", &node);
-
-                        // So we want to put the character with the most hits on the tree with the lowest total value. Here it is the left node.
-                        println!("{:#?}", &unwrapped_node_buffer);
+                        let unwrapped_node_buffer = node_buffer.clone()?;
+                        let frequency_sum = &unwrapped_node_buffer.value? + node.value?;
 
                         let value_node =
                             Self::new_value_node(frequency_sum, node, unwrapped_node_buffer);
-                        
-                        //println!("{:#?}", value_node);
                         node_buffer = Some(value_node.clone());
                         return Self::build_tree(Some(value_node), entries);
                     }
                     else if !entries.is_empty() {
                         let leaf_node = Self::new_leaf_from_entries(entries);
-                        //println!("{:#?}", leaf_node);
-                        let frequency_sum = leaf_node.frequency.unwrap() + node.value.unwrap();
+                        let frequency_sum = leaf_node.frequency? + node.value?;
                         match node_buffer {
                             Some(n) => {
                                 return Self::build_tree(Some(n), entries)
                             },
                             None => {
-                                if entries.len() == 0{
-                                    //println!("{:#?}", node);
-                                    //println!("EEEEEEEEEP");
-                                    //println!("{:#?} {:#?}", leaf_node, node);
-                                    //return 
-                                }
                                 let value_node =
                                     Self::new_value_node(frequency_sum, leaf_node, node);
-                                //println!("{:#?}", value_node);
                                 return Self::build_tree(Some(value_node), entries);
                             }
                         }
@@ -101,16 +82,11 @@ impl Node {
                         let leaf_node1 = Self::new_leaf_from_entries(entries);
                         let leaf_node2 = Self::new_leaf_from_entries(entries);
 
-                        println!("Entry. Letter was: {} and {}", &leaf_node1.character.unwrap(), &leaf_node2.character.unwrap());
                         let frequency_sum =
-                            leaf_node1.frequency.unwrap() + leaf_node2.frequency.unwrap();
-
-                        // Creating value node.
+                            leaf_node1.frequency? + leaf_node2.frequency?;
 
                         let value_node =
                             Self::new_value_node(frequency_sum, leaf_node1, leaf_node2);
-
-                        // Recursion. Exit point is empty vector.
 
                         return Self::build_tree(Some(value_node), entries);
                     } else {
@@ -151,8 +127,33 @@ impl Node {
         };
     }
 
-    pub fn compress(&self) {
-        todo!()
+    pub fn set_bit_string_thing(node: Box<Node>, annotations: &mut Vec<(char, (usize, &[u8]))>) {
+        if node.character != None {
+            if annotations.len() == 0 {
+                annotations.push((node.character.unwrap(), (node.frequency.unwrap(), &[000])));
+            }
+            else{
+                let stuff = annotations[annotations.len()-1];
+                let trash = stuff.1;
+                let flerp = trash.1.len();
+                let mut garbage = trash.1[flerp];
+                garbage = garbage + 1;
+                let shite = (node.character.unwrap(), (node.frequency.unwrap(), &[garbage]));
+            }
+        }
+        else{
+            Self::set_bit_string_thing(node.left_node.unwrap(), annotations);
+            Self::set_bit_string_thing(node.right_node.unwrap(), annotations);
+        }
+    }
+
+    pub fn compress(input: &str)
+     //-> (&[u8], &[u8]) 
+     {
+        let tree = Node::generate(input);
+        let mut annotations = Vec::new();
+        Self::set_bit_string_thing(Box::new(tree), &mut annotations);
+        println!("{:#?}", annotations);
     }
 
     pub fn decompress(&self) -> String {
@@ -163,5 +164,18 @@ impl Node {
 fn main() {
     let input = "beeps beeps!!!!! their eerie ears hear pears";
     let tree: Node = Node::generate(input);
+    let tree_res = format!("{:#?}", tree);
     //println!("{:#?}", tree);
+    //println!("{}", tree_res);
+    let stuff = "pete is here";
+    let tree02 = Node::generate(stuff);
+    //println!("{:#?}", tree02);
+    let mut res: u32 = 0;
+    for byte in input.as_bytes() {
+        res = res + byte.clone() as u32;
+    }
+    println!("{}",res);
+    let input03 = "We weep for the blood of a bird, but not for the blood of a fish. Blessed are those who have voice.";
+    let tree03 = Node::generate(input03);
+    println!("{:#?}", tree03);
 }

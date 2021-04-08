@@ -1,0 +1,451 @@
+Node {
+    character: None,
+    value: Some(
+        99,
+    ),
+    frequency: None,
+    left_node: Some(
+        Node {
+            character: None,
+            value: Some(
+                22,
+            ),
+            frequency: None,
+            left_node: Some(
+                Node {
+                    character: Some(
+                        'r',
+                    ),
+                    value: None,
+                    frequency: Some(
+                        4,
+                    ),
+                    left_node: None,
+                    right_node: None,
+                },
+            ),
+            right_node: Some(
+                Node {
+                    character: None,
+                    value: Some(
+                        18,
+                    ),
+                    frequency: None,
+                    left_node: Some(
+                        Node {
+                            character: Some(
+                                'i',
+                            ),
+                            value: None,
+                            frequency: Some(
+                                3,
+                            ),
+                            left_node: None,
+                            right_node: None,
+                        },
+                    ),
+                    right_node: Some(
+                        Node {
+                            character: None,
+                            value: Some(
+                                15,
+                            ),
+                            frequency: None,
+                            left_node: Some(
+                                Node {
+                                    character: Some(
+                                        'w',
+                                    ),
+                                    value: None,
+                                    frequency: Some(
+                                        3,
+                                    ),
+                                    left_node: None,
+                                    right_node: None,
+                                },
+                            ),
+                            right_node: Some(
+                                Node {
+                                    character: None,
+                                    value: Some(
+                                        12,
+                                    ),
+                                    frequency: None,
+                                    left_node: Some(
+                                        Node {
+                                            character: Some(
+                                                'l',
+                                            ),
+                                            value: None,
+                                            frequency: Some(
+                                                3,
+                                            ),
+                                            left_node: None,
+                                            right_node: None,
+                                        },
+                                    ),
+                                    right_node: Some(
+                                        Node {
+                                            character: None,
+                                            value: Some(
+                                                9,
+                                            ),
+                                            frequency: None,
+                                            left_node: Some(
+                                                Node {
+                                                    character: Some(
+                                                        'v',
+                                                    ),
+                                                    value: None,
+                                                    frequency: Some(
+                                                        2,
+                                                    ),
+                                                    left_node: None,
+                                                    right_node: None,
+                                                },
+                                            ),
+                                            right_node: Some(
+                                                Node {
+                                                    character: None,
+                                                    value: Some(
+                                                        7,
+                                                    ),
+                                                    frequency: None,
+                                                    left_node: Some(
+                                                        Node {
+                                                            character: Some(
+                                                                '.',
+                                                            ),
+                                                            value: None,
+                                                            frequency: Some(
+                                                                2,
+                                                            ),
+                                                            left_node: None,
+                                                            right_node: None,
+                                                        },
+                                                    ),
+                                                    right_node: Some(
+                                                        Node {
+                                                            character: None,
+                                                            value: Some(
+                                                                5,
+                                                            ),
+                                                            frequency: None,
+                                                            left_node: Some(
+                                                                Node {
+                                                                    character: Some(
+                                                                        'c',
+                                                                    ),
+                                                                    value: None,
+                                                                    frequency: Some(
+                                                                        1,
+                                                                    ),
+                                                                    left_node: None,
+                                                                    right_node: None,
+                                                                },
+                                                            ),
+                                                            right_node: Some(
+                                                                Node {
+                                                                    character: None,
+                                                                    value: Some(
+                                                                        4,
+                                                                    ),
+                                                                    frequency: None,
+                                                                    left_node: Some(
+                                                                        Node {
+                                                                            character: Some(
+                                                                                'p',
+                                                                            ),
+                                                                            value: None,
+                                                                            frequency: Some(
+                                                                                1,
+                                                                            ),
+                                                                            left_node: None,
+                                                                            right_node: None,
+                                                                        },
+                                                                    ),
+                                                                    right_node: Some(
+                                                                        Node {
+                                                                            character: None,
+                                                                            value: Some(
+                                                                                3,
+                                                                            ),
+                                                                            frequency: None,
+                                                                            left_node: Some(
+                                                                                Node {
+                                                                                    character: Some(
+                                                                                        'u',
+                                                                                    ),
+                                                                                    value: None,
+                                                                                    frequency: Some(
+                                                                                        1,
+                                                                                    ),
+                                                                                    left_node: None,
+                                                                                    right_node: None,
+                                                                                },
+                                                                            ),
+                                                                            right_node: Some(
+                                                                                Node {
+                                                                                    character: None,
+                                                                                    value: Some(
+                                                                                        2,
+                                                                                    ),
+                                                                                    frequency: None,
+                                                                                    left_node: Some(
+                                                                                        Node {
+                                                                                            character: Some(
+                                                                                                ',',
+                                                                                            ),
+                                                                                            value: None,
+                                                                                            frequency: Some(
+                                                                                                1,
+                                                                                            ),
+                                                                                            left_node: None,
+                                                                                            right_node: None,
+                                                                                        },
+                                                                                    ),
+                                                                                    right_node: Some(
+                                                                                        Node {
+                                                                                            character: Some(
+                                                                                                'n',
+                                                                                            ),
+                                                                                            value: None,
+                                                                                            frequency: Some(
+                                                                                                1,
+                                                                                            ),
+                                                                                            left_node: None,
+                                                                                            right_node: None,
+                                                                                        },
+                                                                                    ),
+                                                                                },
+                                                                            ),
+                                                                        },
+                                                                    ),
+                                                                },
+                                                            ),
+                                                        },
+                                                    ),
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                },
+            ),
+        },
+    ),
+    right_node: Some(
+        Node {
+            character: None,
+            value: Some(
+                77,
+            ),
+            frequency: None,
+            left_node: Some(
+                Node {
+                    character: None,
+                    value: Some(
+                        22,
+                    ),
+                    frequency: None,
+                    left_node: Some(
+                        Node {
+                            character: Some(
+                                't',
+                            ),
+                            value: None,
+                            frequency: Some(
+                                5,
+                            ),
+                            left_node: None,
+                            right_node: None,
+                        },
+                    ),
+                    right_node: Some(
+                        Node {
+                            character: None,
+                            value: Some(
+                                17,
+                            ),
+                            frequency: None,
+                            left_node: Some(
+                                Node {
+                                    character: Some(
+                                        'f',
+                                    ),
+                                    value: None,
+                                    frequency: Some(
+                                        5,
+                                    ),
+                                    left_node: None,
+                                    right_node: None,
+                                },
+                            ),
+                            right_node: Some(
+                                Node {
+                                    character: None,
+                                    value: Some(
+                                        12,
+                                    ),
+                                    frequency: None,
+                                    left_node: Some(
+                                        Node {
+                                            character: Some(
+                                                'a',
+                                            ),
+                                            value: None,
+                                            frequency: Some(
+                                                4,
+                                            ),
+                                            left_node: None,
+                                            right_node: None,
+                                        },
+                                    ),
+                                    right_node: Some(
+                                        Node {
+                                            character: None,
+                                            value: Some(
+                                                8,
+                                            ),
+                                            frequency: None,
+                                            left_node: Some(
+                                                Node {
+                                                    character: Some(
+                                                        's',
+                                                    ),
+                                                    value: None,
+                                                    frequency: Some(
+                                                        4,
+                                                    ),
+                                                    left_node: None,
+                                                    right_node: None,
+                                                },
+                                            ),
+                                            right_node: Some(
+                                                Node {
+                                                    character: Some(
+                                                        'd',
+                                                    ),
+                                                    value: None,
+                                                    frequency: Some(
+                                                        4,
+                                                    ),
+                                                    left_node: None,
+                                                    right_node: None,
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                },
+            ),
+            right_node: Some(
+                Node {
+                    character: None,
+                    value: Some(
+                        55,
+                    ),
+                    frequency: None,
+                    left_node: Some(
+                        Node {
+                            character: Some(
+                                ' ',
+                            ),
+                            value: None,
+                            frequency: Some(
+                                21,
+                            ),
+                            left_node: None,
+                            right_node: None,
+                        },
+                    ),
+                    right_node: Some(
+                        Node {
+                            character: None,
+                            value: Some(
+                                34,
+                            ),
+                            frequency: None,
+                            left_node: Some(
+                                Node {
+                                    character: Some(
+                                        'o',
+                                    ),
+                                    value: None,
+                                    frequency: Some(
+                                        12,
+                                    ),
+                                    left_node: None,
+                                    right_node: None,
+                                },
+                            ),
+                            right_node: Some(
+                                Node {
+                                    character: None,
+                                    value: Some(
+                                        22,
+                                    ),
+                                    frequency: None,
+                                    left_node: Some(
+                                        Node {
+                                            character: Some(
+                                                'e',
+                                            ),
+                                            value: None,
+                                            frequency: Some(
+                                                11,
+                                            ),
+                                            left_node: None,
+                                            right_node: None,
+                                        },
+                                    ),
+                                    right_node: Some(
+                                        Node {
+                                            character: None,
+                                            value: Some(
+                                                11,
+                                            ),
+                                            frequency: None,
+                                            left_node: Some(
+                                                Node {
+                                                    character: Some(
+                                                        'b',
+                                                    ),
+                                                    value: None,
+                                                    frequency: Some(
+                                                        5,
+                                                    ),
+                                                    left_node: None,
+                                                    right_node: None,
+                                                },
+                                            ),
+                                            right_node: Some(
+                                                Node {
+                                                    character: Some(
+                                                        'h',
+                                                    ),
+                                                    value: None,
+                                                    frequency: Some(
+                                                        6,
+                                                    ),
+                                                    left_node: None,
+                                                    right_node: None,
+                                                },
+                                            ),
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                },
+            ),
+        },
+    ),
+}
