@@ -121,7 +121,7 @@
 <ul>
     <li>
         <h5>1. Map the list of numbers to a list of their square roots: [1, 9, 16, 100]</h5>
-        <p>Despite having ptsd for working with nodes for a two-digited amount of hours, I'm going to use Node.js with typescript.</p>
+        <p>Despite having ptsd for working with nodes for a two-digited amount of hours, I'm going to use Node.js with typescript. The typescript file has been transcompiled and can be seen in the dist folder. Running 'npm start' in your terminal in the root directory will run the script (assuming you have node installed)</p>
     </li>
     <li>
         <h5>2. Map the list of words so each is wrapped in a h1 tag: ["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"</h5>
