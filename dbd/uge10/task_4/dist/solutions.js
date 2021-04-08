@@ -131,8 +131,16 @@ function subtask06(numbers) {
     const reducer = (accumulator, curr) => accumulator + curr;
     return numbers.reduce(reducer);
 }
-function subtask07() {
-    // 7. Use reduce to sum the x-value of the objects in the array: [{x: 1}, {x: 2}, {x: 3}]
+function subtask07(dict) {
+    const givenArray = [
+        { x: 1 },
+        { x: 2 },
+        { x: 3 },
+        { x: 4 },
+        { x: 5 },
+    ];
+    const sum = dict.reduce((acc, curr) => acc + curr.x, 0);
+    return sum;
 }
 function subtask08() {
     // 8. Use reduce to flatten an array of arrays: [[1,2] [3,4], [5,6]]
@@ -146,3 +154,4 @@ console.log(subtask03(["I'm", "yelling", "today"]));
 console.log(subtask04(["I", "have", "loooooong", "words"]));
 console.log(subtask05());
 console.log(subtask06([1, 2, 3, 4, 5]));
+console.log(subtask07([{ x: 1 }, { x: 2 }, { x: 3 }]));
