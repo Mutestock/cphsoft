@@ -128,15 +128,16 @@ const comics = [
     }
     ]
 
-function subtask05() {
+function subtask05() : string[]{
     // 5. Get the json file comics.json from the course site. Paste it into your browser's Javascript console. Use map to get the image urls, and wrap them in img-tags.
-    let comicsArr = comics.map(x => "<img>"+ x.img + "</img>");
-    console.log(comicsArr);
-    
+    return comics.map(x => "<img>"+ x.img + "</img>");
 }
 
-function subtask06() {
+function subtask06(numbers: number[]): number {
     // 6. Use reduce to sum the array of numbers: [1,2,3,4,5]
+    const reducer = (accumulator: number, curr: number) => accumulator + curr;
+
+    return numbers.reduce(reducer);
 }
 
 function subtask07() {
@@ -155,5 +156,6 @@ console.log(subtask01([1, 9, 16, 100]));
 console.log(subtask02( ["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"]));
 console.log(subtask03( ["I'm", "yelling", "today"]));
 console.log(subtask04(["I", "have", "loooooong", "words"]));
-subtask05();
+console.log(subtask05());
+console.log(subtask06([1,2,3,4,5]));
 
