@@ -1,7 +1,6 @@
 mod bloomfilter;
-use bloomfilter::{BloomFilter};
-use std::hash::{BuildHasher, Hash, Hasher};
 use bit_vec::BitVec;
+use bloomfilter::BloomFilter;
 
 fn main() {
     let desired_capacity = 1_000_000;

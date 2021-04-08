@@ -1,8 +1,8 @@
 use bit_vec::BitVec;
-use indoc::indoc;
-use std::marker::PhantomData;
-use std::hash::{Hash, Hasher};
 use fasthash::{murmur3, Murmur3HasherExt};
+use indoc::indoc;
+use std::hash::{Hash, Hasher};
+use std::marker::PhantomData;
 
 // To specify precision rate.
 // m - The amount of bits allocated
@@ -19,8 +19,6 @@ use fasthash::{murmur3, Murmur3HasherExt};
 // It's math functions basically.
 
 // Using some logic from here: https://sagi.io/bloom-filters-for-the-perplexed/#appendix
-// Also (heavily) inspired by https://onatm.dev/2020/08/10/let-s-implement-a-bloom-filter/
-// Changed to murmur3 instead.
 // Finding this a bit hard to wrap my head around...
 
 pub struct BloomFilter<T: ?Sized> {
@@ -35,15 +33,18 @@ impl<T: ?Sized> BloomFilter<T> {
         let optimal_km = Self::calculate_optimal_km(capacity, error_rate);
         let optimal_k = optimal_km.0;
         let optimal_m = optimal_km.1;
-        BloomFilter{
+        BloomFilter {
             bitmap: BitVec::from_elem(optimal_m as usize, false),
             optimal_k,
             optimal_m,
             _marker: PhantomData,
         }
     }
-    
-    pub fn add(&mut self, item: &T) where T: Hash{
+
+    pub fn add(&mut self, item: &T)
+    where
+        T: Hash,
+    {
         let (h1, h2) = self.hash_kernel(item);
 
         for i in 0..self.optimal_k {
@@ -52,8 +53,10 @@ impl<T: ?Sized> BloomFilter<T> {
         }
     }
 
-
-    pub fn check(&mut self, item: &T) -> bool where T: Hash{
+    pub fn check(&mut self, item: &T) -> bool
+    where
+        T: Hash,
+    {
         let (h1, h2) = self.hash_kernel(item);
 
         for i in 0..self.optimal_k {
@@ -66,7 +69,10 @@ impl<T: ?Sized> BloomFilter<T> {
         true
     }
 
-    fn hash_kernel(&self, item: &T) -> (u64, u64) where T: Hash {
+    fn hash_kernel(&self, item: &T) -> (u64, u64)
+    where
+        T: Hash,
+    {
         let mut s: Murmur3HasherExt = Default::default();
         item.hash(&mut s);
         let hash1 = s.finish();
@@ -74,7 +80,7 @@ impl<T: ?Sized> BloomFilter<T> {
         let hash2 = s.finish();
         (hash1, hash2)
     }
-    
+
     fn get_index(&self, h1: u64, h2: u64, i: u64) -> usize {
         (h1.wrapping_add((i).wrapping_mul(h2)) % self.optimal_m) as usize
     }
@@ -90,15 +96,20 @@ impl<T: ?Sized> BloomFilter<T> {
 
     pub fn print_optimal_km(capacity: u64, error_rate: f64) {
         let optimal_km = Self::calculate_optimal_km(capacity, error_rate);
-        println!(indoc!{
+        println!(
+            indoc! {
             "
 
             The desired capacity was: {} 
             The desired error rate was: {} 
             The required hash function call count was: {} 
             and {} bits per element
-            "}, 
-            capacity, error_rate, optimal_km.0, optimal_km.1 as f64 / capacity as f64);
+            "},
+            capacity,
+            error_rate,
+            optimal_km.0,
+            optimal_km.1 as f64 / capacity as f64
+        );
     }
 }
 

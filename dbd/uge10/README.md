@@ -65,7 +65,7 @@
     <li>
         <h5>5. If you are to store one million ASCII strings with an average size of 10 characters in a hash set, what would be the approximate space consumption?</h5>
         <p>If you're somehow referring to the bloomfilter I just created, then you're having too many unknowns in the formula: total capacity, false positive rate and amount of hash function calls. 
-        If you're referring to a hash table, then hash tables have a complexity rate of O(n).
+        If you're referring to a hash table, then hash tables have a complexity rate of O(1~) due to collision.
         As per: http://java-performance.info/memory-consumption-of-java-data-types-2/
         It will take 32 * SIZE + 4 * CAPACITY bytes. Where default CAPACITY is calculated by SIZE/0.75
         Supposedly 1 character is 1 byte since it's ascii. 10 Characters would be 10 bytes. As far as I can remember, it's not exactly that simple, but I'm gonna go with it.
@@ -100,7 +100,7 @@
 <ul>
     <li>
         <h5>1. Generate Huffmann Code (and draw the Huffman Tree) based on the following string: "beeps beeps!!!!! their eerie ears hear pears"</h5>
-        <p>Image is in resources.</p>
+        <p>Image is in resources. That said, my code actually spits out something different.</p>
     </li>
     <li>
         <h5>2. How many bits is the compressed string? How many bits is the raw ASCII string?</h5>
