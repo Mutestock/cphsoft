@@ -9,11 +9,13 @@ function subtask02(words) {
     // 2. Map the list of words so each is wrapped in a h1 tag: ["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"]
     return words.map(function (x) { return "<h1>" + x + "</h1>"; });
 }
-function subtask03() {
+function subtask03(words) {
     // 3. Use map to uppercase the words (all letters): ["I'm", "yelling", "today"]
+    return words.map(function (x) { return x.toUpperCase(); });
 }
-function subtask04() {
+function subtask04(words) {
     // 4. Use map to transform words into their lengths: ["I", "have", "loooooong", "words"]
+    return words.map(function (x) { return x.length; });
 }
 function subtask05() {
     // 5. Get the json file comics.json from the course site. Paste it into your browser's Javascript console. Use map to get the image urls, and wrap them in img-tags.
@@ -32,3 +34,6 @@ function subtask09() {
 }
 console.log(subtask01([1, 9, 16, 100]));
 console.log(subtask02(["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"]));
+console.log(subtask03(["I'm", "yelling", "today"]));
+console.log(subtask04(["I", "have", "loooooong", "words"]));
+//console.log(subtask05);

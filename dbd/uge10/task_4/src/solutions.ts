@@ -13,12 +13,14 @@ function subtask02(words: string[]): string[] {
     return words.map(x => "<h1>"+x+"</h1>");
 }
 
-function subtask03() {
+function subtask03(words: string[]): string[] {
     // 3. Use map to uppercase the words (all letters): ["I'm", "yelling", "today"]
+    return words.map(x => x.toUpperCase());
 }
 
-function subtask04() {
+function subtask04(words: string[]): number[] {
     // 4. Use map to transform words into their lengths: ["I", "have", "loooooong", "words"]
+    return words.map(x => x.length);
 }
 
 function subtask05() {
@@ -43,3 +45,7 @@ function subtask09() {
 
 console.log(subtask01([1, 9, 16, 100]));
 console.log(subtask02( ["Intro", "Requirements", "Analysis", "Implementation", "Conclusion", "Discussion", "References"]));
+console.log(subtask03( ["I'm", "yelling", "today"]));
+console.log(subtask04(["I", "have", "loooooong", "words"]));
+//console.log(subtask05);
+
