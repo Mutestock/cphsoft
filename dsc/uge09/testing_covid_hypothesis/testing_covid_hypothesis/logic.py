@@ -1,5 +1,5 @@
 import pandas as pd
-from aliases import REGIONAL_FILE_TREE, COMMUNAL_FILE_TREE, LAU_CODES, CUSTOM_IMAGES_PATH
+from aliases import REGIONAL_FILE_TREE, COMMUNAL_FILE_TREE, LAU_CODES, CUSTOM_IMAGES_PATH, CUSTOM_EXCEL_PATH
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
@@ -15,7 +15,7 @@ def display_dataframe(file):
 
 
 # Simple comparison of copenhagen and aarhus.
-def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creation=False, show=False, print_file=False):
+def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
 
     # Read a file in pandas and make it a dataframe.
     # The files used in the csv files are separated by semicolons
@@ -59,8 +59,9 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creat
     fig.autofmt_xdate()
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
-    if xml_creation:
-        pass
+    if excel:
+        df_ab = df[df["Kommune"] == a_code | df["Kommune" == b_code]]
+        df_ab.to_excel(CUSTOM_EXCEL_PATH+f"{a}_{b}_bekraeftet_pr_date.xlsx")
     if print_file:
         plt.savefig(CUSTOM_IMAGES_PATH+'Matplotlib_save_plot.png')
     if show:

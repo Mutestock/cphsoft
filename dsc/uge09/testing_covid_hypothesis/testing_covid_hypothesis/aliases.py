@@ -10,6 +10,7 @@ ROOT_DIR = os.path.dirname(ROOT_DIR)
 _REGIONAL_BASE_PATH = ROOT_DIR + "/resources/Regionalt_DB/"
 _COMMUNAL_BASE_PATH = ROOT_DIR + "/resources/Kommunalt_DB/"
 CUSTOM_IMAGES_PATH = ROOT_DIR + "/resources/generated_images/"
+CUSTOM_EXCEL_PATH = ROOT_DIR + "/resources/excel/"
 
 REGIONAL_FILE_TREE = {
     "noegle_tal": _REGIONAL_BASE_PATH+"01_noegle_tal.csv",
