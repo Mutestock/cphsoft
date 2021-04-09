@@ -21,7 +21,10 @@ def analysis(show, print, excel, compare, compare_choice):
         else:   
             logic.compare_municipalities_confirmed_cases(show=show, print_file=print, excel=excel)
     elif compare_choice:
-        logic.compare_municipalities_confirmed_cases(compare_choice[0], compare_choice[1])
+        if show == False and print == False and excel == False:
+            print("Nothing will happen unless you supply the command with either a -p (print), -s (show) or -ex (excel) tag") 
+        else:   
+            logic.compare_municipalities_confirmed_cases(compare_choice[0], compare_choice[1], show=show, print_file=print, excel=excel)
     
 
 
