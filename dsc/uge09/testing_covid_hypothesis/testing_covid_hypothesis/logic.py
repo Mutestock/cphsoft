@@ -1,6 +1,8 @@
 import pandas as pd
 from aliases import REGIONAL_FILE_TREE, COMMUNAL_FILE_TREE, LAU_CODES, CUSTOM_IMAGES_PATH
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
 # Simple test to see whether or not pandas is capable of reading a specified file.
 # Used in cli basic show
@@ -29,6 +31,7 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creat
     b_code = ""
 
     # Making sure there's a hit. Informing user if there aren't.
+    
     try:
         a_code = int(LAU_CODES.get(a))
     except:
@@ -44,8 +47,16 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creat
     df_a = df[df["Kommune"] == a_code]
     df_b = df[df["Kommune"] == b_code]
     
-    plt.plot(df_a["Dato"], df_a["Bekraeftede tilfaelde"])
-    plt.plot(df_b["Dato"], df_b["Bekraeftede tilfaelde"])  
+    fig, ax = plt.subplots()
+    myLocator = mticker.MultipleLocator(30)
+    ax.xaxis.set_major_locator(myLocator)
+    
+    ax.plot(df_a["Dato"], df_a["Bekraeftede tilfaelde"], '-', label=a)
+    ax.plot(df_b["Dato"], df_b["Bekraeftede tilfaelde"], '-', label=b)
+    ax.set_title(f'Bekræftede tilfælde pr dag pr kommune - {a} vs {b}')
+    ax.legend([f'{a}',f'{b}'])
+    #ax.xaxis_date()
+    fig.autofmt_xdate()
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
     plt.show()
