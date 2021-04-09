@@ -15,7 +15,7 @@ def display_dataframe(file):
 
 
 # Simple comparison of copenhagen and aarhus.
-def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creation=False):
+def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creation=False, show=False, print_file=False):
 
     # Read a file in pandas and make it a dataframe.
     # The files used in the csv files are separated by semicolons
@@ -59,4 +59,9 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creat
     fig.autofmt_xdate()
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
-    plt.show()
+    if xml_creation:
+        pass
+    if print_file:
+        plt.savefig(CUSTOM_IMAGES_PATH+'Matplotlib_save_plot.png')
+    if show:
+        plt.show()
