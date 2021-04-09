@@ -13,7 +13,7 @@ def display_dataframe(file):
 
 
 # Simple comparison of copenhagen and aarhus.
-def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus"):
+def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", xml_creation=False):
 
     # Read a file in pandas and make it a dataframe.
     # The files used in the csv files are separated by semicolons
@@ -43,7 +43,9 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus"):
     #df = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
     df_a = df[df["Kommune"] == a_code]
     df_b = df[df["Kommune"] == b_code]
-
-    plt.plot(df_a["Bekraeftede tilfaelde"])
-    plt.plot(df_b["Bekraeftede tilfaelde"])
+    
+    plt.plot(df_a["Dato"], df_a["Bekraeftede tilfaelde"])
+    plt.plot(df_b["Dato"], df_b["Bekraeftede tilfaelde"])  
+    plt.xlabel("Date")
+    plt.ylabel("Confirmed cases per day")
     plt.show()

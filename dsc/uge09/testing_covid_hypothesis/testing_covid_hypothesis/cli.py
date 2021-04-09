@@ -25,3 +25,5 @@ def analysis(show, compare, compare_choice):
 @click.option("--table", "-t", is_flag=True, help="Just shows one of the tables in the terminal")
 def basic(table):
     logic.display_dataframe(REGIONAL_FILE_TREE.get("noegle_tal"))
+    
+    
