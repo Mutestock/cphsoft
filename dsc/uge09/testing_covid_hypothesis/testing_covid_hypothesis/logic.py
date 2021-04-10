@@ -43,11 +43,30 @@ def get_dataframes(a, b):
         print(f"\n\n{b} is not a recognized input value\n\n")
         raise Exception
 
-    #df = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+    df = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+
+    #df = df[(df["Kommune"] == a_code )]
+
     df_a = df[df["Kommune"] == a_code]
     df_b = df[df["Kommune"] == b_code]
+    df_c = df_a.merge(df_b, left_on="Dato", right_on="Dato")
+    print(df_c)
 
-    return df, df_a, df_b, a_code, b_code
+    # if df_a.shape != df_b.shape:
+    #    largest = None
+    #    smallest = None
+    #    if df_a.shape>df_b.shape:
+    #        largest = df_a
+    #        smallest = df_b
+    #    else:
+    #        largest = df_b
+    #        smallest = df_a
+    #    for i, row in largest.iterrows():
+    #        try:
+    #            smallest['Dato'].values[]
+
+    #return df, df_a, df_b, a_code, b_code
+    return df, df_c, a_code, b_code
 
 
 def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
@@ -57,14 +76,14 @@ def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
 # Simple comparison of copenhagen and aarhus.
 def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
 
-    df, df_a, df_b, a_code, b_code = get_dataframes(a, b)
+    df, df_c, a_code, b_code = get_dataframes(a, b)
 
     fig, ax = plt.subplots()
     myLocator = mticker.MultipleLocator(30)
     ax.xaxis.set_major_locator(myLocator)
 
-    ax.plot(df_a["Dato"], df_a["Bekraeftede tilfaelde"], '-', label=a)
-    ax.plot(df_b["Dato"], df_b["Bekraeftede tilfaelde"], '-', label=b)
+    ax.plot(df_c["Dato"], df_c["Bekraeftede tilfaelde_x"], '-', label=a)
+    ax.plot(df_c["Dato"], df_c["Bekraeftede tilfaelde_y"], '-', label=b)
     ax.set_title(f'Bekræftede tilfælde pr dag pr kommune - {a} vs {b}')
     ax.legend([f'{a}', f'{b}'])
     # ax.xaxis_date()
