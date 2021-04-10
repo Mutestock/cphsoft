@@ -89,7 +89,18 @@ def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
     ax.bar( parts,data, align='center', alpha=0.5)
     ax.set_title("Mean - {a} - {b}")
     
-    plt.show()
+    if print_file:
+        plt.savefig(CUSTOM_IMAGES_PATH +
+                    f'{a}_{b}_bekraeftede_tilfælde_kommune_mean.png')
+    if excel:
+        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+        if not os.path.exists(CUSTOM_EXCEL_PATH):
+            os.makedirs(CUSTOM_EXCEL_PATH)
+        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune.xlsx") as writer:
+            mean.to_excel(
+                writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
+    if show:
+        plt.show()
     
 
 # Simple comparison of copenhagen and aarhus.
