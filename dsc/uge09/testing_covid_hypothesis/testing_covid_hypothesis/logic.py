@@ -13,11 +13,9 @@ import os
 def display_dataframe(file):
     df = pd.read_csv(file)
     print(df)
-
-
-# Simple comparison of copenhagen and aarhus.
-def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
-
+    
+def get_dataframes(a,b):
+    
     # Read a file in pandas and make it a dataframe.
     # The files used in the csv files are separated by semicolons
     df = pd.read_csv(COMMUNAL_FILE_TREE.get(
@@ -48,6 +46,17 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
     df_a = df[df["Kommune"] == a_code]
     df_b = df[df["Kommune"] == b_code]
     
+    return (df_a, df_b)
+
+def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
+    df_a, df_b = (get_dataframes(a,b))
+
+
+# Simple comparison of copenhagen and aarhus.
+def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
+
+    df_a, df_b = (get_dataframes(a,b))
+    
     fig, ax = plt.subplots()
     myLocator = mticker.MultipleLocator(30)
     ax.xaxis.set_major_locator(myLocator)
@@ -61,7 +70,7 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
     if print_file:
-        plt.savefig(CUSTOM_IMAGES_PATH+f'{a}_{b} bekraeftede tilfælde pr dag pr kommune.png')
+        plt.savefig(CUSTOM_IMAGES_PATH+f'{a}_{b}_bekraeftede_tilfælde_pr_dag_pr_kommune.png')
     if excel:    
         df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
         if not os.path.exists(CUSTOM_EXCEL_PATH):
