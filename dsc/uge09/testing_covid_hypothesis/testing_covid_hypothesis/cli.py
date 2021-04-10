@@ -19,7 +19,9 @@ def manager():
 @click.option("--mean-choice", "-cm", nargs=2, help="Same as mean, but lets you pick which two munipalities you want to inspect the mean values of(Assuming it's part of the data set")
 @click.option("--standard-deviation", "-std", is_flag=True, help="Standard deviation for copenhagen and aarhus")
 @click.option("--standard-deviation-choice", "-cstd", nargs=2, help="Standard deviation with two choices")
-def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, standard_deviation, standard_deviation_choice):
+@click.option("--variance", "-v", is_flag=True, help="Variance for copenhagen and aarhus")
+@click.option("--variance-choice", "-cv", nargs=2, help="Variance with two choices")
+def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, standard_deviation, standard_deviation_choice, variance, variance_choice):
     if compare:
         if no_tags_error_message(show, print, excel):
             logic.compare_municipalities_confirmed_cases(
@@ -42,6 +44,13 @@ def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, sta
         if no_tags_error_message(show, print, excel):
             logic.standard_deviation(
                 standard_deviation_choice[0], standard_deviation_choice[1], show=show, print_file=print, excel=excel)
+    elif variance:
+        if no_tags_error_message(show, print, excel):
+            logic.variance(show=show, print_file=print, excel=excel)
+    elif variance_choice:
+        if no_tags_error_message(show, print, excel):
+            logic.variance(
+                variance_choice[0], variance_choice[1], show=show, print_file=print, excel=excel)
 
 
 @manager.command()

@@ -112,7 +112,37 @@ def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
                 writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
     if show:
         plt.show()
+
+
+def variance(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
+    a = a.capitalize()
+    b = b.capitalize()
     
+    df, df_c, a_code, b_code = get_dataframes(a, b)
+    variance = df_c.var()
+    
+    data = [variance[0], variance[1]]
+    parts = [f"{a}",f"{b}"]
+    _, ax = plt.subplots()
+    
+    print(variance)
+    
+    ax.bar( parts,data, align='center', alpha=0.5)
+    ax.set_title("variance - {a} - {b}")
+    
+    if print_file:
+        plt.savefig(CUSTOM_IMAGES_PATH +
+                    f'{a}_{b}_bekraeftede_tilfælde_kommune_variance.png')
+    if excel:
+        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+        if not os.path.exists(CUSTOM_EXCEL_PATH):
+            os.makedirs(CUSTOM_EXCEL_PATH)
+        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune.xlsx") as writer:
+            variance.to_excel(
+                writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
+    if show:
+        plt.show()
+     
 
 # Simple comparison of copenhagen and aarhus.
 def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
@@ -145,3 +175,5 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
                 writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
     if show:
         plt.show()
+
+
