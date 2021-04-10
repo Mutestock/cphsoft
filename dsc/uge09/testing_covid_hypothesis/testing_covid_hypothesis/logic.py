@@ -24,8 +24,7 @@ def get_dataframes(a, b):
 
     # The LAU codes I found were capitalized.
     # I am using those values as keys in a dictionary in aliases.py, so I'm capitalizing.
-    a = a.capitalize()
-    b = b.capitalize()
+
 
     a_code = ""
     b_code = ""
@@ -50,6 +49,8 @@ def get_dataframes(a, b):
     df_a = df[df["Kommune"] == a_code]
     df_b = df[df["Kommune"] == b_code]
     df_c = df_a.merge(df_b, left_on="Dato", right_on="Dato")
+    df_c = df_c.drop(columns=["Kommune_x", "Kommune_y"])
+    df_c = df_c.rename(columns={"Bekraeftede tilfaelde_x":f"Bekraeftede tilfaelde {a}", "Bekraeftede tilfaelde_y": f"Bekraeftede tilfaelde {b}"})
     print(df_c)
 
     # if df_a.shape != df_b.shape:
@@ -76,14 +77,17 @@ def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
 # Simple comparison of copenhagen and aarhus.
 def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
 
+    a = a.capitalize()
+    b = b.capitalize()
+
     df, df_c, a_code, b_code = get_dataframes(a, b)
 
     fig, ax = plt.subplots()
     myLocator = mticker.MultipleLocator(30)
     ax.xaxis.set_major_locator(myLocator)
 
-    ax.plot(df_c["Dato"], df_c["Bekraeftede tilfaelde_x"], '-', label=a)
-    ax.plot(df_c["Dato"], df_c["Bekraeftede tilfaelde_y"], '-', label=b)
+    ax.plot(df_c["Dato"], df_c[f"Bekraeftede tilfaelde {a}"], '-', label=a)
+    ax.plot(df_c["Dato"], df_c[f"Bekraeftede tilfaelde {b}"], '-', label=b)
     ax.set_title(f'Bekræftede tilfælde pr dag pr kommune - {a} vs {b}')
     ax.legend([f'{a}', f'{b}'])
     # ax.xaxis_date()
@@ -98,7 +102,7 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
         if not os.path.exists(CUSTOM_EXCEL_PATH):
             os.makedirs(CUSTOM_EXCEL_PATH)
         with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b} bekraeftede tilfælde pr dag pr kommune.xlsx") as writer:
-            df_ab.to_excel(
+            df_c.to_excel(
                 writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
             df_a.to_excel(
                 writer, sheet_name=f"{a} bekræftede tilfælde pr dag pr kommune")
