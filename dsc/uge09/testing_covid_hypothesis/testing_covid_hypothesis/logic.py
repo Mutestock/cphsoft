@@ -3,6 +3,7 @@ from aliases import REGIONAL_FILE_TREE, COMMUNAL_FILE_TREE, LAU_CODES, CUSTOM_IM
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
+import os
 
 # Simple test to see whether or not pandas is capable of reading a specified file.
 # Used in cli basic show
@@ -59,10 +60,15 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
     fig.autofmt_xdate()
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
-    if excel:
-        df_ab = df[df["Kommune"] == a_code | df["Kommune" == b_code]]
-        df_ab.to_excel(CUSTOM_EXCEL_PATH+f"{a}_{b}_bekraeftet_pr_date.xlsx")
     if print_file:
-        plt.savefig(CUSTOM_IMAGES_PATH+'Matplotlib_save_plot.png')
+        plt.savefig(CUSTOM_IMAGES_PATH+'{a}_{b} bekraeftede tilfælde pr dag pr kommune.png')
+    if excel:    
+        df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+        if not os.path.exists(CUSTOM_EXCEL_PATH):
+            os.makedirs(CUSTOM_EXCEL_PATH)
+        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + "f{a}_{b} bekraeftede tilfælde pr dag pr kommune.xlsx") as writer:    
+            df_ab.to_excel(writer, sheet_name =f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
+            df_a.to_excel(writer, sheet_name =f"{a} bekræftede tilfælde pr dag pr kommune")
+            df_b.to_excel(writer, sheet_name =f"{b} bekræftede tilfælde pr dag pr kommune")
     if show:
         plt.show()
