@@ -16,11 +16,11 @@ def manager():
 @click.option("--show", "-s", is_flag=True, help="Shows the graph via. matplotlib")
 @click.option("--excel", "-ex", is_flag=True, help="Prints the data to an excel file in ./resources/excel")
 @click.option("--mean", "-m", is_flag=True, help="Gets mean of copenhagen and aarhus and compares them as per assignment description")
-@click.option("--mean-choice", "-cm", nargs=2, help="Same as mean, but lets you pick which two munipalities you want to inspect the mean values of(Assuming it's part of the data set")
+@click.option("--mean-choice", "-mc", nargs=2, help="Same as mean, but lets you pick which two munipalities you want to inspect the mean values of(Assuming it's part of the data set")
 @click.option("--standard-deviation", "-std", is_flag=True, help="Standard deviation for copenhagen and aarhus")
-@click.option("--standard-deviation-choice", "-cstd", nargs=2, help="Standard deviation with two choices")
+@click.option("--standard-deviation-choice", "-stdc", nargs=2, help="Standard deviation with two choices")
 @click.option("--variance", "-v", is_flag=True, help="Variance for copenhagen and aarhus")
-@click.option("--variance-choice", "-cv", nargs=2, help="Variance with two choices")
+@click.option("--variance-choice", "-vc", nargs=2, help="Variance with two choices")
 def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, standard_deviation, standard_deviation_choice, variance, variance_choice):
     if compare:
         if no_tags_error_message(show, print, excel):
@@ -32,25 +32,27 @@ def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, sta
                 compare_choice[0], compare_choice[1], show=show, print_file=print, excel=excel)
     elif mean:
         if no_tags_error_message(show, print, excel):
-            logic.mean(show=show, print_file=print, excel=excel)
+            logic.mean(a="copenhagen", b="aarhus", show=show, print_file=print, excel=excel)
     elif mean_choice:
         if no_tags_error_message(show, print, excel):
-            logic.mean(mean_choice[0], mean_choice[1],
+            logic.mean(a=mean_choice[0], b=mean_choice[1],
                        show=show, print_file=print, excel=excel)
     elif standard_deviation:
         if no_tags_error_message(show, print, excel):
-            logic.standard_deviation(show=show, print_file=print, excel=excel)
+            logic.standard_deviation(
+                a="copenhagen", b="aarhus", show=show, print_file=print, excel=excel)
     elif standard_deviation_choice:
         if no_tags_error_message(show, print, excel):
             logic.standard_deviation(
-                standard_deviation_choice[0], standard_deviation_choice[1], show=show, print_file=print, excel=excel)
+                a=standard_deviation_choice[0], b=standard_deviation_choice[1], show=show, print_file=print, excel=excel)
     elif variance:
         if no_tags_error_message(show, print, excel):
-            logic.variance(show=show, print_file=print, excel=excel)
+            logic.variance(a="copenhagen", b="aarhus", show=show,
+                           print_file=print, excel=excel)
     elif variance_choice:
         if no_tags_error_message(show, print, excel):
             logic.variance(
-                variance_choice[0], variance_choice[1], show=show, print_file=print, excel=excel)
+                a=variance_choice[0], b=variance_choice[1], show=show, print_file=print, excel=excel)
 
 
 @manager.command()

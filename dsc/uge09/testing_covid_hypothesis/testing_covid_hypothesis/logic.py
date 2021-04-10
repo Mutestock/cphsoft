@@ -9,7 +9,39 @@ import os
 # Used in cli basic show
 # Disregard.
 
-# This file is in DESPERATE need of decorators.
+# This is a decorator definition. 
+# It contains information about what is called before and after a function is called.
+# Used with @basic_bar
+def basic_bar(func):
+    def inner(*args, **kwargs):
+        print(kwargs)
+        a = kwargs.get("a").capitalize()
+        b = kwargs.get("b").capitalize()
+
+        df, df_c, a_code, b_code = get_dataframes(a, b)
+
+        df_res = func(*args, **kwargs, df_c=df_c)
+
+        data = [df_res[0], df_res[1]]
+        parts = [f"{a}", f"{b}"]
+        _, ax = plt.subplots()
+
+        ax.bar(parts, data, align='center', alpha=0.5)
+        ax.set_title(f"{func.__name__} - {a} - {b}")
+
+        if kwargs.get("print_file"):
+            plt.savefig(CUSTOM_IMAGES_PATH +
+                        f'{a}_{b}_bekraeftede_tilfælde_kommune_{func.__name__}.png')
+        if kwargs.get("excel"):
+            # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+            if not os.path.exists(CUSTOM_EXCEL_PATH):
+                os.makedirs(CUSTOM_EXCEL_PATH)
+            with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune_{func.__name__}.xlsx") as writer:
+                df_res.to_excel(
+                    writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune_{func.__name__}")
+        if kwargs.get("show"):
+            plt.show()
+    return inner
 
 
 def display_dataframe(file):
@@ -51,98 +83,25 @@ def get_dataframes(a, b):
     df_b = df[df["Kommune"] == b_code]
     df_c = df_a.merge(df_b, left_on="Dato", right_on="Dato")
     df_c = df_c.drop(columns=["Kommune_x", "Kommune_y"])
-    df_c = df_c.rename(columns={"Bekraeftede tilfaelde_x":f"Bekraeftede tilfaelde {a}", "Bekraeftede tilfaelde_y": f"Bekraeftede tilfaelde {b}"})
+    df_c = df_c.rename(columns={"Bekraeftede tilfaelde_x": f"Bekraeftede tilfaelde {a}",
+                                "Bekraeftede tilfaelde_y": f"Bekraeftede tilfaelde {b}"})
     print(df_c)
 
     return df, df_c, a_code, b_code
 
 
-def standard_deviation(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
-    
-    a = a.capitalize()
-    b = b.capitalize()
-    
-    df, df_c, a_code, b_code = get_dataframes(a, b)
-    std = df_c.std()
-    
-    data = [std[0], std[1]]
-    parts = [f"{a}",f"{b}"]
-    _, ax = plt.subplots()
-    
-    ax.bar(parts,data, align='center', alpha=0.5)
-    ax.set_title("std - {a} - {b}")
-    
-    if print_file:
-        plt.savefig(CUSTOM_IMAGES_PATH +
-                    f'{a}_{b}_bekraeftede_tilfælde_kommune_std.png')
-    if excel:
-        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
-        if not os.path.exists(CUSTOM_EXCEL_PATH):
-            os.makedirs(CUSTOM_EXCEL_PATH)
-        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune.xlsx") as writer:
-            std.to_excel(
-                writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
-    if show:
-        plt.show()
-    
+@basic_bar
+def standard_deviation(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False, df_c=None):
+    return df_c.std()
 
-def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
-    a = a.capitalize()
-    b = b.capitalize()
-    
-    df, df_c, a_code, b_code = get_dataframes(a, b)
-    mean = df_c.mean()
-    
-    data = [mean[0], mean[1]]
-    parts = [f"{a}",f"{b}"]
-    _, ax = plt.subplots()
-    
-    ax.bar( parts,data, align='center', alpha=0.5)
-    ax.set_title("Mean - {a} - {b}")
-    
-    if print_file:
-        plt.savefig(CUSTOM_IMAGES_PATH +
-                    f'{a}_{b}_bekraeftede_tilfælde_kommune_mean.png')
-    if excel:
-        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
-        if not os.path.exists(CUSTOM_EXCEL_PATH):
-            os.makedirs(CUSTOM_EXCEL_PATH)
-        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune.xlsx") as writer:
-            mean.to_excel(
-                writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
-    if show:
-        plt.show()
+@basic_bar
+def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False, df_c=None):
+    return df_c.mean()
 
+@basic_bar
+def variance(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False, df_c=None):
+    return df_c.var()
 
-def variance(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
-    a = a.capitalize()
-    b = b.capitalize()
-    
-    df, df_c, a_code, b_code = get_dataframes(a, b)
-    variance = df_c.var()
-    
-    data = [variance[0], variance[1]]
-    parts = [f"{a}",f"{b}"]
-    _, ax = plt.subplots()
-    
-    print(variance)
-    
-    ax.bar( parts,data, align='center', alpha=0.5)
-    ax.set_title("variance - {a} - {b}")
-    
-    if print_file:
-        plt.savefig(CUSTOM_IMAGES_PATH +
-                    f'{a}_{b}_bekraeftede_tilfælde_kommune_variance.png')
-    if excel:
-        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
-        if not os.path.exists(CUSTOM_EXCEL_PATH):
-            os.makedirs(CUSTOM_EXCEL_PATH)
-        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune.xlsx") as writer:
-            variance.to_excel(
-                writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
-    if show:
-        plt.show()
-     
 
 # Simple comparison of copenhagen and aarhus.
 def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
@@ -175,5 +134,3 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
                 writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
     if show:
         plt.show()
-
-
