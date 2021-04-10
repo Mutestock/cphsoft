@@ -21,7 +21,11 @@ def manager():
 @click.option("--standard-deviation-choice", "-stdc", nargs=2, help="Standard deviation with two choices")
 @click.option("--variance", "-v", is_flag=True, help="Variance for copenhagen and aarhus")
 @click.option("--variance-choice", "-vc", nargs=2, help="Variance with two choices")
-def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, standard_deviation, standard_deviation_choice, variance, variance_choice):
+@click.option("--t-value", "-t", is_flag=True, help="Prints out le t-value of copenhagen and aarhus")
+@click.option("--t-value-choice", "-tc", nargs=2, help="Prints out le t-value of two choices")
+def analysis(
+        show, print, excel, compare, compare_choice, mean, mean_choice,
+        standard_deviation, standard_deviation_choice, variance, variance_choice, t_value, t_value_choice):
     if compare:
         if no_tags_error_message(show, print, excel):
             logic.compare_municipalities_confirmed_cases(
@@ -32,7 +36,8 @@ def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, sta
                 compare_choice[0], compare_choice[1], show=show, print_file=print, excel=excel)
     elif mean:
         if no_tags_error_message(show, print, excel):
-            logic.mean(a="copenhagen", b="aarhus", show=show, print_file=print, excel=excel)
+            logic.mean(a="copenhagen", b="aarhus", show=show,
+                       print_file=print, excel=excel)
     elif mean_choice:
         if no_tags_error_message(show, print, excel):
             logic.mean(a=mean_choice[0], b=mean_choice[1],
@@ -53,6 +58,10 @@ def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, sta
         if no_tags_error_message(show, print, excel):
             logic.variance(
                 a=variance_choice[0], b=variance_choice[1], show=show, print_file=print, excel=excel)
+    elif t_value:
+        logic.t_value()
+    elif t_value_choice:
+        logic.t_value(t_value_choice[0], t_value_choice[1])
 
 
 @manager.command()

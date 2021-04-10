@@ -4,13 +4,15 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import os
+import math
+from scipy.stats import ttest_ind
 
 # Simple test to see whether or not pandas is capable of reading a specified file.
 # Used in cli basic show
 # Disregard.
 
-# This is a decorator definition. 
-# It contains information about what is called before and after a function is called.
+# This is a decorator function. 
+# It executes code before and after a subscribed function is called.
 # Used with @basic_bar
 def basic_bar(func):
     def inner(*args, **kwargs):
@@ -85,7 +87,6 @@ def get_dataframes(a, b):
     df_c = df_c.drop(columns=["Kommune_x", "Kommune_y"])
     df_c = df_c.rename(columns={"Bekraeftede tilfaelde_x": f"Bekraeftede tilfaelde {a}",
                                 "Bekraeftede tilfaelde_y": f"Bekraeftede tilfaelde {b}"})
-    print(df_c)
 
     return df, df_c, a_code, b_code
 
@@ -102,6 +103,64 @@ def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False, 
 def variance(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False, df_c=None):
     return df_c.var()
 
+def t_value(a="copenhagen", b="aarhus"):
+    # https://www.educba.com/t-test-formula/
+    # t = ( x̄1 – x̄2) / √ [(s21 / n 1 ) + (s22 / n 2 )]
+    # x̄1 = Observed Mean of 1st Sample
+    # x̄2 = Observed Mean of 2nd Sample
+    # s1 = Standard Deviation of 1st Sample
+    # s2= Standard Deviation of 2nd Sample
+    # n 1 = Size of 1st Sample
+    # n 2 = Size of 2nd Sample
+    a = a.capitalize()
+    b = b.capitalize()
+    
+    _, df_c, a_code, b_code = get_dataframes(a, b)
+    means = df_c.mean()
+    sexually_transmitted_diseases = df_c.std()
+    variances = df_c.var()
+    
+    mean_a = means[0]
+    mean_b = means[1]
+    
+    std_a = sexually_transmitted_diseases[0]
+    std_b = sexually_transmitted_diseases[1]
+    
+    variance_a = variances[0]
+    variance_b = variances[1]
+    
+    sample_size = df_c.shape[0]
+    
+    degrees_of_freedom = 2 * (sample_size - 1)
+
+    t_value = (mean_a - mean_b) / math.sqrt((math.pow(std_a,2)/sample_size) + (math.pow(std_b,2)/sample_size))
+    
+    # I'm going to be committing the cheatsies by using stats for the p-value.
+    # Couldn't find any resources online describing any other way.
+    # ¯\_(ツ)_/¯
+    scipy_vals = ttest_ind(df_c[f"Bekraeftede tilfaelde {a}"], df_c[f"Bekraeftede tilfaelde {b}"])
+    
+    print(f"""
+    Report time!
+    
+    Mean {a} : {mean_a}
+    Std {a} : {std_a}
+    Variance {a} : {variance_a}
+    
+    Mean {b} : {mean_b}
+    Std {b} : {std_b}
+    Variance {b} : {variance_b}
+    
+    Degrees of freedom : {degrees_of_freedom}
+    t-value : {t_value}
+    
+    === Values from Scipy ===
+    
+    t_value : {scipy_vals[0]}
+    p_value : {scipy_vals[1]}
+    
+    """)
+    
 
 # Simple comparison of copenhagen and aarhus.
 def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
