@@ -37,14 +37,16 @@ Danish cities such as Copenhagen and Aarhus.</p>
 <p>To adhere to the definition of the assignment, I also need to find the following:</p>
 <ul>
     <h5>t-Test</h5>
-    <ul>For each set dispute: 
+    <p>For each set dispute: </p>
+    <ul>
         <li>□ mean 𝑋</li>
         <li>□ std deviation - S</li>
         <li>□ variance V = 𝑆 #</li>
         <li>□ t-value</li>
     </ul>
     <br>
-    <ul>Where the calculation of t-value is:
+    <p>Where the calculation of t-value is:</p>
+    <ul>
         <li>𝑡−𝑣𝑎𝑙𝑢𝑒 = signal/𝑛𝑜𝑖𝑠𝑒</li>
         <li>signal = |𝑋𝑐 - 𝑋𝑎 |</li>
         <li>noise = sqrt((Vc/nc)/(Vc/nc))</li>
