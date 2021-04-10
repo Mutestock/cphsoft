@@ -9,6 +9,8 @@ import os
 # Used in cli basic show
 # Disregard.
 
+# This file is in DESPERATE need of decorators.
+
 
 def display_dataframe(file):
     df = pd.read_csv(file)
@@ -24,7 +26,6 @@ def get_dataframes(a, b):
 
     # The LAU codes I found were capitalized.
     # I am using those values as keys in a dictionary in aliases.py, so I'm capitalizing.
-
 
     a_code = ""
     b_code = ""
@@ -53,22 +54,37 @@ def get_dataframes(a, b):
     df_c = df_c.rename(columns={"Bekraeftede tilfaelde_x":f"Bekraeftede tilfaelde {a}", "Bekraeftede tilfaelde_y": f"Bekraeftede tilfaelde {b}"})
     print(df_c)
 
-    # if df_a.shape != df_b.shape:
-    #    largest = None
-    #    smallest = None
-    #    if df_a.shape>df_b.shape:
-    #        largest = df_a
-    #        smallest = df_b
-    #    else:
-    #        largest = df_b
-    #        smallest = df_a
-    #    for i, row in largest.iterrows():
-    #        try:
-    #            smallest['Dato'].values[]
-
-    #return df, df_a, df_b, a_code, b_code
     return df, df_c, a_code, b_code
 
+
+def standard_deviation(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
+    
+    a = a.capitalize()
+    b = b.capitalize()
+    
+    df, df_c, a_code, b_code = get_dataframes(a, b)
+    std = df_c.std()
+    
+    data = [std[0], std[1]]
+    parts = [f"{a}",f"{b}"]
+    _, ax = plt.subplots()
+    
+    ax.bar(parts,data, align='center', alpha=0.5)
+    ax.set_title("std - {a} - {b}")
+    
+    if print_file:
+        plt.savefig(CUSTOM_IMAGES_PATH +
+                    f'{a}_{b}_bekraeftede_tilfælde_kommune_std.png')
+    if excel:
+        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+        if not os.path.exists(CUSTOM_EXCEL_PATH):
+            os.makedirs(CUSTOM_EXCEL_PATH)
+        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b}_bekraeftede_tilfælde_kommune.xlsx") as writer:
+            std.to_excel(
+                writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
+    if show:
+        plt.show()
+    
 
 def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
     a = a.capitalize()
@@ -77,14 +93,9 @@ def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
     df, df_c, a_code, b_code = get_dataframes(a, b)
     mean = df_c.mean()
     
-    #print(mean_a[0], mean_a[1])
-    
-    
     data = [mean[0], mean[1]]
     parts = [f"{a}",f"{b}"]
     _, ax = plt.subplots()
-    
-    print(data)
     
     ax.bar( parts,data, align='center', alpha=0.5)
     ax.set_title("Mean - {a} - {b}")

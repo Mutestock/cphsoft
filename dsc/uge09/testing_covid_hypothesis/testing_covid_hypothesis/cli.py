@@ -1,4 +1,5 @@
 import click
+from numpy import log
 import logic
 from aliases import REGIONAL_FILE_TREE, COMMUNAL_FILE_TREE
 
@@ -16,7 +17,9 @@ def manager():
 @click.option("--excel", "-ex", is_flag=True, help="Prints the data to an excel file in ./resources/excel")
 @click.option("--mean", "-m", is_flag=True, help="Gets mean of copenhagen and aarhus and compares them as per assignment description")
 @click.option("--mean-choice", "-cm", nargs=2, help="Same as mean, but lets you pick which two munipalities you want to inspect the mean values of(Assuming it's part of the data set")
-def analysis(show, print, excel, compare, compare_choice, mean, mean_choice):
+@click.option("--standard-deviation", "-std", is_flag=True, help="Standard deviation for copenhagen and aarhus")
+@click.option("--standard-deviation-choice", "-cstd", nargs=2, help="Standard deviation with two choices")
+def analysis(show, print, excel, compare, compare_choice, mean, mean_choice, standard_deviation, standard_deviation_choice):
     if compare:
         if no_tags_error_message(show, print, excel):
             logic.compare_municipalities_confirmed_cases(
@@ -32,6 +35,13 @@ def analysis(show, print, excel, compare, compare_choice, mean, mean_choice):
         if no_tags_error_message(show, print, excel):
             logic.mean(mean_choice[0], mean_choice[1],
                        show=show, print_file=print, excel=excel)
+    elif standard_deviation:
+        if no_tags_error_message(show, print, excel):
+            logic.standard_deviation(show=show, print_file=print, excel=excel)
+    elif standard_deviation_choice:
+        if no_tags_error_message(show, print, excel):
+            logic.standard_deviation(
+                standard_deviation_choice[0], standard_deviation_choice[1], show=show, print_file=print, excel=excel)
 
 
 @manager.command()
