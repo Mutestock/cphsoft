@@ -61,12 +61,12 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
     if print_file:
-        plt.savefig(CUSTOM_IMAGES_PATH+'{a}_{b} bekraeftede tilfælde pr dag pr kommune.png')
+        plt.savefig(CUSTOM_IMAGES_PATH+f'{a}_{b} bekraeftede tilfælde pr dag pr kommune.png')
     if excel:    
         df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
         if not os.path.exists(CUSTOM_EXCEL_PATH):
             os.makedirs(CUSTOM_EXCEL_PATH)
-        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + "f{a}_{b} bekraeftede tilfælde pr dag pr kommune.xlsx") as writer:    
+        with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b} bekraeftede tilfælde pr dag pr kommune.xlsx") as writer:    
             df_ab.to_excel(writer, sheet_name =f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
             df_a.to_excel(writer, sheet_name =f"{a} bekræftede tilfælde pr dag pr kommune")
             df_b.to_excel(writer, sheet_name =f"{b} bekræftede tilfælde pr dag pr kommune")
