@@ -71,12 +71,29 @@ def get_dataframes(a, b):
 
 
 def mean(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
-    df, df_a, df_b, a_code, b_code = get_dataframes(a, b)
-
+    a = a.capitalize()
+    b = b.capitalize()
+    
+    df, df_c, a_code, b_code = get_dataframes(a, b)
+    mean = df_c.mean()
+    
+    #print(mean_a[0], mean_a[1])
+    
+    
+    data = [mean[0], mean[1]]
+    parts = [f"{a}",f"{b}"]
+    _, ax = plt.subplots()
+    
+    print(data)
+    
+    ax.bar( parts,data, align='center', alpha=0.5)
+    ax.set_title("Mean - {a} - {b}")
+    
+    plt.show()
+    
 
 # Simple comparison of copenhagen and aarhus.
 def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=False, show=False, print_file=False):
-
     a = a.capitalize()
     b = b.capitalize()
 
@@ -98,15 +115,11 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
         plt.savefig(CUSTOM_IMAGES_PATH +
                     f'{a}_{b}_bekraeftede_tilfælde_pr_dag_pr_kommune.png')
     if excel:
-        df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
+        # df_ab = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
         if not os.path.exists(CUSTOM_EXCEL_PATH):
             os.makedirs(CUSTOM_EXCEL_PATH)
         with pd.ExcelWriter(CUSTOM_EXCEL_PATH + f"{a}_{b} bekraeftede tilfælde pr dag pr kommune.xlsx") as writer:
             df_c.to_excel(
                 writer, sheet_name=f"{a}_{b} bekraeftede tilfælde pr dag pr kommune")
-            df_a.to_excel(
-                writer, sheet_name=f"{a} bekræftede tilfælde pr dag pr kommune")
-            df_b.to_excel(
-                writer, sheet_name=f"{b} bekræftede tilfælde pr dag pr kommune")
     if show:
         plt.show()
