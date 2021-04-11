@@ -1,4 +1,5 @@
 <p>Supposedly there should be a "municipality_cases.xslx" file in some github repo. Well, I couldn't find it. Using this: https://covid19.ssi.dk/overvagningsdata/download-fil-med-overvaagningdata</p>
+<p>In case everything goes to shit or if you just can't be bothered: ./resources/in_case_everything_goes_to_shit_somehow.png</p>
 <br>
 <h4>Virtual environment:</h4>
 <p>I recommend watching this video: https://www.youtube.com/watch?v=APOPm01BVrk&ab_channel=CoreySchafer </p>
