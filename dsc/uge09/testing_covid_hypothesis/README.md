@@ -28,9 +28,10 @@
 <h4>Commands:</h4>
 <p>It's a bit complicated. So hang in there.</p>
 <p>After having entered the virtual environment:</p>
-<br>
 <p>cd to the root of this project</p>
+<br>
 <p>> python testing_covid_hypothesis/main.py analysis -t</p>
+<br>
 <p>This will display the solution to the assignment</p>
 <p>But you can choose whichever municipalities you want:</p>
 <br>
