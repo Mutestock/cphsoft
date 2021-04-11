@@ -25,7 +25,7 @@
 <p>I prefer poetry. I am, however, trying to make my projects more accessible to others, hence the guidelines for venv</p>
 <p>https://python-poetry.org/ </p>
 <br><br>
-<h4>Commands:</p>
+<h4>Commands:</h4>
 <p>It's a bit complicated. So hang in there.</p>
 <p>After having entered the virtual environment:</p>
 <br>
