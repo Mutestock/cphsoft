@@ -7,10 +7,6 @@ import os
 import math
 from scipy.stats import ttest_ind
 
-# Simple test to see whether or not pandas is capable of reading a specified file.
-# Used in cli basic show
-# Disregard.
-
 # This is a decorator function. 
 # It executes code before and after a subscribed function is called.
 # Used with @basic_bar
@@ -46,11 +42,15 @@ def basic_bar(func):
     return inner
 
 
+# Simple test to see whether or not pandas is capable of reading a specified file.
+# Used in cli basic show
+# Disregard.
 def display_dataframe(file):
     df = pd.read_csv(file)
     print(df)
 
 
+# Extracts the required information from the file and returns a dataframe with the two cities.
 def get_dataframes(a, b):
 
     # Read a file in pandas and make it a dataframe.

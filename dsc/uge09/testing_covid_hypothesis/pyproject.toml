@@ -5,12 +5,13 @@ description = ""
 authors = ["Mutestock <doublenegative@protonmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.10"
 click = "^7.1.2"
 pandas = "^1.2.3"
 nose2 = "^0.10.0"
 openpyxl = "^3.0.7"
 matplotlib = "^3.4.1"
+scipy = "^1.6.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
