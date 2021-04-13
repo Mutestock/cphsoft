@@ -58,6 +58,7 @@
 <p>> python testing_covid_hypothesis/main.py analysis -stdc ballerup roskilde -s -p -ex </p>
 <br>
 <p>You have to use at least 1 extra tag (-s, -p, -ex). You will get an error if you don't.</p>
+<p>This holds true with all commands except for -t and -tc</p>
 <p>Check out the cli.py file if you're curious.</p>
 <br>
 <p>For arbitrary tests: </p>

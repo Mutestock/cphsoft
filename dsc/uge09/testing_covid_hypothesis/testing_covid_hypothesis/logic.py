@@ -79,10 +79,9 @@ def get_dataframes(a, b):
 
     df = df[(df["Kommune"] == a_code) | (df["Kommune"] == b_code)]
 
-    #df = df[(df["Kommune"] == a_code )]
-
     df_a = df[df["Kommune"] == a_code]
     df_b = df[df["Kommune"] == b_code]
+    
     df_c = df_a.merge(df_b, left_on="Dato", right_on="Dato")
     df_c = df_c.drop(columns=["Kommune_x", "Kommune_y"])
     df_c = df_c.rename(columns={"Bekraeftede tilfaelde_x": f"Bekraeftede tilfaelde {a}",
@@ -177,7 +176,6 @@ def compare_municipalities_confirmed_cases(a="copenhagen", b="aarhus", excel=Fal
     ax.plot(df_c["Dato"], df_c[f"Bekraeftede tilfaelde {b}"], '-', label=b)
     ax.set_title(f'Bekræftede tilfælde pr dag pr kommune - {a} vs {b}')
     ax.legend([f'{a}', f'{b}'])
-    # ax.xaxis_date()
     fig.autofmt_xdate()
     plt.xlabel("Date")
     plt.ylabel("Confirmed cases per day")
