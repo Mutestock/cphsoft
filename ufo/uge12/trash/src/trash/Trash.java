@@ -74,6 +74,7 @@ public class Trash {
                     mapOfCharacters.put(letter, 0);
                 }
         }
+        reader.close();
         return mapOfCharacters;
     }
 
