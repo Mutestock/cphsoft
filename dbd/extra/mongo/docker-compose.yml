@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    soft_exercise_db:
+        image: mongo:latest
+        volumes:
+            - ./data/mongodb:/data/db
+            - ./config/mongo-config:/data/configdb
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: some_username
+            MONGO_INITDB_ROOT_PASSWORD: some_password
+            MONGO_INITDB_DATABASE: soft_exercise_db
+        ports:
+            - 6969:27017
