@@ -10,4 +10,4 @@
 <br>
 <p>Latex files in latex</p>
 <br>
-<p>Report stuff in root directory called ./optimiation_report_thing.pdf</p>
+<p>Report stuff in root directory called ./optimization_report_thing.pdf</p>
