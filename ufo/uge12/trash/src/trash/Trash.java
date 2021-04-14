@@ -67,7 +67,8 @@ public class Trash {
     private static void cleanDataFile(String fileName) throws IOException {
         FileWriter writer = new FileWriter(fileName, false);
         BufferedWriter bWriter = new BufferedWriter(writer);
-        bWriter.write("");
+        bWriter.write("execution_time");
+        bWriter.newLine();
         bWriter.close();
     }
 
