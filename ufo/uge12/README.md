@@ -1,4 +1,4 @@
-<p>default optimization project was used: https://github.com/CPHBusinessSoftUFO/letterfrequencies</p>
+<p>Default optimization project was used: https://github.com/CPHBusinessSoftUFO/letterfrequencies</p>
 <p>Java files can be found in ./trash.</p>
 <p>Old java file is called OldMain.java</p>
 <p>New and optimized java file is called Trash.java</p>
