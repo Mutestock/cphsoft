@@ -1,13 +1,16 @@
 package trash;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
+import com.opencsv.CSVWriter;
 
 /**
  * Frequency analysis Inspired by
@@ -40,26 +43,47 @@ import java.util.Map;
 // ClassLoader tries to look for files in AppData for some reason.
 // PROJECT_ROOT_DIRECTORY is not beautiful, but it works.
 // Alas. I have sadly only gained 2400 ms when iterating 100 times. 
-// That's 6000 ms on the old file, vs. 3600 ms on this one. = (
+// That's 6000~ ms on the old file, vs. 3600~ ms on this one. = (
 
 public class Trash {
 
     private static final String FILE_NAME = "FoundationSeries.txt";
     private static final String PROJECT_ROOT_DIRECTORY = new File("meep").getAbsolutePath().replace("meep", "");
     private static final String RESOURCES_DIRECTORY = PROJECT_ROOT_DIRECTORY + "/src/resources/";
+    private static final String CSV_OUT = RESOURCES_DIRECTORY + "data.csv";
 
     private static BufferedReader getFileFromResources(String fileName) throws FileNotFoundException {
         return new BufferedReader(new FileReader(RESOURCES_DIRECTORY + fileName));
     }
 
+    private static void appendTimeToCsvFile(String fileName, long time) throws IOException {
+        FileWriter writer = new FileWriter(fileName, true);
+        BufferedWriter bWriter = new BufferedWriter(writer);
+        bWriter.write(String.valueOf(time));
+        bWriter.newLine();
+        bWriter.close();
+    }
+
+    private static void cleanDataFile(String fileName) throws IOException {
+        FileWriter writer = new FileWriter(fileName, false);
+        BufferedWriter bWriter = new BufferedWriter(writer);
+        bWriter.write("");
+        bWriter.close();
+    }
+
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        long startTime = System.nanoTime();
+        long totalTime = 0;
+        cleanDataFile(CSV_OUT);
         for(int i=0; i<100; i++){
+            long startTime = System.nanoTime();
             Map<Character, Integer> mapOfCharacters = createMapOfCharacters(getFileFromResources(FILE_NAME));
             printCharactersFromMap(mapOfCharacters);
+            long endTime = System.nanoTime();
+            long finalTime = (endTime - startTime) / 1000000;
+            totalTime=totalTime+finalTime;
+            appendTimeToCsvFile(CSV_OUT, finalTime);
         }
-        long endTime = System.nanoTime();
-        System.out.println((endTime - startTime) / 1000000 + "ms");
+        System.out.println(totalTime+ "ms");
     }
 
     private static Map<Character, Integer> createMapOfCharacters(Reader reader) throws IOException {
@@ -74,7 +98,6 @@ public class Trash {
                     mapOfCharacters.put(letter, 0);
                 }
         }
-        reader.close();
         return mapOfCharacters;
     }
 
