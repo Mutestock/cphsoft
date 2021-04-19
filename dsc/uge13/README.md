@@ -33,7 +33,7 @@ testing sets.
 <p>Find a dataset that interests you on the UCI Machine Learning Repository. Make a KNN classifier on the
 dataset, either in Python or in KNIME. Visualize the classified data.</p>
 <img src="resources/images/letters_confusion_matrix.png">
-<img src="resources/images/letters_letters_knn_accuracy.png">
+<img src="resources/images/letters_knn_accuracy.png">
 <h4> 5 </h4>
 <p>Implement a Gaussian Naïve Bayes classifier on the same data set (in either Python or KNIME).</p>
 <img src="resources/images/letters_bayes.png">
