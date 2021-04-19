@@ -1,7 +1,7 @@
 <h4> A. Bayes</h4>
 <ul>
-    <li>1.<br></li>
-    //: ![The real head of the household?](resources/screenshots/task_a_function.png)
+    <li>1.<br><img src="resources/screenshots/task_a_function.png"</img></li>
+   
 </ul>
 
 
