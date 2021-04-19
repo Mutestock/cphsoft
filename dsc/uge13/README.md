@@ -42,7 +42,7 @@ dataset, either in Python or in KNIME. Visualize the classified data.</p>
 <h4> 6 </h4>
 <p>Decide which of the two classifiers you would use on new data. What is behind your decision?</p>
 <p>This explains it better than I can.: </p>
-<p>https://www.datasciencecentral.com/profiles/blogs/</p><p>comparing-classifiers-decision-trees-knn-naive-bayes</p>
+<p>https://www.datasciencecentral.com/profiles/blogs/comparing-classifiers-decision-trees-knn-naive-bayes</p>
 <p></p>
 <p>My subpar interpretation:</p>
 <p></p>
