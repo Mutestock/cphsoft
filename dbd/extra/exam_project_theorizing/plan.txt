@@ -1,0 +1,52 @@
+This project needs to use several different database paradigms.
+This project can use different programming languages.
+
+
+Thoughts:
+
+Different languages have different support for the specific database paradigms.
+No language except Java will have proper support for hbase
+I am likely to skip Java all together.
+This won't create many issues, since HBase, and probably also Cassandra,
+would be too overkill for whatever project I can manage to create in this timespan.
+
+Programming languages I am willing to use:
+
+Rust.
+Python.
+Typescript.
+
+Database paradigms I am comfortable in using:
+
+Relational (Postgres)
+Key/value (Redis)
+Document (Mongo)
+
+Database paradigms I can probably use as well:
+
+Column-wide (Cassandra)
+Graph (Dgraph)
+
+
+
+Possible functions of each programming language:
+
+Rust:
+I have a setup for Postgres, Redis, as well as ORM and Rest in general.
+
+Python:
+Web scraping. Mongo.
+
+Typescript:
+Website visualization. Possibly Dgraph.
+
+
+
+
+
+
+Additional / Personal requirements:
+
+Solution must be containerized
+
+
