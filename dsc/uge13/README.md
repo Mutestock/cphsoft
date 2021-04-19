@@ -43,16 +43,18 @@ dataset, either in Python or in KNIME. Visualize the classified data.</p>
 <p>Decide which of the two classifiers you would use on new data. What is behind your decision?</p>
 <p>This explains it better than I can.: </p>
 <p>https://www.datasciencecentral.com/profiles/blogs/comparing-classifiers-decision-trees-knn-naive-bayes</p>
-<p></p>
+<br>
 <p>My subpar interpretation:</p>
-<p></p>
-<p>Consider bayes when:</p>
-<p>Using big data when speed is a factor</p>
-<p>High accuracy on big data is needed.</p>
-<p>Less issues with dimensions and large feature sets.</p>
-<p></p>
-<p>Consider K-nn when:</p>
-<p>Values which equals 0 breaks Bayes. They don't break k-nn</p>
-<p>If the decision boundary isn't liniear, elliptical or parabolic, don't choose </p>bayes.
-<p>Bayes requires underlying probability distributions. Knn does not.</p>
-<p>Knn doesn't require training</p>
+<br>
+<ul>Consider bayes when:
+<li>Using big data when speed is a factor</li>
+<li>High accuracy on big data is needed.</li>
+<li>Less issues with dimensions and large feature sets.</li>
+</ul>
+<br>
+<ul>Consider K-nn when:
+<li>Values which equals 0 breaks Bayes. They don't break k-nn</li>
+<li>If the decision boundary isn't liniear, elliptical or parabolic, don't choose bayes.</li>
+<li>Bayes requires underlying probability distributions. Knn does not.</li>
+<li>Knn doesn't require training</li>
+</ul>
