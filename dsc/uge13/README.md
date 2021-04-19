@@ -1,22 +1,30 @@
-<h4> A. Bayes</h4>
+<h4>1. Bayes</h4>
 <ul>
-    <li>1.
+    <li>A.
         <br>
         <img src="resources/screenshots/task_a_function.png"</img>
         <img src="resources/screenshots/task_a_result.png"</img>
     </li>
-   <li>2.
+   <li>B.
         <br>
         <img src="resources/screenshots/task_b_function.png"</img>
         <img src="resources/screenshots/task_b_result.png"</img>
    </li>
-   <li>3.
+   <li>C.
         <br>
         <img src="resources/screenshots/task_c_function.png"</img>
         <img src="resources/screenshots/task_c_result.png"</img>
    </li>
 </ul>
 
+<h4>2. </h4>
+<p>
+Make a KNN classifier on the IRIS dataset using Python. Make sure to split the dataset into training and
+testing sets. 
+</p>
+<br>
+<img src="resources/screenshots/knn_function.png">
+<img src="resources/screenshots/knn_function.png">
 
 
 

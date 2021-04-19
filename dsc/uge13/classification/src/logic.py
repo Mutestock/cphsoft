@@ -66,7 +66,7 @@ def bayes_factory():
     P_DB = 0.015
 
     # Bayes: P(A|B) = P(B|A) = (P(B|A) * P(A)) / P(B)
-    # Expanded from example from disease ~>
+    # Expanded and translated.
     # P(A|D) = (P(D|A)*P(A)) / ((P(D|A) * P(A)) * (P(D|B) * P(B)))
 
     P_AD = (P_DA * P_A) / ((P_DA * P_A) + (P_DB * P_B))
