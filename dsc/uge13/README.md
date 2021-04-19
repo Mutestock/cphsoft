@@ -1,7 +1,20 @@
 <h4> A. Bayes</h4>
 <ul>
-    <li>1.<br><img src="resources/screenshots/task_a_function.png"</img></li>
-   
+    <li>1.
+        <br>
+        <img src="resources/screenshots/task_a_function.png"</img>
+        <img src="resources/screenshots/task_a_result.png"</img>
+    </li>
+   <li>2.
+        <br>
+        <img src="resources/screenshots/task_b_function.png"</img>
+        <img src="resources/screenshots/task_b_result.png"</img>
+   </li>
+   <li>3.
+        <br>
+        <img src="resources/screenshots/task_c_function.png"</img>
+        <img src="resources/screenshots/task_c_result.png"</img>
+   </li>
 </ul>
 
 
