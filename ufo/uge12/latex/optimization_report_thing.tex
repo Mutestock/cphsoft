@@ -82,7 +82,13 @@
     \fancyfoot[R]{\thepage}%
 }
 
+\chapter{Acknowledgements}
+This paper is written by a student, on a subject in which he is not comfortable in saying, that he has THE best solution to. Especially because said student(me), also knows that there are many more enhancements that can be done to the project.
+
+I would also like to the clarify, that the optimized version of this program has been modified in more ways than just speed. An example of this is retrieval of the absolute path of a resource, instead of a hard coded path to the resource. The code has been modified further, however, to make an attempt at making the code more readable. In hindsight, this could be considered a violation, considering how there could be other people working on the same code in a real life scenario. I admit, that in practice one should attempt to optimize what you're told to optimize, and nothing else. Then, if there should be any other optimizations you wish to make, then you should make a suggestion with the rest of the team (assuming there is one).
+
 \chapter{Introduction}
+
 This small revolves around the optimization of self-chosen project. One also had the option of choosing a project, which one of the teachers had chosen. Due to the fact, that most of my projects utilize a multitude of libraries, in which the logic is implemented inside said libraries, the actual potential of me personally optimizing those projects is limited. Because of this, the project "letterfrequencies", which was supplied by the teachers, has been chosen for this assignment.
 
 This program was designed to iterate through a file, and print out the sum of each occurrence of each separate letter. 
@@ -93,7 +99,7 @@ Documentation of old and new performance can be found in old\_data.csv and data.
 
 I didn't use any special software for determining the problems. Just my brain.
 
-Since documentation of mean and standard deviation values were also recommended, a small python program has been created. The program converts both files into pandas dataframes and utilizes the inbuilt pandas functions to find the mean and standard deviation values of both the optimized and non-optimized versions. This program can be run by the user if wanted, or a screenshot can be found in ./resources/results\_screenshot.png
+Since documentation of mean and standard deviation values were also recommended, a small python program has been created. The program converts both files into panda dataframes and utilizes their functions to find the mean and standard deviation values of both the optimized and non-optimized versions. This program can be run by the user if wanted, or a screenshot can be found in ./resources/results\_screenshot.png
 
 \begin{figure}[ht]
 \centering
@@ -103,10 +109,18 @@ Since documentation of mean and standard deviation values were also recommended,
 \label{praise kek}
 \end{figure}
 
-
+\chapter{Possible Speed Improvements}
+Lets look at some of the features that can be improved.
+\begin{itemize}
+	\item The initial project uses longs. Longs in Java are $2^{64}$. In comparison, integers in Java are signed $2^{32}$ bits or $-2.147.483.648$ to $2.147.483.648$. The longest novel on earth is "A Chronicle of Ancient Sunlight" \footnote{{https://en.wikipedia.org/wiki/List\_of\_longest\_novels}}  with $2.436.924$ words. For it to surpass the limit of the integer data type, the average amount of letters in each word would have to be $881.22$. I.e. the Integer is more than enough.
+	\item My original assessment of the speed of hashmaps versus arrays was, that hashmaps would always be slower than arrays. Turns out that that's not always the case \footnote{https://stackoverflow.com/questions/6462055/hashmap-vs-array-performance}. What can be said is, that the speed of the lookup will drastically change if the Hashmap is sorted \footnote{https://www.baeldung.com/java-hashmap} . This changes the lookup from O(n) to O(log n) via. a binary search. 
+	\item There are many ways of reading a file in Java. The default one is FileReader. The optimized version I made uses BufferedReader instead. There are even faster ways of reading files, such as MappedByteBuffer\footnote{https://docs.oracle.com/javase/8/docs/api/java/nio/MappedByteBuffer.html}.
+	
+	
+\end{itemize}
 \chapter{Bottlenecks and fixes}
 
-The largest change in speed can be simply explained by this quote from 
+The largest change in speed can be explained a quote from 
 \url{https://www.geeksforgeeks.org/difference-between-bufferedreader-and-filereader-in-java/}:
 
 \begin{quote}
@@ -191,8 +205,11 @@ To this:
 
 This means, that the program no longer populates the hashmap with values and then iterates through it to reverse the order and collects it in a new hashmap. Instead it just puts the values in in the correct order to begin with.
 
-Note that we no longer use longs. Integers in Java are 32bit. That's $2^{32}$ or 4294967296. There won't be that many instances of the same character at all in this document. Longs are 64bit. In other words completely unnecessary. 
+Note that we use integers instead of longs. 
 
 Apart from that, optimizations which aren't related to speed were made. As a rule of thumb code is for humans. Because of this, all my variables and method names are self-explanatory. 
+
+\chapter{Conclusion}
+Further optimizations can be made e.g. using the MappedByteBuffer. If one was so inclined, threading could also be used (assuming that the downsides would be bearable).
 
 \end{document}
