@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "garbage"
+name = "assignment_clustering"
 version = "0.1.0"
 description = ""
 authors = ["Mutestock <doublenegative@protonmail.com>"]
