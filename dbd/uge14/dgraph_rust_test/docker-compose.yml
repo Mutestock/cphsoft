@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    dgraph_db:
+        image: dgraph/dgraph:latest
+        working_dir: /data
+    ports:
+        6969
