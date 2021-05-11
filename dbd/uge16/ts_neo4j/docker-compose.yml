@@ -1,0 +1,25 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:3.5
+    restart: unless-stopped
+    ports:
+      - 20500:7474
+      - 20501:7687
+    volumes:
+      - ./conf:/var/lib/neo4j/conf
+      - ./data:/data
+      - ./import:/import
+      - ./logs:/logs
+      - ./plugins:/plugins
+    environment: 
+      # Raise memory limits
+      - NEO4J_dbms_memory_pagecache_size=1G
+      - NEO4J_dbms.memory.heap.initial_size=1G
+      - NEO4J_dbms_memory_heap_max__size=1G
+      - NEO4J_AUTH=neo4j/some_password
+      - NEO4J_dbms_default_database=ts_test_db
+
+
+# neo4j.conf might be invisible in vscode for some reason. 
+# It's still there and may need administrator privileges to edit[apathy@localhost
