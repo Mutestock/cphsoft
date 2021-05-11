@@ -1,4 +1,5 @@
 Showcase of docker+python+redis
+<br>
 It's flask endpoints
 
 The only requirement to running this project is docker:
@@ -10,4 +11,5 @@ http://localhost:22119/
 
 ### Simple interactions between redis and flask
 http://localhost:5000/set/some_key=some_value
+<br>
 http://localhost:5000/get/some_key
