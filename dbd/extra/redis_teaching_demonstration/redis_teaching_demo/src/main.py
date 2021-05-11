@@ -20,4 +20,8 @@ def redis_set_example(key, value):
     return f"{key} set to {value}"
 
 if __name__ == "__main__":
-   app.run(host="0.0.0.0", debug=True) 
+    # In case you want to run without docker
+    if not os.getenv('CONTAINERIZED_VARIABLES'):
+        app.run(host="0.0.0.0", port="9123", debug=True) 
+    else:
+        app.run(host="0.0.0.0", debug=True) 
