@@ -7,5 +7,5 @@ ROOT_DIR = os.path.dirname(ROOT_DIR)
 
 ENVIRONMENT_VARIABLE_FILE = ROOT_DIR + "/.env.development"
 
-if not os.getenv('CONTAINERIZED_VARIABLES'):
+if not os.getenv("CONTAINERIZED_VARIABLES"):
     load_dotenv(ENVIRONMENT_VARIABLE_FILE)
