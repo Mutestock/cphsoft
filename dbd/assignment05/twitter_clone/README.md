@@ -1,0 +1,32 @@
+# Twitter-clone
+## Task 1
+See Assignment 5.
+
+## Task 2
+Implement the tiny twitter clone found at this repo, using only Redis as a data store.
+
+You need to implement the two classes PostManagementImpl and UserManagementImpl, and to run the unit tests by right clicking the Java folder under Test, and choosing Run ‘All Tests’.
+You are allowed to change the interface and DTOs, just write a small readme listing the changes.
+
+#### Task 2 response
+You haven't created a User object to serialize from and deserialize to. I am using UserCreation for this atm. That's a non-solution. Create a User object or allow me to do so for you.
+
+Why are you using boolean return statements in your UserManagement interface for your redis interactions? That's completely pointless if you ask me. I can't change it because it'll make the tests fail. When would I ever make it return false? If I can't make the interaction, then I just throw an exception. As I should.
+
+You're using public fields in your dto objects. We were taught, that we can only do so, if it wasn't absolutely necessary. I have not met such a scenario yet. This is not it either. I've changed all public fields to private with getters AND I've rewritten the tests accordingly. I will use what we've been taught, when what we've been taught is best practice.
+https://stackoverflow.com/questions/1568091/why-use-getters-and-setters-accessors 
+
+I deleted the entire utils folder because it's completely pointless. All references to can be reduced to 
+> System.currentTimeMillis();
+
+That's three files gone and less variables in constructors. Futhermore: It wasn't even used...
+
+I don't see why you'd even use interfaces here. They're good at constricting classes to a specific setup. You can also use them for reflection. But here we're only binding them to one class each, and we're not using reflection. It's bloat.
+
+<img src="resources/stop_it_get_some_help.gif>
+
+## Task 3
+In a readme, write a short explanation of your redis data model. It should be clear enough for a developer to be able to implement the same thing.
+
+#### Task 3 response
+It's not my model. It's yours. You should've brought documentation to me about the structure of the data model. This is your architecture that I am implementing functionalies on. You've already defined the tests.
