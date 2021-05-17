@@ -1,10 +1,10 @@
 package dk.cphbusiness.mrv.twitterclone.dto;
 
+import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.HashSet;
 import com.google.gson.Gson;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisException;
 
@@ -16,10 +16,15 @@ public class UserCreation {
     private String birthday;
     private int numFollowers;
     private int numFollowing;
-    private List<String> followingUsers;
+    private Set<String> following;
+    private Set<String> followedBy;
+    private List<Post> posts;
 
     // Usually you'd create a user object, and then make a DTO object from it
     // I need some values to deserialize from
+    
+    // Pretty sure you would want to insert the password hash into the constructor.
+    // Can't really change because tests smh.
 
     public UserCreation(String username, String firstname, String lastname, String passwordHash, String birthday) {
         this.username = username;
@@ -29,7 +34,9 @@ public class UserCreation {
         this.birthday = birthday;
         this.numFollowers = 0;
         this.numFollowing = 0;
-        this.followingUsers = new ArrayList<String>();
+        this.following = new HashSet<String>();
+        this.followedBy = new HashSet<String>();
+        this.posts = new ArrayList<Post>();
     }
 
     public String getUsername() {
@@ -86,12 +93,41 @@ public class UserCreation {
         return gson.fromJson(user, UserCreation.class);
     }
 
-    public void serialize(UserCreation userCreation, Jedis jedis) throws JedisException{
+    public void serialize(Jedis jedis) throws JedisException {
         Gson gson = new Gson();
-        String json = gson.toJson(userCreation);
-        jedis.set(userCreation.getUsername(), json);
+        String json = gson.toJson(this);
+        jedis.set(this.username, json);
     }
 
+    public void appendUsernameToFollowing(String username) {
+        this.following.add(username);
+    }
 
-    
+    public void removeUsernameFromFollowing(String username) {
+        this.following.remove(username);
+    }
+
+    public Set<String> getFollowing() {
+        return this.following;
+    }
+
+    public void appenedUsernameToFollowedBy(String username) {
+        this.followedBy.add(username);
+    }
+
+    public void removeUsernameFromFollowedBy(String usernames) {
+        this.followedBy.remove(username);
+    }
+
+    public Set<String> getFollowedBy() {
+        return this.followedBy;
+    }
+
+    public void appendToPosts(Post post) {
+        this.posts.add(post);
+    }
+
+    public List<Post> getPosts(){
+        return this.posts;
+    }
 }

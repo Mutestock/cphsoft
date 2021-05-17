@@ -4,8 +4,8 @@ public class Post {
     private long timestamp;
     private String message;
 
-    public Post(long timestamp, String message) {
-        this.timestamp = timestamp;
+    public Post(String message) {
+        this.timestamp = System.currentTimeMillis();
         this.message = message;
     }
 

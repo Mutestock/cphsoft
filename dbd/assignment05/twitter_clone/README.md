@@ -16,12 +16,14 @@ Why are you using boolean return statements in your UserManagement interface for
 You're using public fields in your dto objects. We were taught, that we can only do so, if it wasn't absolutely necessary. I have not met such a scenario yet. This is not it either. I've changed all public fields to private with getters AND I've rewritten the tests accordingly. I will use what we've been taught, when what we've been taught is best practice.
 https://stackoverflow.com/questions/1568091/why-use-getters-and-setters-accessors 
 
-I deleted the entire utils folder because it's completely pointless. All references to can be reduced to 
+I don't see why you'd even use interfaces here. They're good at constricting classes to a specific setup. You can also use them for reflection. But here we're only binding them to one class each, and we're not using reflection. It's bloat.
+
+Deleted a lot of non-used imports. 
+
+I deleted the entire utils folder because it's completely pointless. All references to them can be reduced to 
 > System.currentTimeMillis();
 
-That's three files gone and less variables in constructors. Futhermore: It wasn't even used...
-
-I don't see why you'd even use interfaces here. They're good at constricting classes to a specific setup. You can also use them for reflection. But here we're only binding them to one class each, and we're not using reflection. It's bloat.
+That's three files gone and less variables in constructors.
 
 <img src="resources/stop_it_get_some_help.gif">
 
