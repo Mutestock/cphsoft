@@ -23,7 +23,7 @@ That's three files gone and less variables in constructors. Futhermore: It wasn'
 
 I don't see why you'd even use interfaces here. They're good at constricting classes to a specific setup. You can also use them for reflection. But here we're only binding them to one class each, and we're not using reflection. It's bloat.
 
-<img src="resources/stop_it_get_some_help.gif>
+<img src="resources/stop_it_get_some_help.gif">
 
 ## Task 3
 In a readme, write a short explanation of your redis data model. It should be clear enough for a developer to be able to implement the same thing.
