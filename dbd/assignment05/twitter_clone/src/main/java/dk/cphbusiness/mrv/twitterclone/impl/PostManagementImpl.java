@@ -40,11 +40,6 @@ public class PostManagementImpl implements PostManagement {
 
     @Override
     public List<Post> getPostsBetween(String username, long timeFrom, long timeTo) {
-
-        for(Post post : UserCreation.deserialize(username, jedis).getPosts()){
-            System.out.println(post);
-        }
-
         return UserCreation.deserialize(username, jedis)
             .getPosts()
             .stream()
