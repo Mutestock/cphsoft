@@ -43,7 +43,7 @@ public class PostManagementImpl implements PostManagement {
         return UserCreation.deserialize(username, jedis)
             .getPosts()
             .stream()
-            .filter(post -> (post.getTimestamp() < timeFrom && post.getTimestamp() > timeTo))
+            .filter(post -> (post.getTimestamp() >= timeFrom && post.getTimestamp() <= timeTo))
             .collect(Collectors.toList());
     }
 }
