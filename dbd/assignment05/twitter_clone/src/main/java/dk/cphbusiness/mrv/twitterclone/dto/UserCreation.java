@@ -90,29 +90,23 @@ public class UserCreation {
     public static UserCreation deserialize(String username, Jedis jedis) throws JedisException {
         Gson gson = new Gson();
         String user = jedis.get(username);
-        System.out.println(user);
         return gson.fromJson(user, UserCreation.class);
     }
 
     public void serialize(Jedis jedis) throws JedisException {
-        System.out.println("Enter serialize");
         Gson gson = new Gson();
-        System.out.println("Boop");
         String json = gson.toJson(this);
-        System.out.println("Post");
-        System.out.println(json);
-        System.out.println("PostPost");
         jedis.set(this.username, json);
-        System.out.println("PostPostPost");
-        System.out.println("Exit serialize");
     }
 
     public void appendUsernameToFollowing(String username) {
         this.following.add(username);
+        this.numFollowing++;
     }
 
     public void removeUsernameFromFollowing(String username) {
         this.following.remove(username);
+        this.numFollowing--;
     }
 
     public Set<String> getFollowing() {
@@ -121,10 +115,12 @@ public class UserCreation {
 
     public void appenedUsernameToFollowedBy(String username) {
         this.followedBy.add(username);
+        this.numFollowers++;
     }
 
     public void removeUsernameFromFollowedBy(String usernames) {
         this.followedBy.remove(username);
+        this.numFollowers--;
     }
 
     public Set<String> getFollowedBy() {

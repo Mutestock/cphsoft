@@ -11,9 +11,8 @@ import redis.clients.jedis.exceptions.JedisException;
 import java.util.Set;
 import java.util.Objects;
 
-import com.google.gson.Gson;
-
-// Why would you want these functions to return booleans???
+// Why would you want these functions to return booleans and nulls?
+// Supposedly you¨d want error codes.
 
 public class UserManagementImpl implements UserManagement {
 
@@ -62,6 +61,10 @@ public class UserManagementImpl implements UserManagement {
         UserCreation userWhoFollows = UserCreation.deserialize(username, jedis);
         UserCreation userWhoGetsFollowed = UserCreation.deserialize(usernameToFollow, jedis);
 
+        if (Objects.isNull(userWhoFollows) || Objects.isNull(userWhoGetsFollowed)) {
+            return false;
+        }
+
         userWhoFollows.appendUsernameToFollowing(usernameToFollow);
         userWhoGetsFollowed.appenedUsernameToFollowedBy(username);
 
@@ -78,7 +81,7 @@ public class UserManagementImpl implements UserManagement {
         if (Objects.isNull(userWhoFollows) || Objects.isNull(userWhoGetsUnfollowed)) {
             return false;
         }
-        
+
         userWhoFollows.removeUsernameFromFollowing(usernameToUnfollow);
         userWhoGetsUnfollowed.removeUsernameFromFollowedBy(username);
 

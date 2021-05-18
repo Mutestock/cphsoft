@@ -3,8 +3,9 @@ package dk.cphbusiness.mrv.twitterclone.impl;
 import dk.cphbusiness.mrv.twitterclone.contract.PostManagement;
 import dk.cphbusiness.mrv.twitterclone.dto.Post;
 import dk.cphbusiness.mrv.twitterclone.dto.UserCreation;
-import redis.clients.jedis.Jedis;
 
+import redis.clients.jedis.Jedis;
+import java.util.Objects;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,10 @@ public class PostManagementImpl implements PostManagement {
     @Override
     public boolean createPost(String username, String message) {
         UserCreation userCreation = UserCreation.deserialize(username, jedis);
+        if(Objects.isNull(userCreation)) {
+            return false;
+        }
+        
         userCreation.appendToPosts(new Post(message));
         userCreation.serialize(jedis);
         return true;
@@ -25,15 +30,25 @@ public class PostManagementImpl implements PostManagement {
 
     @Override
     public List<Post> getPosts(String username) {
-        return UserCreation.deserialize(username, jedis).getPosts();
+        UserCreation userCreation = UserCreation.deserialize(username, jedis);
+        if(Objects.isNull(userCreation)) {
+            return null;
+        }
+
+        return userCreation.getPosts();
     }
 
     @Override
     public List<Post> getPostsBetween(String username, long timeFrom, long timeTo) {
+
+        for(Post post : UserCreation.deserialize(username, jedis).getPosts()){
+            System.out.println(post);
+        }
+
         return UserCreation.deserialize(username, jedis)
             .getPosts()
             .stream()
-            .filter(post -> (post.getTimestamp() > timeFrom && post.getTimestamp() < timeTo))
+            .filter(post -> (post.getTimestamp() < timeFrom && post.getTimestamp() > timeTo))
             .collect(Collectors.toList());
     }
 }

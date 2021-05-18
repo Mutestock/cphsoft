@@ -1,3 +1,4 @@
+
 # Twitter-clone
 ## Task 1
 See Assignment 5.
@@ -8,10 +9,18 @@ Implement the tiny twitter clone found at this repo, using only Redis as a data 
 You need to implement the two classes PostManagementImpl and UserManagementImpl, and to run the unit tests by right clicking the Java folder under Test, and choosing Run ‘All Tests’.
 You are allowed to change the interface and DTOs, just write a small readme listing the changes.
 
+#### Tests are passing
+<img src="resources/tests_passed.png" alt="Tests passing. See resources">
+
+#### Redis structure
+<img src="resources/json_format.png" alt="Json format. See resources>
+
 #### Task 2 response
 You haven't created a User object to serialize from and deserialize to. I am using UserCreation for this atm. That's a non-solution. Create a User object or allow me to do so for you.
 
-Why are you using boolean return statements in your UserManagement interface for your redis interactions? That's completely pointless if you ask me. I can't change it because it'll make the tests fail. Considering how all of this is supposed to be used in a backend - Use status codes: https://docs.oracle.com/javaee/7/api/javax/ws/rs/core/Response.Status.html
+Why are you using boolean return statements in your UserManagement interface for your redis interactions? That's completely pointless if you ask me. I can't change it because it'll make the tests fail. Considering how all of this is supposed to be used in a backend - Consider using status codes: https://docs.oracle.com/javaee/7/api/javax/ws/rs/core/Response.Status.html
+
+Outcommented an assertEquals and a test. It involves createPost taking two Strings - A username and a message. For some reason, someone expected a timestamp out of that message. See createPostIT.
 
 You're using public fields in your dto objects. We were taught, that we can only do so, if it is absolutely necessary. I have not met such a scenario yet. This is not it either. I've changed all public fields to private with getters AND I've rewritten the tests accordingly. I will use what we've been taught, when what we've been taught is best practice.
 https://stackoverflow.com/questions/1568091/why-use-getters-and-setters-accessors 
