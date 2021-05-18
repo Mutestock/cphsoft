@@ -6,14 +6,14 @@ import dk.cphbusiness.mrv.twitterclone.dto.UserCreation;
 import dk.cphbusiness.mrv.twitterclone.impl.PostManagementImpl;
 import dk.cphbusiness.mrv.twitterclone.impl.UserManagementImpl;
 import org.junit.jupiter.api.*;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.utility.DockerImageName;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.JedisConnectionException;
+import redis.clients.jedis.exceptions.JedisException;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestBase {
-
-    private GenericContainer redisContainer;
 
     // Don't use "um" and "pm". Code is for people, people.
     // Nobody is going to understand anything if you just write "um" and "pm"
@@ -24,19 +24,10 @@ public class TestBase {
     private Jedis jedis;
 
     private String host = "localhost";
-    private int port = 6379;
-
-    private void setupContainer() {
-        redisContainer = new GenericContainer(DockerImageName.parse("redis:alpine")).withExposedPorts(6379);
-        redisContainer.start();
-        host = redisContainer.getHost();
-        port = redisContainer.getFirstMappedPort();
-    }
+    private int port = 22228;
 
     @BeforeAll
     public void setup() {
-        host = "localhost";
-        port = 6379;
 
         /*
          * The following line starts a new container with redis, and runs integration
@@ -49,16 +40,14 @@ public class TestBase {
          * integration tests will be run against your local redis, AND IT WILL FLUSH DB
          * 9! To prove that you have read this warning, delete the exception below.
          */
-        setupContainer();
+        
 
         jedis = new Jedis(host, port);
-        jedis.select(9);
+        jedis.select(0);
         time = new TimeFake();
 
         userManagement = new UserManagementImpl(jedis);
         postManagement = new PostManagementImpl(jedis);
-
-        throw new RuntimeException("Read the warning above");
     }
 
     @BeforeEach

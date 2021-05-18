@@ -90,13 +90,21 @@ public class UserCreation {
     public static UserCreation deserialize(String username, Jedis jedis) throws JedisException {
         Gson gson = new Gson();
         String user = jedis.get(username);
+        System.out.println(user);
         return gson.fromJson(user, UserCreation.class);
     }
 
     public void serialize(Jedis jedis) throws JedisException {
+        System.out.println("Enter serialize");
         Gson gson = new Gson();
+        System.out.println("Boop");
         String json = gson.toJson(this);
+        System.out.println("Post");
+        System.out.println(json);
+        System.out.println("PostPost");
         jedis.set(this.username, json);
+        System.out.println("PostPostPost");
+        System.out.println("Exit serialize");
     }
 
     public void appendUsernameToFollowing(String username) {

@@ -11,14 +11,16 @@ You are allowed to change the interface and DTOs, just write a small readme list
 #### Task 2 response
 You haven't created a User object to serialize from and deserialize to. I am using UserCreation for this atm. That's a non-solution. Create a User object or allow me to do so for you.
 
-Why are you using boolean return statements in your UserManagement interface for your redis interactions? That's completely pointless if you ask me. I can't change it because it'll make the tests fail. When would I ever make it return false? If I can't make the interaction, then I just throw an exception. As I should.
+Why are you using boolean return statements in your UserManagement interface for your redis interactions? That's completely pointless if you ask me. I can't change it because it'll make the tests fail. Considering how all of this is supposed to be used in a backend - Use status codes: https://docs.oracle.com/javaee/7/api/javax/ws/rs/core/Response.Status.html
 
-You're using public fields in your dto objects. We were taught, that we can only do so, if it wasn't absolutely necessary. I have not met such a scenario yet. This is not it either. I've changed all public fields to private with getters AND I've rewritten the tests accordingly. I will use what we've been taught, when what we've been taught is best practice.
+You're using public fields in your dto objects. We were taught, that we can only do so, if it is absolutely necessary. I have not met such a scenario yet. This is not it either. I've changed all public fields to private with getters AND I've rewritten the tests accordingly. I will use what we've been taught, when what we've been taught is best practice.
 https://stackoverflow.com/questions/1568091/why-use-getters-and-setters-accessors 
 
-I don't see why you'd even use interfaces here. They're good at constricting classes to a specific setup. You can also use them for reflection. But here we're only binding them to one class each, and we're not using reflection. It's bloat.
+I don't see why you'd even use interfaces here. They're good at constricting classes to a specific setup. You can also use them for reflection. But here we're only binding them to one class each, and we're not using reflection. It's bloat. You're calling them contracts. Finding it strange to put business related aspects like that inside the code. Functionality-wise - It's bloat. We're not gaining anything. If you think it's for gaining an overview - That's what Javadocs is for:
+https://www.tutorialspoint.com/java/java_documentation.htm 
+That's my opinion. The code-base should be as clean as possible.
 
-Deleted a lot of non-used imports. 
+Deleted a lot of non-used imports.
 
 I deleted the entire utils folder because it's completely pointless. All references to them can be reduced to 
 > System.currentTimeMillis();

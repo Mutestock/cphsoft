@@ -1,0 +1,29 @@
+version: '3'
+services:
+  redis_jedis:
+    container_name: redis_jedis
+    hostname: redis
+    image: redis
+    ports:
+        - "22228:6379"
+    volumes:
+        - ./data:/data
+    networks: 
+        - app-network
+      
+  redis-commander-jedis:
+    container_name: redis-commander-jedis
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+        - REDIS_HOSTS=local:redis_jedis:6379
+    ports:
+        - "22229:8081"
+    networks: 
+        - app-network
+
+networks:
+    app-network:
+      driver: "bridge"
+          

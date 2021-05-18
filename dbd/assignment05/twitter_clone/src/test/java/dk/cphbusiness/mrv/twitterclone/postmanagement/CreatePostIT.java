@@ -3,6 +3,10 @@ package dk.cphbusiness.mrv.twitterclone.postmanagement;
 import dk.cphbusiness.mrv.twitterclone.TestBase;
 import dk.cphbusiness.mrv.twitterclone.dto.Post;
 import dk.cphbusiness.mrv.twitterclone.dto.UserCreation;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.exceptions.JedisConnectionException;
+import redis.clients.jedis.Jedis;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +18,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CreatePostIT extends TestBase {
     private UserCreation albert;
 
+    @Test
+    public void checkConnection(){
+        JedisPool pool = new JedisPool("localhost",22229);
+        try {
+            Jedis jedis = pool.getResource();
+            assertNotNull(jedis);
+        } catch (JedisConnectionException e) {
+        }   
+    }
     private void createAlbert() {
         albert = getAlbert();
         userManagement.createUser(albert);
