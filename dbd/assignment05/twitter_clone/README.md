@@ -18,7 +18,7 @@ You are allowed to change the interface and DTOs, just write a small readme list
 <img src="resources/tests_passed.png" alt="Tests passing. See resources">
 
 #### Redis structure
-<img src="resources/json_format.png" alt="Json format. See resources>
+<img src="resources/json_format.png" alt="Json format. See resources">
 
 #### Task 2 response
 You haven't created a User object to serialize from and deserialize to. I am using UserCreation for this atm. That's a non-solution. Create a User object or allow me to do so for you.
