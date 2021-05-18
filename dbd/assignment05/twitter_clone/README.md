@@ -1,3 +1,8 @@
+Run: 
+> docker-compose -f docker-compose.db.yml up
+
+Ports used are 22228 and 22229. You don't have to worry about collision.
+I am using vscode. I would make the entire solution containerized, but I can't be bothered.
 
 # Twitter-clone
 ## Task 1
