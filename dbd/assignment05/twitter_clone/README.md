@@ -41,10 +41,8 @@ I deleted the entire utils folder because it's completely pointless. All referen
 
 That's three files gone and less variables in constructors.
 
-<img src="resources/stop_it_get_some_help.gif">
-
 ## Task 3
 In a readme, write a short explanation of your redis data model. It should be clear enough for a developer to be able to implement the same thing.
 
 #### Task 3 response
-It's not my model. It's yours. You should've brought documentation to me about the structure of the data model. This is your architecture that I am implementing functionalies on. You've already defined the tests.
+It's not my model. It's yours. You should've brought documentation to me about the structure of the data model. This is your architecture that I am implementing functionalies on. You've already defined the tests. Redis structure is at the top of the readme file.
