@@ -1,7 +1,7 @@
 version: '3'
 services:
-  redis:
-    container_name: redis
+  redis_teaching_example:
+    container_name: redis_teaching_example
     hostname: redis
     image: redis
     ports:
@@ -11,13 +11,13 @@ services:
     networks: 
         - app-network
       
-  redis-commander:
-    container_name: redis-commander
+  redis-commander-teaching-example:
+    container_name: redis-commander-teaching-example
     hostname: redis-commander
     image: rediscommander/redis-commander:latest
     restart: always
     environment:
-        - REDIS_HOSTS=local:redis:6379
+        - REDIS_HOSTS=local:redis_teaching_example:6379
     ports:
         - "22119:8081"
     networks: 
@@ -28,7 +28,7 @@ services:
         context: ./redis_teaching_demo
         dockerfile: dockerfile
     environment:
-        - REDIS_HOST=redis
+        - REDIS_HOST=redis_teaching_example
         - REDIS_PORT=6379
         - REDIS_DB=0
         - CONTAINERIZED_VARIABLES=1

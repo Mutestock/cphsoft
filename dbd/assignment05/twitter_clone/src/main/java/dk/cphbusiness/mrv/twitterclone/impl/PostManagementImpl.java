@@ -5,6 +5,8 @@ import dk.cphbusiness.mrv.twitterclone.dto.Post;
 import dk.cphbusiness.mrv.twitterclone.dto.UserCreation;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.JedisException;
+
 import java.util.Objects;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +19,7 @@ public class PostManagementImpl implements PostManagement {
     }
 
     @Override
-    public boolean createPost(String username, String message) {
+    public boolean createPost(String username, String message) throws JedisException{
         UserCreation userCreation = UserCreation.deserialize(username, jedis);
         if(Objects.isNull(userCreation)) {
             return false;
@@ -29,7 +31,7 @@ public class PostManagementImpl implements PostManagement {
     }
 
     @Override
-    public List<Post> getPosts(String username) {
+    public List<Post> getPosts(String username) throws JedisException {
         UserCreation userCreation = UserCreation.deserialize(username, jedis);
         if(Objects.isNull(userCreation)) {
             return null;
@@ -39,7 +41,7 @@ public class PostManagementImpl implements PostManagement {
     }
 
     @Override
-    public List<Post> getPostsBetween(String username, long timeFrom, long timeTo) {
+    public List<Post> getPostsBetween(String username, long timeFrom, long timeTo) throws JedisException {
         return UserCreation.deserialize(username, jedis)
             .getPosts()
             .stream()
